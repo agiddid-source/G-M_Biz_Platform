@@ -51,7 +51,7 @@ require __DIR__ . '/../_inc/shared/header.php';
 <main id="ght-main" class="ght-main">
     <div class="ght-container">
         <div class="ght-page-heading">
-            <div class="ght-heading-copy"><p class="ght-heading-kicker">Order enquiry</p><h1>Your order</h1><p>Review your equipment and parts before requesting final availability.</p></div>
+            <div class="ght-heading-copy"><p class="ght-heading-kicker">Purchase request demo</p><h1>Your order</h1><p>Review your equipment and parts before continuing.</p></div>
             <div class="ght-progress" aria-label="Checkout progress"><span class="ght-step-current"><b>1</b> Cart</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span><b>2</b> Details</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span><b>3</b> Confirmation</span></div>
         </div>
         <?php if ($ghtErrors): ?><div class="ght-error" role="alert"><?= ght_escape($ghtErrors[0]) ?></div><?php endif; ?>
@@ -72,9 +72,9 @@ require __DIR__ . '/../_inc/shared/header.php';
                             <strong class="ght-item-price"><?= ght_format_price($ghtItem['price'] * $ghtItem['quantity']) ?></strong>
                         </article>
                     <?php endforeach; ?>
-                    <div class="ght-under-items"><span class="ght-quiet-link">Generator sales and spare parts</span><span class="ght-security"><i class="fa-regular fa-file-lines" aria-hidden="true"></i> Enquiry only · no online payment</span></div>
+                    <div class="ght-under-items"><span class="ght-quiet-link">Generator sales and spare parts</span><span class="ght-security"><i class="fa-regular fa-file-lines" aria-hidden="true"></i> Demo only; no message or payment is sent.</span></div>
                 </div></section>
-                <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Order summary</h2><div class="ght-summary-row"><span>Items (<?= $ghtCount ?>)</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">Delivery and final pricing will be confirmed by our team before your order is processed.</p><a class="ght-button" href="checkout.php">Continue to checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><p class="ght-summary-foot"><i class="fa-regular fa-file-lines" aria-hidden="true"></i> This is an order enquiry. No payment is taken online.</p></aside>
+                <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Order summary</h2><div class="ght-summary-row"><span>Items (<?= $ghtCount ?>)</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">This prototype simulates checkout for review. It does not send your details to Alamos or take payment.</p><a class="ght-button" href="checkout.php">Continue to checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></aside>
             </div>
         <?php endif; ?>
     </div>
