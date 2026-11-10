@@ -1,0 +1,26 @@
+[
+  {
+    "id": "diesel-250",
+    "name": "Perkins Silent Diesel Generator",
+    "variant": "250 KVA · Three phase",
+    "price": 28500000,
+    "sku": "GEN-250-PK",
+    "icon": "fa-bolt"
+  },
+  {
+    "id": "oil-filter",
+    "name": "Heavy-duty oil filter",
+    "variant": "Perkins 1106 series · Genuine part",
+    "price": 48500,
+    "sku": "PRT-FLT-06",
+    "icon": "fa-gears"
+  },
+  {
+    "id": "service-kit",
+    "name": "Generator service kit",
+    "variant": "Filters, belts and service essentials",
+    "price": 126000,
+    "sku": "PRT-SVC-01",
+    "icon": "fa-screwdriver-wrench"
+  }
+]
