@@ -24,14 +24,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($ghtValues['delivery'] === 'delivery' && $ghtValues['address'] === '') $ghtErrors[] = 'Enter the delivery location.';
     if (strlen($ghtValues['address']) > 300 || strlen($ghtValues['notes']) > 1000) $ghtErrors[] = 'Keep the delivery location under 300 characters and notes under 1,000 characters.';
     if (!$ghtErrors) {
-        $_SESSION['ght_order'] = [
-            'reference' => 'AL-' . strtoupper(bin2hex(random_bytes(4))),
-            'name' => $ghtValues['name'], 'email' => $ghtValues['email'], 'delivery' => $ghtValues['delivery'],
-            'address' => $ghtValues['address'], 'subtotal' => ght_cart_subtotal($ghtItems), 'items' => $ghtItems,
-        ];
-        $_SESSION['ght_cart'] = [];
-        header('Location: confirmation.php', true, 303);
-        exit;
+        try {
+            $_SESSION['ght_order'] = ght_create_order([
+                'name' => $ghtValues['name'],
+                'email' => $ghtValues['email'],
+                'phone' => $ghtValues['phone'],
+                'delivery' => $ghtValues['delivery'],
+                'address' => $ghtValues['address'],
+                'notes' => $ghtValues['notes'],
+            ], $_SESSION['ght_cart'] ?? [], 'storefront');
+            $_SESSION['ght_cart'] = [];
+            header('Location: confirmation.php', true, 303);
+            exit;
+        } catch (Throwable $ghtError) {
+            $ghtErrors[] = 'Your purchase request could not be saved. Please try again.';
+        }
     }
 }
 
@@ -60,7 +67,7 @@ require __DIR__ . '/../_inc/shared/header.php';
                     <div class="ght-field ght-field-full"><label for="ght-notes">Order notes <span>(optional)</span></label><textarea id="ght-notes" name="ght_notes" maxlength="1000" placeholder="Share any requirements about your order"><?= ght_escape($ghtValues['notes']) ?></textarea></div>
                 </div></div>
             </section>
-            <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Your order</h2><?php foreach ($ghtItems as $ghtItem): ?><div class="ght-order-item"><span><?= ght_escape($ghtItem['name']) ?> × <?= $ghtItem['quantity'] ?></span><strong><?= ght_format_price($ghtItem['price'] * $ghtItem['quantity']) ?></strong></div><?php endforeach; ?><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">This is a checkout preview. It will not send your details or take payment.</p><button class="ght-button" type="submit">Submit demo request <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><p class="ght-summary-foot"><a class="ght-quiet-link" href="cart.php"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to cart</a></p></aside>
+            <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Your order</h2><?php foreach ($ghtItems as $ghtItem): ?><div class="ght-order-item"><span><?= ght_escape($ghtItem['name']) ?> × <?= $ghtItem['quantity'] ?></span><strong><?= ght_format_price($ghtItem['price'] * $ghtItem['quantity']) ?></strong></div><?php endforeach; ?><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">Your request is saved locally for staff review. No message or payment is sent.</p><button class="ght-button" type="submit">Submit purchase request <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><p class="ght-summary-foot"><a class="ght-quiet-link" href="cart.php"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to cart</a></p></aside>
         </div>
     </form>
 </div></main>
