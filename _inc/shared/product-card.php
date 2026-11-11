@@ -38,7 +38,7 @@ $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
 
         <!-- Content Body -->
         <div class="card__text">
-            <span class="card__brand"><?= htmlspecialchars($brand_name) ?> • <?= $is_generator ? 'BRAND NEW FACTORY-SEALED' : 'GENUINE FACTORY SPARE' ?></span>
+            <span class="card__brand"><?= htmlspecialchars($brand_name) ?> • <?= $is_generator ? 'Brand New' : 'Genuine Part' ?></span>
             <h3 class="card__title">
                 <a href="<?= url('storefront/product-details.php?id=' . $product['id']) ?>" class="hover:text-alamos-500 transition-colors line-clamp-2">
                     <?= htmlspecialchars($product['name']) ?>
@@ -63,14 +63,14 @@ $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
             <?php endif; ?>
         </div>
 
-        <!-- Footer With Pricing and Pulse Action Button -->
+        <!-- Footer With Pricing and Action Button -->
         <div class="card__footer">
             <div class="card__price-box">
-                <span class="card__price-label">Outright Price</span>
+                <span class="card__price-label">Price</span>
                 <div class="card__price"><?= format_naira($price) ?></div>
                 <?php if ($has_rental): ?>
-                    <span class="text-[10px] text-amber-600 font-mono font-bold">
-                        Hire: <?= format_naira($product['rental_rates']['daily']) ?>/day
+                    <span class="text-[10px] text-amber-600 dark:text-amber-400 font-mono font-semibold">
+                        Rent: <?= format_naira($product['rental_rates']['daily']) ?>/day
                     </span>
                 <?php endif; ?>
             </div>
@@ -78,7 +78,7 @@ $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
             <button type="button" 
                     onclick="window.AlamosStore.addItem('<?= $product['id'] ?>', 1, 'buy')" 
                     class="card__button" 
-                    title="Add to Purchase Order">
+                    title="Add to cart">
                 <svg height="16" width="16" viewBox="0 0 24 24">
                     <path stroke-width="2.5" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path>
                 </svg>

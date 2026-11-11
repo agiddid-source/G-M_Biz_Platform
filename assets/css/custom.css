@@ -326,17 +326,17 @@
   flex-direction: column;
 }
 
-/* Dark Mode Accent Lighting */
+/* Dark Mode Clean Card Styling */
 .dark .alamos-card {
   --card-bg: #0B132B;
   --card-text: #F8FAFC;
-  border-color: rgba(245, 158, 11, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-color: #1E293B;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .dark .alamos-card:hover {
-  border-color: rgba(245, 158, 11, 0.45);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
+  border-color: #334155;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
 }
 
 .card__glow {
