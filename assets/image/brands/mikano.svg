@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 45" fill="currentColor">
+  <!-- Mikano International -->
+  <text x="10" y="27" font-family="'Barlow', 'Arial Black', sans-serif" font-weight="900" font-size="24" font-style="italic" letter-spacing="1" fill="#0135AB">MIKANO</text>
+  <text x="12" y="38" font-family="'Inter', sans-serif" font-weight="800" font-size="8" letter-spacing="3" fill="#64748B">INTERNATIONAL</text>
+  <circle cx="140" cy="22" r="7" fill="#F59E0B"/>
+</svg>

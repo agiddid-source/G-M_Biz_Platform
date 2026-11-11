@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 45" fill="currentColor">
+  <!-- Cummins Bold 'C' + Wordmark -->
+  <path d="M10 8h24v8H19v15h15v8H10V8z" fill="#DC2626"/>
+  <path d="M22 19h8v9h-8z" fill="#DC2626"/>
+  <text x="42" y="30" font-family="'Barlow', 'Arial Black', sans-serif" font-weight="900" font-size="22" letter-spacing="-0.5" fill="currentColor">Cummins</text>
+  <text x="43" y="38" font-family="'Inter', sans-serif" font-weight="700" font-size="7" letter-spacing="2" fill="#64748B">POWER GENERATION</text>
+</svg>

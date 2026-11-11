@@ -1,0 +1,65 @@
+[
+  {
+    "id": "brand-firman",
+    "name": "Sumec Firman",
+    "slug": "sumec-firman",
+    "origin": "International",
+    "description": "Nigeria's most popular brand for basic, reliable petrol and key-start commercial power generators."
+  },
+  {
+    "id": "brand-lutian",
+    "name": "Lutian",
+    "slug": "lutian",
+    "origin": "International",
+    "description": "Pioneering silent diesel and portable commercial generators trusted across Nigerian retail stores."
+  },
+  {
+    "id": "brand-mikano",
+    "name": "Mikano",
+    "slug": "mikano",
+    "origin": "Nigeria",
+    "description": "Premier assembler of soundproof Perkins and MTU powered generators engineered for the Nigerian climate."
+  },
+  {
+    "id": "brand-perkins",
+    "name": "Perkins UK",
+    "slug": "perkins",
+    "origin": "United Kingdom",
+    "description": "World-renowned industrial diesel engines powering prime and standby generators worldwide."
+  },
+  {
+    "id": "brand-cummins",
+    "name": "Cummins",
+    "slug": "cummins",
+    "origin": "USA",
+    "description": "Global heavy power leader designing and manufacturing diesel and natural gas power sets."
+  },
+  {
+    "id": "brand-caterpillar",
+    "name": "Caterpillar (CAT)",
+    "slug": "caterpillar",
+    "origin": "USA",
+    "description": "Heavy industrial diesel and gas generator sets engineered for mission-critical reliability."
+  },
+  {
+    "id": "brand-fleetguard",
+    "name": "Fleetguard",
+    "slug": "fleetguard",
+    "origin": "USA",
+    "description": "Heavy duty Cummins Filtration technology providing original engine protection."
+  },
+  {
+    "id": "brand-stamford",
+    "name": "Stamford | AVK",
+    "slug": "stamford",
+    "origin": "United Kingdom",
+    "description": "World-class industrial alternators setting the global benchmark for voltage stability."
+  },
+  {
+    "id": "brand-dse",
+    "name": "Deep Sea Electronics (DSE)",
+    "slug": "deep-sea-electronics",
+    "origin": "United Kingdom",
+    "description": "Industry-standard digital generator controllers, auto transfer switches, and telematics systems."
+  }
+]

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 45">
+  <!-- CAT with Yellow Triangle -->
+  <polygon points="30,38 70,38 50,14" fill="#F59E0B"/>
+  <text x="14" y="34" font-family="'Barlow', 'Arial Black', sans-serif" font-weight="900" font-size="30" letter-spacing="-1" fill="currentColor">CAT</text>
+</svg>

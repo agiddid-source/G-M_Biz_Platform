@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 45" fill="currentColor">
+  <!-- Perkins Official Style Logotype -->
+  <path d="M12 8h18c7 0 12 4.5 12 11s-5 11-12 11h-9v11H12V8zm9 15h9c3 0 5-1.8 5-4.5s-2-4.5-5-4.5h-9v9z" fill="#0035AB"/>
+  <text x="48" y="29" font-family="'Barlow', 'Arial Black', sans-serif" font-weight="900" font-size="24" letter-spacing="0.5" fill="currentColor">Perkins</text>
+  <text x="49" y="38" font-family="'Inter', sans-serif" font-weight="700" font-size="7" letter-spacing="2" fill="#64748B">DIESEL POWER</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="flt_body" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0284C7"/><stop offset="40%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#0369A1"/></linearGradient>
+    <linearGradient id="flt_cap" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1E293B"/><stop offset="50%" stop-color="#64748B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0F172A"/>
+  <!-- Filter Body Cylinder -->
+  <rect x="130" y="50" width="140" height="200" rx="22" fill="url(#flt_body)"/>
+  <!-- Top Thread Plate Ring -->
+  <rect x="140" y="38" width="120" height="16" rx="6" fill="url(#flt_cap)"/>
+  <circle cx="200" cy="46" r="14" fill="#020617" stroke="#94A3B8" stroke-width="4"/>
+  <!-- Fluted Grip Base -->
+  <rect x="130" y="225" width="140" height="25" rx="4" fill="#0369A1"/>
+  <line x1="145" y1="225" x2="145" y2="250" stroke="#0B1A48" stroke-width="3"/>
+  <line x1="165" y1="225" x2="165" y2="250" stroke="#0B1A48" stroke-width="3"/>
+  <line x1="185" y1="225" x2="185" y2="250" stroke="#0B1A48" stroke-width="3"/>
+  <line x1="205" y1="225" x2="205" y2="250" stroke="#0B1A48" stroke-width="3"/>
+  <line x1="225" y1="225" x2="225" y2="250" stroke="#0B1A48" stroke-width="3"/>
+  <line x1="245" y1="225" x2="245" y2="250" stroke="#0B1A48" stroke-width="3"/>
+  <!-- Fleetguard Label Decal -->
+  <rect x="142" y="85" width="116" height="115" rx="4" fill="#FFFFFF"/>
+  <text x="200" y="115" font-family="'Barlow', Arial Black" font-weight="900" font-size="14" fill="#DC2626" text-anchor="middle">Fleetguard</text>
+  <text x="200" y="130" font-family="'Inter', sans-serif" font-size="8" font-weight="800" fill="#0F172A" text-anchor="middle" letter-spacing="1">STRATAPORE</text>
+  <line x1="155" y1="140" x2="245" y2="140" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="200" y="165" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="20" fill="#0135AB" text-anchor="middle">LF9009</text>
+  <text x="200" y="185" font-family="'Inter', sans-serif" font-size="8" font-weight="600" fill="#64748B" text-anchor="middle">COMBINATION LUBE</text>
+</svg>

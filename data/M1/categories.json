@@ -1,0 +1,50 @@
+[
+  {
+    "id": "cat-basic-gen",
+    "name": "Basic & Small Business Generators",
+    "slug": "basic-small-business-generators",
+    "type": "generator",
+    "description": "Economical 8kVA to 15kVA key-start generators for homes, shops, clinics, and offices across Nigeria.",
+    "icon": "fa-bolt"
+  },
+  {
+    "id": "cat-silent-gen",
+    "name": "Soundproof Diesel Generators",
+    "slug": "soundproof-diesel-generators",
+    "type": "generator",
+    "description": "Sound-attenuated canopy generators (20kVA - 500kVA) for corporate offices, factories, and residential estates.",
+    "icon": "fa-volume-xmark"
+  },
+  {
+    "id": "cat-open-gen",
+    "name": "Open Skid Generators",
+    "slug": "open-skid-generators",
+    "type": "generator",
+    "description": "Heavy-duty open frame units ideal for dedicated power plant rooms and construction sites.",
+    "icon": "fa-industry"
+  },
+  {
+    "id": "cat-filters",
+    "name": "Original Filters & Filtration",
+    "slug": "filters",
+    "type": "spare_part",
+    "description": "Original fuel, lube oil, air, and water separator filters for Perkins, Cummins, and CAT engines.",
+    "icon": "fa-filter"
+  },
+  {
+    "id": "cat-alternators",
+    "name": "Alternators & AVR Regulators",
+    "slug": "alternators-avrs",
+    "type": "spare_part",
+    "description": "Original Stamford alternators and precision Automatic Voltage Regulators (AVR).",
+    "icon": "fa-gauge-high"
+  },
+  {
+    "id": "cat-controllers",
+    "name": "Digital Control Panels",
+    "slug": "control-panels",
+    "type": "spare_part",
+    "description": "Deep Sea Electronics (DSE) digital auto-start controllers and ATS panels.",
+    "icon": "fa-microchip"
+  }
+]
