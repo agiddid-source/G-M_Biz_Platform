@@ -139,46 +139,49 @@ $featured_parts = array_filter($all_products, function($p) {
             </div>
         </div>
 
-        <!-- 3. BRAND LOGOS SECTION -->
+        <!-- 3. BRAND LOGOS SECTION (Responsive: Infinite Marquee on Mobile, Clean Grid on Desktop) -->
         <div class="mt-24 pt-20 border-t border-slate-200 dark:border-slate-800">
             <span class="block text-center text-xs font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-8">
                 Brands We Stock and Service
             </span>
-            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
-                <!-- Perkins Logo -->
-                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/perkins.svg') ?>" alt="Perkins UK" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
-                </div>
 
-                <!-- Cummins Logo -->
-                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/cummins.svg') ?>" alt="Cummins" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
-                </div>
+            <?php
+            $partner_brands = [
+                ['file' => 'perkins.svg', 'name' => 'Perkins UK'],
+                ['file' => 'cummins.svg', 'name' => 'Cummins'],
+                ['file' => 'cat.svg', 'name' => 'Caterpillar (CAT)'],
+                ['file' => 'mikano.svg', 'name' => 'Mikano International'],
+                ['file' => 'firman.svg', 'name' => 'Sumec Firman'],
+                ['file' => 'stamford.svg', 'name' => 'Stamford AVK'],
+                ['file' => 'kohler.svg', 'name' => 'Kohler Power'],
+            ];
+            ?>
 
-                <!-- Caterpillar CAT Logo -->
-                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/cat.svg') ?>" alt="Caterpillar (CAT)" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+            <!-- Mobile Marquee (Infinite smooth continuous loop) -->
+            <div class="sm:hidden brand-marquee-wrapper py-2">
+                <div class="brand-marquee-track">
+                    <?php foreach ($partner_brands as $pb): ?>
+                        <div class="brand-card px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center h-16 w-36 shrink-0">
+                            <img src="<?= asset('assets/image/brands/' . $pb['file']) ?>" alt="<?= htmlspecialchars($pb['name']) ?>" class="brand-logo-img h-8 w-auto object-contain">
+                        </div>
+                    <?php endforeach; ?>
                 </div>
+                <div class="brand-marquee-track" aria-hidden="true">
+                    <?php foreach ($partner_brands as $pb): ?>
+                        <div class="brand-card px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center h-16 w-36 shrink-0">
+                            <img src="<?= asset('assets/image/brands/' . $pb['file']) ?>" alt="<?= htmlspecialchars($pb['name']) ?>" class="brand-logo-img h-8 w-auto object-contain">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
 
-                <!-- Mikano Logo -->
-                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/mikano.svg') ?>" alt="Mikano International" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
-                </div>
-
-                <!-- Sumec Firman Logo -->
-                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/firman.svg') ?>" alt="Sumec Firman" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
-                </div>
-
-                <!-- Stamford Logo -->
-                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/stamford.svg') ?>" alt="Stamford AVK" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
-                </div>
-
-                <!-- Kohler Logo -->
-                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/kohler.svg') ?>" alt="Kohler Power" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
-                </div>
+            <!-- Desktop & Tablet Grid -->
+            <div class="hidden sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
+                <?php foreach ($partner_brands as $pb): ?>
+                    <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                        <img src="<?= asset('assets/image/brands/' . $pb['file']) ?>" alt="<?= htmlspecialchars($pb['name']) ?>" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

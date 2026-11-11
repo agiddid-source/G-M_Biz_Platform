@@ -360,6 +360,43 @@
   filter: brightness(0) invert(1) !important;
 }
 
+/* ==========================================================================
+   MOBILE BRAND LOGO MARQUEE
+   Smooth continuous horizontal loop for mobile viewports
+   ========================================================================== */
+.brand-marquee-wrapper {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 1rem;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.brand-marquee-track {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  min-width: 100%;
+  animation: brand-marquee-scroll 22s linear infinite;
+}
+
+.brand-marquee-wrapper:hover .brand-marquee-track,
+.brand-marquee-wrapper:active .brand-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes brand-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
 .card__glow {
   position: absolute;
   inset: -10px;
