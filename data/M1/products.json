@@ -26,14 +26,50 @@
       "frequency": "50 Hz",
       "engine_model": "Firman MaxPro 460cc 4-Stroke OHV",
       "alternator": "100% Copper Wound Heavy Alternator",
-      "controller": "Digital VFT (Voltage/Freq/Hour) Meter",
+      "controller": "Digital VFT Meter",
       "fuel_tank_litres": 30,
       "fuel_consumption_100": "3.1 L/hr",
       "sound_level_dba": "72 dBA @ 7m",
       "dimensions_mm": "710 x 530 x 605",
       "weight_kg": 108
     },
-    "description": "Nigeria's most reliable basic petrol workhorse. 100% original copper coil, key-start ignition, and built-in wheels. Powers 1.5HP ACs, refrigerators, freezers, and office equipment without burning excess fuel."
+    "description": "Popular key-start petrol generator for small businesses and homes. Copper-wound alternator, built-in battery rack, and wheels. Powers 1.5HP AC units, freezers, and office PCs cleanly."
+  },
+  {
+    "id": "GEN-BAS-002",
+    "sku": "ALM-LUT-008",
+    "name": "Lutian LT8000EB 8.5kVA Key-Start Petrol Generator",
+    "slug": "lutian-8-5kva-keystart-generator",
+    "type": "generator",
+    "category_id": "cat-basic-gen",
+    "brand_id": "brand-lutian",
+    "is_featured": false,
+    "is_for_sale": true,
+    "is_for_rent": false,
+    "sale_price": 1350000,
+    "rental_rates": null,
+    "stock_quantity": 10,
+    "low_stock_threshold": 2,
+    "status": "available",
+    "image": "assets/image/products/firman-10kva.svg",
+    "specs": {
+      "capacity_kva": 8.5,
+      "prime_power_kw": 7,
+      "standby_power_kva": 8.5,
+      "fuel_type": "Petrol",
+      "phase": "Single Phase",
+      "voltage": "230V",
+      "frequency": "50 Hz",
+      "engine_model": "Lutian 420cc OHV Commercial Engine",
+      "alternator": "Heavy Copper Coil",
+      "controller": "Analog Voltmeter + Breaker",
+      "fuel_tank_litres": 25,
+      "fuel_consumption_100": "2.8 L/hr",
+      "sound_level_dba": "74 dBA @ 7m",
+      "dimensions_mm": "680 x 515 x 560",
+      "weight_kg": 95
+    },
+    "description": "Affordable commercial backup set. Key start, copper alternator, and heavy tubular frame. Well-suited for retail shops, salons, and home lighting."
   },
   {
     "id": "GEN-001",
@@ -73,7 +109,47 @@
       "dimensions_mm": "2100 x 950 x 1350",
       "weight_kg": 980
     },
-    "description": "Nigeria's most dependable 30kVA commercial workhorse. Built with an original UK Perkins 1103 engine in a soundproof acoustic canopy. Trusted by bank branches, eateries, and residential estates across Lagos and Abuja."
+    "description": "Dependable 30kVA commercial workhorse. Built with an original UK Perkins 1103 engine in a soundproof acoustic canopy. Trusted by bank branches, eateries, and residential estates across Lagos and Abuja."
+  },
+  {
+    "id": "GEN-002",
+    "sku": "ALM-MIK-PRK-050",
+    "name": "Mikano 50kVA Soundproof Perkins Diesel Generator",
+    "slug": "mikano-50kva-soundproof-generator",
+    "type": "generator",
+    "category_id": "cat-silent-gen",
+    "brand_id": "brand-mikano",
+    "is_featured": false,
+    "is_for_sale": true,
+    "is_for_rent": true,
+    "sale_price": 21500000,
+    "rental_rates": {
+      "daily": 220000,
+      "weekly": 1320000,
+      "monthly": 4400000
+    },
+    "stock_quantity": 6,
+    "low_stock_threshold": 2,
+    "status": "available",
+    "image": "assets/image/products/mikano-30kva.svg",
+    "specs": {
+      "capacity_kva": 50,
+      "prime_power_kw": 40,
+      "standby_power_kva": 55,
+      "fuel_type": "Diesel",
+      "phase": "3-Phase",
+      "voltage": "400V / 230V",
+      "frequency": "50 Hz",
+      "engine_model": "Perkins 1103A-33TG2",
+      "alternator": "Stamford UCI224D",
+      "controller": "Deep Sea DSE6120",
+      "fuel_tank_litres": 180,
+      "fuel_consumption_100": "11.7 L/hr",
+      "sound_level_dba": "65 dBA @ 7m",
+      "dimensions_mm": "2300 x 1000 x 1400",
+      "weight_kg": 1150
+    },
+    "description": "50kVA turbocharged soundproof Perkins unit. Designed for hotels, commercial plazas, and large diagnostic centers requiring reliable 3-phase power."
   },
   {
     "id": "GEN-004",
@@ -113,7 +189,87 @@
       "dimensions_mm": "3150 x 1150 x 1750",
       "weight_kg": 2250
     },
-    "description": "Heavy 6-cylinder inline turbocharged Cummins engine. Engineered for harsh industrial environments, constant power cuts, and extreme thermal conditions in Ikeja and Agbara industrial clusters."
+    "description": "Heavy 6-cylinder inline turbocharged Cummins engine. Engineered for industrial environments, manufacturing shifts, and continuous operation in Ikeja and Agbara."
+  },
+  {
+    "id": "GEN-003",
+    "sku": "ALM-CAT-150K",
+    "name": "Caterpillar CAT DE150E0 150kVA Soundproof Diesel",
+    "slug": "caterpillar-cat-150kva-generator",
+    "type": "generator",
+    "category_id": "cat-silent-gen",
+    "brand_id": "brand-caterpillar",
+    "is_featured": false,
+    "is_for_sale": true,
+    "is_for_rent": true,
+    "sale_price": 48500000,
+    "rental_rates": {
+      "daily": 460000,
+      "weekly": 2760000,
+      "monthly": 9200000
+    },
+    "stock_quantity": 3,
+    "low_stock_threshold": 1,
+    "status": "available",
+    "image": "assets/image/products/cummins-150kva.svg",
+    "specs": {
+      "capacity_kva": 150,
+      "prime_power_kw": 120,
+      "standby_power_kva": 165,
+      "fuel_type": "Diesel",
+      "phase": "3-Phase",
+      "voltage": "400V / 230V",
+      "frequency": "50 Hz",
+      "engine_model": "Cat C7.1 In-line 6",
+      "alternator": "Cat LC3114F",
+      "controller": "EMCP 4.1 Digital Panel",
+      "fuel_tank_litres": 360,
+      "fuel_consumption_100": "32.5 L/hr",
+      "sound_level_dba": "67 dBA @ 7m",
+      "dimensions_mm": "3320 x 1130 x 1800",
+      "weight_kg": 2350
+    },
+    "description": "High-spec Caterpillar prime set. Extremely tough in high ambient heat with heavy inductive motor load capacity. Ideal for data centers and factory shifts."
+  },
+  {
+    "id": "GEN-005",
+    "sku": "ALM-CUM-250K",
+    "name": "Cummins C250D5 250kVA Heavy Industrial Generator",
+    "slug": "cummins-c250d5-250kva-generator",
+    "type": "generator",
+    "category_id": "cat-silent-gen",
+    "brand_id": "brand-cummins",
+    "is_featured": false,
+    "is_for_sale": true,
+    "is_for_rent": true,
+    "sale_price": 68000000,
+    "rental_rates": {
+      "daily": 650000,
+      "weekly": 3900000,
+      "monthly": 13000000
+    },
+    "stock_quantity": 2,
+    "low_stock_threshold": 1,
+    "status": "available",
+    "image": "assets/image/products/cummins-150kva.svg",
+    "specs": {
+      "capacity_kva": 250,
+      "prime_power_kw": 200,
+      "standby_power_kva": 275,
+      "fuel_type": "Diesel",
+      "phase": "3-Phase",
+      "voltage": "400V / 230V",
+      "frequency": "50 Hz",
+      "engine_model": "Cummins 6LTAA8.9-G2",
+      "alternator": "Stamford UCDI274K",
+      "controller": "PowerCommand 1.2",
+      "fuel_tank_litres": 500,
+      "fuel_consumption_100": "53.0 L/hr",
+      "sound_level_dba": "70 dBA @ 7m",
+      "dimensions_mm": "3950 x 1400 x 2050",
+      "weight_kg": 3400
+    },
+    "description": "250kVA prime power plant for large factories, injection molding machinery, and commercial estates. Heavy soundproof canopy with high-efficiency cooling radiator."
   },
   {
     "id": "PRT-001",
@@ -139,7 +295,7 @@
       "thread_size": "2 1/4-12 UNS-2B",
       "compatible_engines": ["Cummins 6CTA8.3", "Cummins ISM", "Cummins ISX", "Cummins QSM11"]
     },
-    "description": "100% Original factory Fleetguard filter. Direct factory supply providing essential engine protection against dirty fuel and sludge buildup."
+    "description": "Original factory Fleetguard filter. Direct factory supply providing essential engine protection against dirty fuel and sludge buildup."
   },
   {
     "id": "PRT-002",
@@ -166,6 +322,32 @@
       "compatible_engines": ["Perkins 1103 Series", "Perkins 1104 Series", "Mikano 30kVA - 100kVA"]
     },
     "description": "Original UK Perkins fuel-water separator. Protects high-pressure diesel injection pumps from water contamination common in local fuel storage tanks."
+  },
+  {
+    "id": "PRT-005",
+    "sku": "ALM-FLT-PRK-2654",
+    "name": "Perkins 2654403 Spin-on Oil Filter Element",
+    "slug": "perkins-oil-filter-2654403",
+    "type": "spare_part",
+    "category_id": "cat-filters",
+    "brand_id": "brand-perkins",
+    "is_featured": false,
+    "is_for_sale": true,
+    "is_for_rent": false,
+    "sale_price": 38000,
+    "rental_rates": null,
+    "stock_quantity": 52,
+    "low_stock_threshold": 10,
+    "status": "available",
+    "image": "assets/image/products/perkins-filter.svg",
+    "specs": {
+      "part_type": "Lube Oil Filter",
+      "oem_number": "2654403",
+      "filtration_rating": "20 Micron",
+      "thread_size": "3/4-16 UNF",
+      "compatible_engines": ["Perkins 1004", "Perkins 1103", "Perkins 1104", "Mikano 30-80kVA"]
+    },
+    "description": "Genuine Perkins spin-on engine lube filter. Keeps soot and carbon away from crankshaft bearings during long continuous runs."
   },
   {
     "id": "PRT-003",
@@ -217,6 +399,6 @@
       "mains_monitoring": "True RMS Voltage, Amperage & Frequency",
       "compatibility": "Mikano, Perkins, Cummins, Caterpillar, FG Wilson"
     },
-    "description": "The gold standard generator digital controller in Nigeria. Instantly detects public power outage, commands engine auto-start, and transfers load via ATS within 8 seconds."
+    "description": "The industry standard generator digital controller in Nigeria. Instantly detects public power outage, commands engine auto-start, and transfers load via ATS within 8 seconds."
   }
 ]
