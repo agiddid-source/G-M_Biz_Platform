@@ -7,9 +7,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <div class="sticky top-4 z-40 px-4 sm:px-6 lg:px-8 pointer-events-none">
     <header class="max-w-6xl mx-auto bg-white/95 dark:bg-industrial-950/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-lg shadow-md px-4 sm:px-6 py-3 transition-colors duration-200 pointer-events-auto">
         <div class="flex items-center justify-between">
-            <!-- Brand Logo -->
+            <!-- Brand Logo (Crisp adaptive logo for light & dark mode) -->
             <a href="<?= url('index.php') ?>" class="flex items-center shrink-0">
-                <img src="<?= asset('assets/image/logo.png') ?>" alt="ALAMOS Resources & Services" class="h-9 sm:h-10 w-auto object-contain dark:brightness-0 dark:invert transition-all">
+                <img src="<?= asset('assets/image/logo.png') ?>" alt="ALAMOS Resources & Services" class="h-9 sm:h-10 w-auto object-contain dark:hidden">
+                <img src="<?= asset('assets/image/logo-white.png') ?>" alt="ALAMOS Resources & Services" class="h-9 sm:h-10 w-auto object-contain hidden dark:block">
             </a>
 
             <!-- Desktop Nav Menu -->

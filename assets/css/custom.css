@@ -339,6 +339,27 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
 }
 
+/* ==========================================================================
+   BRAND LOGOS DARK MODE HANDLING
+   Ensures partner brand logos and marks are crisp and high-contrast in dark mode
+   ========================================================================== */
+.brand-card img,
+.brand-logo-img {
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dark .brand-card img,
+.dark .brand-logo-img {
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.85;
+}
+
+.dark .brand-card:hover img,
+.dark .brand-logo-img:hover {
+  opacity: 1;
+  filter: brightness(0) invert(1) !important;
+}
+
 .card__glow {
   position: absolute;
   inset: -10px;

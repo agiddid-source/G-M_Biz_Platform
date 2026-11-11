@@ -146,38 +146,38 @@ $featured_parts = array_filter($all_products, function($p) {
             </span>
             <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
                 <!-- Perkins Logo -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/perkins.svg') ?>" alt="Perkins UK" class="h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <img src="<?= asset('assets/image/brands/perkins.svg') ?>" alt="Perkins UK" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                 </div>
 
                 <!-- Cummins Logo -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/cummins.svg') ?>" alt="Cummins" class="h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <img src="<?= asset('assets/image/brands/cummins.svg') ?>" alt="Cummins" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                 </div>
 
                 <!-- Caterpillar CAT Logo -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/cat.svg') ?>" alt="Caterpillar (CAT)" class="h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <img src="<?= asset('assets/image/brands/cat.svg') ?>" alt="Caterpillar (CAT)" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                 </div>
 
                 <!-- Mikano Logo -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/mikano.svg') ?>" alt="Mikano International" class="h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <img src="<?= asset('assets/image/brands/mikano.svg') ?>" alt="Mikano International" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                 </div>
 
                 <!-- Sumec Firman Logo -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/firman.svg') ?>" alt="Sumec Firman" class="h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <img src="<?= asset('assets/image/brands/firman.svg') ?>" alt="Sumec Firman" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                 </div>
 
                 <!-- Stamford Logo -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/stamford.svg') ?>" alt="Stamford AVK" class="h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <img src="<?= asset('assets/image/brands/stamford.svg') ?>" alt="Stamford AVK" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                 </div>
 
                 <!-- Kohler Logo -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
-                    <img src="<?= asset('assets/image/brands/kohler.svg') ?>" alt="Kohler Power" class="h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
+                <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <img src="<?= asset('assets/image/brands/kohler.svg') ?>" alt="Kohler Power" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                 </div>
             </div>
         </div>
