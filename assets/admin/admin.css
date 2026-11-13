@@ -70,15 +70,23 @@ body.ght-admin-body {
 }
 
 .ght-admin-sidebar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
     display: flex;
+    width: 246px;
     min-height: 100vh;
+    height: 100vh;
     flex-direction: column;
     padding: 28px 18px 20px;
     background: var(--ght-admin-blue-deep);
     color: var(--ght-admin-surface);
+    overflow: hidden;
 }
+
+.ght-admin-workspace { grid-column: 2; min-width: 0; }
 
 .ght-admin-brand {
     display: flex;
@@ -100,7 +108,7 @@ body.ght-admin-body {
 .ght-admin-brand-rule { width: 1px; height: 25px; background: var(--ght-admin-white-28); }
 .ght-admin-brand-label { color: var(--ght-admin-white-72); font-size: 12px; }
 
-.ght-admin-nav { display: grid; gap: 6px; padding-top: 30px; }
+.ght-admin-nav { display: grid; gap: 6px; padding-top: 30px; overflow-y: auto; overscroll-behavior: contain; }
 
 .ght-admin-nav-heading {
     margin: 0 12px 8px;
@@ -123,8 +131,6 @@ body.ght-admin-body {
 .ght-admin-nav-link svg,
 .ght-admin-store-link svg,
 .ght-admin-button svg,
-.ght-admin-summary-icon svg,
-.ght-admin-summary-link svg,
 .ght-admin-search svg,
 .ght-admin-data-icon svg,
 .ght-admin-product-mark svg {
@@ -180,23 +186,8 @@ body.ght-admin-body {
 .ght-admin-main { width: 100%; padding: 40px clamp(24px, 4vw, 58px) 24px; }
 .ght-admin-content { width: min(100%, 1180px); margin-inline: auto; }
 
-.ght-admin-hero {
-    display: grid;
-    min-height: 272px;
-    grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
-    align-items: center;
-    gap: 42px;
-    padding: 34px 40px;
-    border-radius: 14px;
-    background: var(--ght-admin-blue);
-    box-shadow: var(--ght-admin-shadow);
-    color: var(--ght-admin-surface);
-}
-
-.ght-admin-hero-copy { max-width: 510px; min-width: 0; }
-.ght-admin-kicker { margin: 0 0 9px; color: var(--ght-admin-white-72); font-size: 13px; }
-.ght-admin-hero h1 { max-width: 520px; margin: 0; color: var(--ght-admin-surface); font: 700 clamp(36px, 4.4vw, 54px)/.98 var(--ght-admin-display); letter-spacing: -.025em; overflow-wrap: break-word; min-width: 0; }
-.ght-admin-hero-summary { max-width: 380px; margin: 14px 0 22px; color: var(--ght-admin-white-78); font-size: 15px; }
+.ght-admin-overview { margin-bottom: 22px; }
+.ght-admin-overview h1 { margin: 0; color: var(--ght-admin-ink); font: 700 30px/1.15 var(--ght-admin-display); letter-spacing: -.015em; overflow-wrap: break-word; min-width: 0; }
 
 .ght-admin-button {
     display: inline-flex;
@@ -216,38 +207,6 @@ body.ght-admin-body {
 .ght-admin-button svg { width: 17px; height: 17px; }
 .ght-admin-button:hover { background: var(--ght-admin-amber-soft); }
 .ght-admin-button:active { transform: scale(.98); }
-
-.ght-admin-feature {
-    display: grid;
-    min-width: 0;
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: start;
-    padding-left: 34px;
-    border-left: 1px solid var(--ght-admin-white-22);
-}
-
-.ght-admin-feature-code { margin-bottom: 12px; color: var(--ght-admin-amber); font: 700 clamp(25px, 3vw, 38px)/1 var(--ght-admin-display); overflow-wrap: break-word; }
-.ght-admin-feature-copy { min-width: 0; }
-.ght-admin-feature-label { margin: 0 0 4px; color: var(--ght-admin-white-67); font-size: 12px; }
-.ght-admin-feature h2 { max-width: 400px; margin: 0; color: var(--ght-admin-surface); font: 600 20px/1.15 var(--ght-admin-display); overflow-wrap: break-word; min-width: 0; }
-.ght-admin-feature-copy > p:last-child { margin: 5px 0 0; color: var(--ght-admin-white-73); font-size: 12px; }
-.ght-admin-feature-price { display: block; margin-top: 13px; color: var(--ght-admin-amber); font-size: 14px; font-weight: 700; }
-
-.ght-admin-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
-.ght-admin-summary-card { display: flex; min-height: 104px; align-items: center; gap: 15px; padding: 19px 20px; border: 1px solid var(--ght-admin-border); border-radius: 10px; background: var(--ght-admin-surface); }
-.ght-admin-summary-icon { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border-radius: 10px; background: var(--ght-admin-blue-soft); color: var(--ght-admin-blue); }
-.ght-admin-summary-icon-muted { background: var(--ght-admin-surface-soft); color: var(--ght-admin-muted); }
-.ght-admin-summary-icon svg { width: 20px; height: 20px; }
-.ght-admin-summary-card > div { min-width: 0; }
-.ght-admin-summary-label { margin: 0 0 4px; color: var(--ght-admin-muted); font-size: 12px; }
-.ght-admin-summary-value { margin: 0; color: var(--ght-admin-ink); font: 700 25px/1.05 var(--ght-admin-display); }
-.ght-admin-summary-value span { color: var(--ght-admin-muted); font: 500 13px/1.4 var(--ght-admin-body); }
-.ght-admin-summary-value-note { font: 600 14px/1.4 var(--ght-admin-body); }
-.ght-admin-summary-value-money { font-size: 21px; }
-.ght-admin-summary-link { display: grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; margin-left: auto; border-radius: 7px; color: var(--ght-admin-blue); transition: background-color 150ms var(--ght-admin-ease), transform 120ms var(--ght-admin-ease); }
-.ght-admin-summary-link svg { width: 18px; height: 18px; }
-.ght-admin-summary-link:hover { background: var(--ght-admin-blue-soft); }
-.ght-admin-summary-link:active { transform: scale(.96); }
 
 .ght-admin-dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px; margin-top: 20px; }
 .ght-admin-activity-panel { min-width: 0; overflow: clip; border: 1px solid var(--ght-admin-border); border-radius: 11px; background: var(--ght-admin-surface); }
@@ -273,13 +232,19 @@ body.ght-admin-body {
 .ght-admin-activity-empty h3 { margin: 0; color: var(--ght-admin-ink); font-size: 13px; font-weight: 600; }
 .ght-admin-activity-empty p { margin: 5px 0 12px; color: var(--ght-admin-muted); font-size: 11px; }
 .ght-admin-activity-empty a { color: var(--ght-admin-blue); font-size: 11px; font-weight: 600; }
-.ght-admin-week-chart { display: grid; min-height: 180px; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 7px; padding: 9px 18px 15px; border-top: 1px solid var(--ght-admin-border); }
-.ght-admin-week-day { display: grid; min-width: 0; grid-template-rows: 23px minmax(0, 1fr) 22px; justify-items: center; }
-.ght-admin-week-value { max-width: 100%; overflow: hidden; color: var(--ght-admin-muted); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
-.ght-admin-week-track { display: flex; width: min(100%, 25px); min-height: 100px; align-items: flex-end; justify-content: center; border-radius: 5px; background: var(--ght-admin-surface-soft); }
-.ght-admin-week-track > span { width: 100%; height: var(--ght-admin-bar-height); border-radius: 5px; background: var(--ght-admin-blue); }
-.ght-admin-week-label { align-self: end; color: var(--ght-admin-muted); font-size: 10px; }
-.ght-admin-chart-empty { min-height: 180px; padding-top: 39px; }
+.ght-admin-trend-panel { margin-bottom: 16px; }
+.ght-admin-trend-chart { padding: 13px 19px 15px; border-top: 1px solid var(--ght-admin-border); }
+.ght-admin-trend-plot { display: block; width: 100%; height: auto; overflow: visible; }
+.ght-admin-chart-gridlines { fill: none; stroke: var(--ght-admin-border); stroke-width: 1; }
+.ght-admin-chart-area { fill: var(--ght-admin-blue-soft); }
+.ght-admin-chart-line { fill: none; stroke: var(--ght-admin-blue); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
+.ght-admin-chart-point { fill: var(--ght-admin-surface); stroke: var(--ght-admin-blue); stroke-width: 2.5; }
+.ght-admin-chart-point-current { fill: var(--ght-admin-amber); stroke: var(--ght-admin-amber); }
+.ght-admin-trend-axis { display: flex; justify-content: space-between; gap: 8px; padding-inline: 5%; color: var(--ght-admin-muted); font-size: 11px; }
+.ght-admin-trend-axis span { white-space: nowrap; }
+.ght-admin-chart-day-current { color: var(--ght-admin-blue); font-weight: 700; }
+.ght-admin-chart-empty-note { display: flex; justify-content: space-between; gap: 12px; margin: 1px 4px 0; color: var(--ght-admin-muted); font-size: 11px; }
+.ght-admin-chart-empty-note a { color: var(--ght-admin-blue); font-weight: 600; }
 
 .ght-admin-catalog { margin-top: 29px; overflow: clip; border: 1px solid var(--ght-admin-border); border-radius: 11px; background: var(--ght-admin-surface); }
 .ght-admin-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 23px 24px 19px; }
@@ -328,6 +293,8 @@ body.ght-admin-body {
 .ght-admin-panel-toolbar h2 { margin: 0; color: var(--ght-admin-ink); font: 700 19px/1.15 var(--ght-admin-display); }
 .ght-admin-panel-toolbar p { margin: 4px 0 0; color: var(--ght-admin-muted); font-size: 12px; }
 .ght-admin-toolbar-actions { display: flex; align-items: center; justify-content: flex-end; gap: 9px; }
+.ght-admin-orders-panel .ght-admin-panel-toolbar { justify-content: flex-end; }
+.ght-admin-orders-panel .ght-admin-toolbar-actions { flex: 1; }
 .ght-admin-filter-form select,
 .ght-admin-field input,
 .ght-admin-field select,
@@ -356,6 +323,14 @@ body.ght-admin-body {
 .ght-admin-button:focus-visible,
 .ght-admin-secondary-button:focus-visible,
 .ght-admin-small-button:focus-visible { outline: 3px solid var(--ght-admin-amber); outline-offset: 2px; }
+.ght-admin-summary-card { display: flex; min-height: 104px; align-items: center; gap: 15px; padding: 19px 20px; border: 1px solid var(--ght-admin-border); border-radius: 10px; background: var(--ght-admin-surface); }
+.ght-admin-summary-icon { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border-radius: 10px; background: var(--ght-admin-blue-soft); color: var(--ght-admin-blue); }
+.ght-admin-summary-icon-muted { background: var(--ght-admin-surface-soft); color: var(--ght-admin-muted); }
+.ght-admin-summary-icon svg { display: block; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.ght-admin-summary-card > div { min-width: 0; }
+.ght-admin-summary-label { margin: 0 0 4px; color: var(--ght-admin-muted); font-size: 12px; }
+.ght-admin-summary-value { margin: 0; color: var(--ght-admin-ink); font: 700 25px/1.05 var(--ght-admin-display); }
+.ght-admin-summary-value-money { font-size: 21px; }
 .ght-admin-cell-note { display: block; margin-top: 4px; color: var(--ght-admin-muted); font-size: 11px; }
 .ght-admin-payment-label { color: var(--ght-admin-ink-soft); font-size: 12px; }
 .ght-admin-inline-status { display: flex; min-width: 215px; align-items: center; gap: 6px; }
@@ -380,15 +355,14 @@ body.ght-admin-body {
 .ght-admin-report-date-form .ght-admin-field { width: min(100%, 205px); }
 .ght-admin-report-chart-panel,
 .ght-admin-report-table-panel { margin-top: 16px; }
-.ght-admin-report-chart { display: grid; min-height: 208px; grid-template-columns: repeat(auto-fit, minmax(18px, 1fr)); align-items: stretch; gap: 5px; padding: 16px 20px 13px; border-top: 1px solid var(--ght-admin-border); }
-.ght-admin-report-day { display: grid; min-width: 0; grid-template-rows: minmax(120px, 1fr) 28px; justify-items: center; gap: 8px; }
-.ght-admin-report-bar-track { display: flex; width: min(100%, 24px); height: 100%; align-items: flex-end; border-radius: 5px; background: var(--ght-admin-surface-soft); }
-.ght-admin-report-bar-track > span { width: 100%; height: var(--ght-admin-bar-height); min-height: 0; border-radius: 5px; background: var(--ght-admin-blue); }
-.ght-admin-report-day-label { color: var(--ght-admin-muted); font-size: 10px; white-space: nowrap; }
+.ght-admin-report-chart { padding: 13px 19px 15px; border-top: 1px solid var(--ght-admin-border); }
+.ght-admin-chart-axis { fill: var(--ght-admin-muted); font: 10px var(--ght-admin-body); }
 .ght-admin-orders-table { min-width: 740px; }
+.ght-admin-orders-table tbody tr[data-ght-search-row] { transition: background-color 120ms var(--ght-admin-ease); }
 .ght-admin-pos-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(290px, .8fr); align-items: start; gap: 16px; }
 .ght-admin-pos-list { border-top: 1px solid var(--ght-admin-border); }
 .ght-admin-pos-row { display: grid; grid-template-columns: auto minmax(0, 1fr) 76px; align-items: center; gap: 12px; padding: 14px 19px; border-bottom: 1px solid var(--ght-admin-border); }
+.ght-admin-pos-row { transition: background-color 120ms var(--ght-admin-ease); }
 .ght-admin-pos-row:last-child { border-bottom: 0; }
 .ght-admin-pos-row .ght-admin-product-mark { width: 38px; height: 38px; }
 .ght-admin-pos-row .ght-admin-product-mark svg { width: 21px; height: 21px; }
@@ -469,15 +443,13 @@ body.ght-admin-body {
 
 @media (max-width: 1120px) {
     .ght-admin-shell { grid-template-columns: 218px minmax(0, 1fr); }
-    .ght-admin-sidebar { padding-inline: 14px; }
-    .ght-admin-hero { grid-template-columns: minmax(0, 1fr) minmax(220px, .82fr); gap: 26px; padding-inline: 30px; }
-    .ght-admin-feature { padding-left: 24px; }
-    .ght-admin-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ght-admin-sidebar { width: 218px; padding-inline: 14px; }
 }
 
 @media (max-width: 880px) {
     .ght-admin-shell { grid-template-columns: minmax(0, 1fr); }
-    .ght-admin-sidebar { position: static; min-height: auto; padding: 13px 22px 14px; }
+    .ght-admin-sidebar { position: sticky; top: 0; bottom: auto; width: 100%; height: auto; min-height: auto; padding: 13px 22px 14px; }
+    .ght-admin-workspace { grid-column: 1; }
     .ght-admin-brand { min-height: 48px; width: fit-content; padding: 0 8px 10px; border: 0; }
     .ght-admin-brand img { width: 116px; height: 39px; }
     .ght-admin-brand-rule { height: 21px; }
@@ -501,22 +473,11 @@ body.ght-admin-body {
     .ght-admin-topbar-context { gap: 8px; font-size: 11px; }
     .ght-admin-store-link { min-height: 36px; font-size: 12px; }
     .ght-admin-main { padding: 20px 15px 14px; }
-    .ght-admin-hero { grid-template-columns: minmax(0, 1fr); gap: 25px; padding: 25px 22px; }
-    .ght-admin-hero h1 { font-size: 39px; }
-    .ght-admin-hero-summary { margin-block: 11px 18px; font-size: 14px; }
-    .ght-admin-feature { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 14px; padding: 19px 0 0; border-top: 1px solid var(--ght-admin-white-22); border-left: 0; }
-    .ght-admin-feature-code { grid-column: 2; grid-row: 1 / span 2; justify-self: end; margin: 0; font-size: 19px; }
-    .ght-admin-feature-copy { grid-column: 1; grid-row: 1; }
-    .ght-admin-feature h2 { font-size: 18px; }
-    .ght-admin-feature-copy > p:last-child { font-size: 11px; }
-    .ght-admin-feature-price { grid-column: 1; grid-row: 2; margin-top: 8px; }
-    .ght-admin-summary { grid-template-columns: minmax(0, 1fr); gap: 9px; margin-top: 14px; }
-    .ght-admin-summary-card { min-height: 78px; padding: 12px 14px; }
-    .ght-admin-summary-icon { width: 38px; height: 38px; }
+    .ght-admin-overview { margin-bottom: 18px; }
+    .ght-admin-overview h1 { font-size: 27px; }
     .ght-admin-catalog { margin-top: 20px; }
     .ght-admin-panel-heading { padding-inline: 15px; }
-    .ght-admin-week-chart { gap: 4px; padding-inline: 12px; }
-    .ght-admin-week-track { width: min(100%, 19px); }
+    .ght-admin-trend-chart { padding-inline: 12px; }
     .ght-admin-section-heading { align-items: flex-start; flex-direction: column; gap: 15px; padding: 19px 17px 16px; }
     .ght-admin-section-heading h2 { font-size: 21px; }
     .ght-admin-search { width: 100%; }
@@ -535,6 +496,11 @@ body.ght-admin-body {
     .ght-admin-body *,
     .ght-admin-body *::before,
     .ght-admin-body *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .ght-admin-orders-table tbody tr[data-ght-search-row]:hover,
+    .ght-admin-pos-row:hover { background: var(--ght-admin-surface-soft); }
 }
 
 @media (max-width: 880px) {
@@ -566,5 +532,6 @@ body.ght-admin-body {
     .ght-admin-pos-row { grid-template-columns: auto minmax(0, 1fr) 64px; gap: 9px; padding-inline: 12px; }
     .ght-admin-pos-summary { padding: 16px; }
     .ght-admin-customer-form { padding-inline: 16px; }
-    .ght-admin-report-chart { gap: 3px; padding-inline: 10px; }
+    .ght-admin-report-chart,
+    .ght-admin-trend-chart { padding-inline: 10px; }
 }

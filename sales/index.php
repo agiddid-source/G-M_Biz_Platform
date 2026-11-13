@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../_inc/config.php';
 
-$ghtAdminTitle = 'Orders & sales';
+$ghtAdminTitle = 'Orders';
 $ghtAdminDescription = 'Review storefront purchase requests and counter sales.';
 $ghtAdminActive = 'sales';
 $ghtAdminStatuses = ght_order_statuses();
@@ -32,21 +32,69 @@ $ghtAdminVisibleOrders = array_values(array_filter($ghtAdminOrders, static funct
     return $ghtAdminFilter === 'all' || ($ghtOrder['status'] ?? 'pending') === $ghtAdminFilter;
 }));
 $ghtAdminZone = new DateTimeZone('Africa/Lagos');
+$ghtAdminNow = new DateTimeImmutable('now', $ghtAdminZone);
+$ghtAdminOrderDays = [];
+for ($ghtDayOffset = 6; $ghtDayOffset >= 0; $ghtDayOffset--) {
+    $ghtDay = $ghtAdminNow->setTime(0, 0)->modify('-' . $ghtDayOffset . ' days');
+    $ghtAdminOrderDays[$ghtDay->format('Y-m-d')] = ['date' => $ghtDay, 'count' => 0];
+}
+foreach ($ghtAdminOrders as $ghtOrder) {
+    if (!is_array($ghtOrder) || empty($ghtOrder['created_at'])) {
+        continue;
+    }
+    try {
+        $ghtOrderDay = (new DateTimeImmutable((string) $ghtOrder['created_at']))->setTimezone($ghtAdminZone)->format('Y-m-d');
+    } catch (Throwable) {
+        continue;
+    }
+    if (isset($ghtAdminOrderDays[$ghtOrderDay])) {
+        $ghtAdminOrderDays[$ghtOrderDay]['count']++;
+    }
+}
+$ghtAdminOrderMax = max(1, ...array_column($ghtAdminOrderDays, 'count'));
+$ghtAdminOrderWeekTotal = array_sum(array_column($ghtAdminOrderDays, 'count'));
+$ghtAdminOrderPoints = [];
+foreach (array_values($ghtAdminOrderDays) as $ghtChartIndex => $ghtChartDay) {
+    $ghtChartX = 60 + ($ghtChartIndex * 180);
+    $ghtChartY = 150 - (int) round($ghtChartDay['count'] / $ghtAdminOrderMax * 120);
+    $ghtAdminOrderPoints[] = $ghtChartX . ',' . $ghtChartY;
+}
+$ghtAdminOrderLine = implode(' ', $ghtAdminOrderPoints);
+$ghtAdminOrderArea = 'M ' . $ghtAdminOrderPoints[0] . ' L ' . implode(' L ', array_slice($ghtAdminOrderPoints, 1)) . ' L 1140,150 Z';
 require __DIR__ . '/../_inc/admin/layout-start.php';
 ?>
 <main class="ght-admin-main" id="ght-admin-main">
     <div class="ght-admin-content">
         <div class="ght-admin-page-heading">
-            <div><p class="ght-admin-page-kicker">Sales workspace</p><h1>Orders &amp; sales</h1><p>Review requests, track fulfilment, and update order status.</p></div>
-            <a class="ght-admin-button" href="pos.php">Open point of sale</a>
+            <div><h1>Orders</h1></div>
+            <a class="ght-admin-button" href="pos.php">New sale</a>
         </div>
 
         <?php if (isset($_GET['updated'])): ?><p class="ght-admin-alert ght-admin-alert-success" role="status">Order status updated.</p><?php endif; ?>
         <?php if ($ghtAdminError !== ''): ?><p class="ght-admin-alert" role="alert"><?= ght_escape($ghtAdminError) ?></p><?php endif; ?>
 
-        <section class="ght-admin-panel ght-admin-orders-panel" aria-labelledby="ght-orders-heading">
+        <section class="ght-admin-panel ght-admin-trend-panel" aria-labelledby="ght-orders-trend-heading">
+            <div class="ght-admin-panel-toolbar"><div><h2 id="ght-orders-trend-heading">Order volume</h2><p>Last 7 days</p></div></div>
+            <div class="ght-admin-trend-chart">
+                <svg class="ght-admin-trend-plot" viewBox="0 0 1200 180" role="img" aria-label="Order count for the last seven days: <?= $ghtAdminOrderWeekTotal ?> orders">
+                    <path class="ght-admin-chart-gridlines" d="M48 30H1152 M48 90H1152 M48 150H1152" />
+                    <path class="ght-admin-chart-area" d="<?= ght_escape($ghtAdminOrderArea) ?>" />
+                    <path class="ght-admin-chart-line" d="M <?= ght_escape(str_replace(' ', ' L ', $ghtAdminOrderLine)) ?>" />
+                    <text class="ght-admin-chart-axis" x="44" y="154" text-anchor="end">0</text>
+                    <?php if ($ghtAdminOrderWeekTotal > 0): ?><text class="ght-admin-chart-axis" x="48" y="23"><?= $ghtAdminOrderMax ?></text><?php endif; ?>
+                    <?php foreach (array_values($ghtAdminOrderDays) as $ghtChartIndex => $ghtChartDay): ?>
+                        <?php $ghtChartX = 60 + ($ghtChartIndex * 180); $ghtChartY = 150 - (int) round($ghtChartDay['count'] / $ghtAdminOrderMax * 120); ?>
+                        <circle class="ght-admin-chart-point" cx="<?= $ghtChartX ?>" cy="<?= $ghtChartY ?>" r="4"><title><?= ght_escape($ghtChartDay['date']->format('l')) ?>: <?= (int) $ghtChartDay['count'] ?> orders</title></circle>
+                    <?php endforeach; ?>
+                </svg>
+                <div class="ght-admin-trend-axis" aria-hidden="true">
+                    <?php foreach ($ghtAdminOrderDays as $ghtChartDay): ?><span><?= ght_escape($ghtChartDay['date']->format('D')) ?></span><?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+
+        <section class="ght-admin-panel ght-admin-orders-panel" aria-label="Orders list">
             <div class="ght-admin-panel-toolbar">
-                <div><h2 id="ght-orders-heading">Order history</h2><p><?= count($ghtAdminOrders) ?> recorded orders</p></div>
                 <div class="ght-admin-toolbar-actions">
                     <label class="ght-admin-search">
                         <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
@@ -83,7 +131,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                                     $ghtStatusLabel,
                                 ]));
                                 try {
-                                    $ghtOrderDate = (new DateTimeImmutable((string) ($ghtOrder['created_at'] ?? 'now')))->setTimezone($ghtAdminZone)->format('M j, Y · g:i a');
+                                    $ghtOrderDate = (new DateTimeImmutable((string) ($ghtOrder['created_at'] ?? 'now')))->setTimezone($ghtAdminZone)->format('M j, Y, g:i a');
                                 } catch (Throwable) {
                                     $ghtOrderDate = 'Date unavailable';
                                 }
@@ -116,7 +164,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                 </div>
                 <p class="ght-admin-table-foot" id="ght-sales-count" data-singular="order" data-plural="orders" aria-live="polite"><?= count($ghtAdminVisibleOrders) ?> orders shown</p>
             <?php else: ?>
-                <div class="ght-admin-empty-state"><h3><?= $ghtAdminOrders ? 'No orders in this status' : 'No orders recorded yet' ?></h3><p>Storefront purchase requests and staff-entered counter sales appear here.</p><a href="pos.php">Record a counter sale</a></div>
+                <div class="ght-admin-empty-state"><h3><?= $ghtAdminOrders ? 'No orders in this status' : 'No orders yet' ?></h3><a href="pos.php">Record a sale</a></div>
             <?php endif; ?>
         </section>
     </div>

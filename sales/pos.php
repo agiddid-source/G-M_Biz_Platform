@@ -76,12 +76,12 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
 <main class="ght-admin-main" id="ght-admin-main">
     <div class="ght-admin-content">
         <div class="ght-admin-page-heading">
-            <div><p class="ght-admin-page-kicker">Sales workspace</p><h1>Point of sale</h1><p>Record a staff-confirmed counter sale from the shared product catalog.</p></div>
-            <a class="ght-admin-secondary-button" href="index.php">Sales history</a>
+            <div><h1>Point of sale</h1></div>
+            <a class="ght-admin-secondary-button" href="index.php">Orders</a>
         </div>
 
         <?php if (isset($_GET['sale'])): ?>
-            <p class="ght-admin-alert ght-admin-alert-success" role="status">Counter sale saved. <a href="order.php?reference=<?= rawurlencode((string) $_GET['sale']) ?>">Open receipt details</a></p>
+            <p class="ght-admin-alert ght-admin-alert-success" role="status">Sale saved. <a href="order.php?reference=<?= rawurlencode((string) $_GET['sale']) ?>">View sale</a></p>
         <?php endif; ?>
         <?php if ($ghtAdminErrors): ?><div class="ght-admin-alert" role="alert"><strong>Check the sale details:</strong><ul><?php foreach (array_unique($ghtAdminErrors) as $ghtError): ?><li><?= ght_escape($ghtError) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
 
@@ -89,14 +89,14 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
             <input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>">
             <div class="ght-admin-pos-grid">
                 <section class="ght-admin-panel ght-admin-pos-products" aria-labelledby="ght-pos-products-heading">
-                    <div class="ght-admin-panel-toolbar"><div><h2 id="ght-pos-products-heading">Select products</h2><p>Prices are read from the shared catalog data.</p></div></div>
+                    <div class="ght-admin-panel-toolbar"><div><h2 id="ght-pos-products-heading">Products</h2></div></div>
                     <div class="ght-admin-pos-list">
                         <?php foreach ($ghtProducts as $ghtProductId => $ghtProduct): ?>
                             <div class="ght-admin-pos-row">
                                 <div class="ght-admin-product-mark" aria-hidden="true">
                                     <svg viewBox="0 0 32 32"><path d="M7 8h18v17H7zM11 12h10M11 17h10M11 21h5"/></svg>
                                 </div>
-                                <div class="ght-admin-product-copy"><strong><?= ght_escape($ghtProduct['name']) ?></strong><span><?= ght_escape($ghtProduct['variant']) ?> / <?= ght_escape($ghtProduct['sku']) ?></span><b><?= ght_escape(ght_format_price((int) $ghtProduct['price'])) ?></b></div>
+                                <div class="ght-admin-product-copy"><strong><?= ght_escape($ghtProduct['name']) ?></strong><span><?= ght_escape($ghtProduct['variant']) ?></span><b><?= ght_escape(ght_format_price((int) $ghtProduct['price'])) ?></b></div>
                                 <label class="ght-admin-pos-quantity-label"><span>Qty</span><input class="ght-admin-pos-quantity" type="number" name="ght_quantities[<?= ght_escape((string) $ghtProductId) ?>]" value="<?= (int) ($ghtAdminQuantities[$ghtProductId] ?? 0) ?>" min="0" max="99" step="1" inputmode="numeric" data-price="<?= (int) $ghtProduct['price'] ?>"></label>
                             </div>
                         <?php endforeach; ?>
@@ -109,12 +109,12 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                         <div class="ght-admin-field"><label for="ght-pos-name">Customer name</label><input id="ght-pos-name" name="ght_name" required maxlength="120" value="<?= ght_escape($ghtAdminValues['name']) ?>"></div>
                         <div class="ght-admin-field"><label for="ght-pos-phone">Phone number</label><input id="ght-pos-phone" name="ght_phone" type="tel" required maxlength="40" value="<?= ght_escape($ghtAdminValues['phone']) ?>"></div>
                         <div class="ght-admin-field"><label for="ght-pos-email">Email <span>optional</span></label><input id="ght-pos-email" name="ght_email" type="email" maxlength="254" value="<?= ght_escape($ghtAdminValues['email']) ?>"></div>
-                        <div class="ght-admin-field"><label for="ght-pos-payment">Payment method recorded</label><select id="ght-pos-payment" name="ght_payment_method" required><?php foreach ($ghtAdminPaymentLabels as $ghtMethod => $ghtMethodLabel): ?><option value="<?= ght_escape($ghtMethod) ?>" <?= $ghtAdminValues['payment_method'] === $ghtMethod ? 'selected' : '' ?>><?= ght_escape($ghtMethodLabel) ?></option><?php endforeach; ?></select></div>
+                        <div class="ght-admin-field"><label for="ght-pos-payment">Payment method</label><select id="ght-pos-payment" name="ght_payment_method" required><?php foreach ($ghtAdminPaymentLabels as $ghtMethod => $ghtMethodLabel): ?><option value="<?= ght_escape($ghtMethod) ?>" <?= $ghtAdminValues['payment_method'] === $ghtMethod ? 'selected' : '' ?>><?= ght_escape($ghtMethodLabel) ?></option><?php endforeach; ?></select></div>
                         <div class="ght-admin-field"><label for="ght-pos-notes">Sale notes <span>optional</span></label><textarea id="ght-pos-notes" name="ght_notes" maxlength="1000"><?= ght_escape($ghtAdminValues['notes']) ?></textarea></div>
                     </div>
                     <div class="ght-admin-pos-total-row"><span id="ght-admin-pos-line-count" aria-live="polite">0 items</span><strong id="ght-admin-pos-total">₦0</strong></div>
-                    <p class="ght-admin-form-note">This records a payment staff have already confirmed. It does not charge a card or contact a bank.</p>
-                    <button class="ght-admin-button ght-admin-button-full" type="submit">Record paid sale</button>
+                    <p class="ght-admin-form-note">Records an already received payment. No charge is processed.</p>
+                    <button class="ght-admin-button ght-admin-button-full" type="submit">Record sale</button>
                 </aside>
             </div>
         </form>

@@ -6,14 +6,9 @@ require_once __DIR__ . '/../_inc/config.php';
 $ghtAdminTitle = 'Operations overview';
 $ghtAdminDescription = 'A clear view of the Alamos Generator demo catalog and connected data.';
 $ghtAdminActive = 'overview';
-$ghtAdminProductCount = count($ghtProducts);
-$ghtAdminFeaturedProduct = reset($ghtProducts) ?: null;
 $ghtAdminOrders = ght_json_read('sales');
-$ghtAdminCustomers = ght_json_read('customers');
 $ghtAdminTimezone = new DateTimeZone('Africa/Lagos');
 $ghtAdminNow = new DateTimeImmutable('now', $ghtAdminTimezone);
-$ghtAdminMonthRevenue = 0;
-$ghtAdminOpenOrders = 0;
 $ghtAdminWeekRevenue = [];
 for ($ghtDayOffset = 6; $ghtDayOffset >= 0; $ghtDayOffset--) {
     $ghtDay = $ghtAdminNow->setTime(0, 0)->modify('-' . $ghtDayOffset . ' days');
@@ -22,10 +17,6 @@ for ($ghtDayOffset = 6; $ghtDayOffset >= 0; $ghtDayOffset--) {
 foreach ($ghtAdminOrders as $ghtOrder) {
     if (!is_array($ghtOrder)) {
         continue;
-    }
-    $ghtOrderStatus = (string) ($ghtOrder['status'] ?? 'pending');
-    if (!in_array($ghtOrderStatus, ['completed', 'cancelled'], true)) {
-        $ghtAdminOpenOrders++;
     }
     if (($ghtOrder['payment_status'] ?? '') !== 'paid' || empty($ghtOrder['created_at'])) {
         continue;
@@ -36,9 +27,6 @@ foreach ($ghtAdminOrders as $ghtOrder) {
         continue;
     }
     $ghtOrderTotal = (int) ($ghtOrder['total'] ?? $ghtOrder['subtotal'] ?? 0);
-    if ($ghtOrderDate->format('Y-m') === $ghtAdminNow->format('Y-m')) {
-        $ghtAdminMonthRevenue += $ghtOrderTotal;
-    }
     $ghtOrderDay = $ghtOrderDate->format('Y-m-d');
     if (isset($ghtAdminWeekRevenue[$ghtOrderDay])) {
         $ghtAdminWeekRevenue[$ghtOrderDay]['amount'] += $ghtOrderTotal;
@@ -46,80 +34,28 @@ foreach ($ghtAdminOrders as $ghtOrder) {
 }
 $ghtAdminRecentOrders = array_slice(array_values(array_filter($ghtAdminOrders, 'is_array')), 0, 5);
 $ghtAdminWeekMax = max(1, ...array_column($ghtAdminWeekRevenue, 'amount'));
+$ghtAdminWeekTotal = array_sum(array_column($ghtAdminWeekRevenue, 'amount'));
+$ghtAdminChartPoints = [];
+foreach (array_values($ghtAdminWeekRevenue) as $ghtChartIndex => $ghtChartDay) {
+    $ghtChartX = 30 + ($ghtChartIndex * 90);
+    $ghtChartY = 150 - (int) round($ghtChartDay['amount'] / $ghtAdminWeekMax * 120);
+    $ghtAdminChartPoints[] = $ghtChartX . ',' . $ghtChartY;
+}
+$ghtAdminChartLine = implode(' ', $ghtAdminChartPoints);
+$ghtAdminChartArea = 'M ' . $ghtAdminChartPoints[0] . ' L ' . implode(' L ', array_slice($ghtAdminChartPoints, 1)) . ' L 570,150 Z';
 
 require __DIR__ . '/../_inc/admin/layout-start.php';
 ?>
 <main class="ght-admin-main" id="ght-admin-main">
     <div class="ght-admin-content">
-        <section class="ght-admin-hero" id="ght-overview" aria-labelledby="ght-admin-heading">
-            <div class="ght-admin-hero-copy">
-                <p class="ght-admin-kicker">Alamos Generator</p>
-                <h1 id="ght-admin-heading">Operations, in view.</h1>
-                <p class="ght-admin-hero-summary">Your product catalog, ready for the next order.</p>
-                <a class="ght-admin-button" href="#ght-catalog">
-                    Browse the catalog
-                    <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11M10 5l5 5-5 5" /></svg>
-                </a>
-            </div>
-            <?php if ($ghtAdminFeaturedProduct !== null): ?>
-                <div class="ght-admin-feature" aria-label="Featured catalog item">
-                    <div class="ght-admin-feature-code" aria-hidden="true"><?= ght_escape($ghtAdminFeaturedProduct['sku']) ?></div>
-                    <div class="ght-admin-feature-copy">
-                        <p class="ght-admin-feature-label">In the catalog</p>
-                        <h2><?= ght_escape($ghtAdminFeaturedProduct['name']) ?></h2>
-                        <p><?= ght_escape($ghtAdminFeaturedProduct['variant']) ?></p>
-                    </div>
-                    <span class="ght-admin-feature-price">&#8358;<?= number_format((float) $ghtAdminFeaturedProduct['price']) ?></span>
-                </div>
-            <?php endif; ?>
-        </section>
-
-        <section class="ght-admin-summary" aria-label="Business summary">
-            <article class="ght-admin-summary-card">
-                <span class="ght-admin-summary-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M4 5.5h16v13H4zM8 9h8M8 13h5" /></svg>
-                </span>
-                <div>
-                    <p class="ght-admin-summary-label">Product catalog</p>
-                    <p class="ght-admin-summary-value"><?= $ghtAdminProductCount ?> <span>items</span></p>
-                </div>
-                <a class="ght-admin-summary-link" href="#ght-catalog" aria-label="Browse the product catalog">
-                    <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11M10 5l5 5-5 5" /></svg>
-                </a>
-            </article>
-            <article class="ght-admin-summary-card">
-                <span class="ght-admin-summary-icon ght-admin-summary-icon-muted" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19v-1.5A4.5 4.5 0 0 1 8 13h2a4.5 4.5 0 0 1 4.5 4.5V19M16 5.5a3 3 0 0 1 0 5.8M17 13h1.5a3 3 0 0 1 3 3V19"/></svg>
-                </span>
-                <div>
-                    <p class="ght-admin-summary-label">Customer records</p>
-                    <p class="ght-admin-summary-value"><?= count($ghtAdminCustomers) ?> <span>customers</span></p>
-                </div>
-            </article>
-            <article class="ght-admin-summary-card">
-                <span class="ght-admin-summary-icon ght-admin-summary-icon-muted" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M4 6h16v13H4zM8 10h8M8 14h4M7 3v3m10-3v3"/></svg>
-                </span>
-                <div>
-                    <p class="ght-admin-summary-label">Open orders</p>
-                    <p class="ght-admin-summary-value"><?= $ghtAdminOpenOrders ?> <span>to review</span></p>
-                </div>
-            </article>
-            <article class="ght-admin-summary-card">
-                <span class="ght-admin-summary-icon ght-admin-summary-icon-muted" aria-hidden="true">
-                    <svg viewBox="0 0 24 24"><path d="M4 7h16M7 4v6m10-6v6M5 11h14v9H5zM8 15h3"/></svg>
-                </span>
-                <div>
-                    <p class="ght-admin-summary-label">Recorded revenue · <?= ght_escape($ghtAdminNow->format('F')) ?></p>
-                    <p class="ght-admin-summary-value ght-admin-summary-value-money"><?= ght_format_price($ghtAdminMonthRevenue) ?></p>
-                </div>
-            </article>
+        <section class="ght-admin-overview" id="ght-overview" aria-labelledby="ght-admin-heading">
+            <h1 id="ght-admin-heading">Overview</h1>
         </section>
 
         <section class="ght-admin-dashboard-grid" aria-label="Recent business activity">
             <div class="ght-admin-activity-panel">
                 <div class="ght-admin-panel-heading">
-                    <div><h2>Recent orders</h2><p>Requests and counter sales</p></div>
+                    <div><h2>Recent orders</h2></div>
                     <a href="../sales/index.php">View all orders</a>
                 </div>
                 <?php if ($ghtAdminRecentOrders): ?>
@@ -148,27 +84,36 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                         </table>
                     </div>
                 <?php else: ?>
-                    <div class="ght-admin-activity-empty"><h3>No orders recorded yet</h3><p>Storefront requests and counter sales will appear here.</p><a href="../sales/pos.php">Record a counter sale</a></div>
+                    <div class="ght-admin-activity-empty"><h3>No orders yet</h3><a href="../sales/pos.php">Record a sale</a></div>
                 <?php endif; ?>
             </div>
 
             <div class="ght-admin-activity-panel ght-admin-week-panel">
-                <div class="ght-admin-panel-heading"><div><h2>Sales activity</h2><p>Paid sales · last seven days</p></div><a href="../reports/sales.php">Open report</a></div>
-                <?php $ghtHasWeekSales = array_sum(array_column($ghtAdminWeekRevenue, 'amount')) > 0; ?>
-                <?php if ($ghtHasWeekSales): ?>
-                    <div class="ght-admin-week-chart" role="img" aria-label="Paid sales for the last seven days">
+                <div class="ght-admin-panel-heading"><div><h2>Revenue</h2><p>Last 7 days</p></div><a href="../reports/sales.php">Report</a></div>
+                <div class="ght-admin-trend-chart">
+                    <svg class="ght-admin-trend-plot" viewBox="0 0 600 160" role="img" aria-label="Paid revenue for the last seven days">
+                        <path class="ght-admin-chart-gridlines" d="M24 30H576 M24 90H576 M24 150H576" />
+                        <path class="ght-admin-chart-area" d="<?= ght_escape($ghtAdminChartArea) ?>" />
+                        <path class="ght-admin-chart-line" d="M <?= ght_escape(str_replace(' ', ' L ', $ghtAdminChartLine)) ?>" />
+                        <text class="ght-admin-chart-axis" x="20" y="154" text-anchor="end">0</text>
+                        <?php if ($ghtAdminWeekTotal > 0): ?><text class="ght-admin-chart-axis" x="24" y="23"><?= ght_escape(ght_format_price($ghtAdminWeekMax)) ?></text><?php endif; ?>
+                        <?php foreach (array_values($ghtAdminWeekRevenue) as $ghtChartIndex => $ghtChartDay): ?>
+                            <?php $ghtChartX = 30 + ($ghtChartIndex * 90); $ghtChartY = 150 - (int) round($ghtChartDay['amount'] / $ghtAdminWeekMax * 120); ?>
+                            <?php $ghtChartIsToday = $ghtChartDay['date']->format('Y-m-d') === $ghtAdminNow->format('Y-m-d'); ?>
+                            <circle class="ght-admin-chart-point<?= $ghtChartIsToday ? ' ght-admin-chart-point-current' : '' ?>" cx="<?= $ghtChartX ?>" cy="<?= $ghtChartY ?>" r="4">
+                                <title><?= ght_escape($ghtChartDay['date']->format('l')) ?>: <?= ght_escape(ght_format_price($ghtChartDay['amount'])) ?></title>
+                            </circle>
+                        <?php endforeach; ?>
+                    </svg>
+                    <div class="ght-admin-trend-axis" aria-hidden="true">
                         <?php foreach ($ghtAdminWeekRevenue as $ghtDayData): ?>
-                            <?php $ghtBarHeight = $ghtDayData['amount'] > 0 ? max(8, (int) round($ghtDayData['amount'] / $ghtAdminWeekMax * 100)) : 0; ?>
-                            <div class="ght-admin-week-day" aria-label="<?= ght_escape($ghtDayData['date']->format('l')) ?>: <?= ght_escape(ght_format_price($ghtDayData['amount'])) ?>">
-                                <span class="ght-admin-week-value"><?= $ghtDayData['amount'] > 0 ? ght_escape(ght_format_price($ghtDayData['amount'])) : '' ?></span>
-                                <span class="ght-admin-week-track"><span style="--ght-admin-bar-height: <?= $ghtBarHeight ?>%"></span></span>
-                                <span class="ght-admin-week-label"><?= ght_escape($ghtDayData['date']->format('D')) ?></span>
-                            </div>
+                            <span<?= $ghtDayData['date']->format('Y-m-d') === $ghtAdminNow->format('Y-m-d') ? ' class="ght-admin-chart-day-current"' : '' ?>><?= ght_escape($ghtDayData['date']->format('D')) ?></span>
                         <?php endforeach; ?>
                     </div>
-                <?php else: ?>
-                    <div class="ght-admin-activity-empty ght-admin-chart-empty"><h3>No paid sales yet</h3><p>Completed counter sales will populate this view.</p><a href="../sales/pos.php">Open point of sale</a></div>
-                <?php endif; ?>
+                    <?php if (array_sum(array_column($ghtAdminWeekRevenue, 'amount')) === 0): ?>
+                        <p class="ght-admin-chart-empty-note">No paid sales yet <a href="../sales/pos.php">Record a sale</a></p>
+                    <?php endif; ?>
+                </div>
             </div>
         </section>
 
@@ -176,7 +121,6 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
             <div class="ght-admin-section-heading">
                 <div>
                     <h2 id="ght-catalog-heading">Product catalog</h2>
-                    <p>Items currently available in the local demo data.</p>
                 </div>
                 <label class="ght-admin-search">
                     <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.5 4.5" /></svg>
@@ -226,18 +170,9 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                     </tbody>
                 </table>
             </div>
-            <p class="ght-admin-table-foot" id="ght-catalog-count" data-singular="catalog item" data-plural="catalog items" aria-live="polite"><?= $ghtAdminProductCount ?> catalog items</p>
+            <p class="ght-admin-table-foot" id="ght-catalog-count" data-singular="catalog item" data-plural="catalog items" aria-live="polite"><?= count($ghtProducts) ?> catalog items</p>
         </section>
 
-        <section class="ght-admin-data-note" id="ght-data-status" aria-labelledby="ght-data-heading">
-            <span class="ght-admin-data-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 3.8 21 20H3l9-16.2ZM12 9v5m0 2.8v.1" /></svg>
-            </span>
-            <div>
-                <h2 id="ght-data-heading">A note on this demo</h2>
-                <p>Orders and customer records save to local JSON files. Payments and outbound messages are not processed.</p>
-            </div>
-        </section>
     </div>
 </main>
 <?php require __DIR__ . '/../_inc/admin/layout-end.php'; ?>
