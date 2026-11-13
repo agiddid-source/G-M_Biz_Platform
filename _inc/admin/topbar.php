@@ -18,27 +18,18 @@ $admin_page_title = $admin_page_title ?? 'Inventory Dashboard';
         </div>
     </div>
 
-    <!-- Right Controls: Quick Search, Dark Mode, Quick Actions -->
+    <!-- Right Controls: Notification & Quick Actions -->
     <div class="flex items-center gap-3">
-        <!-- Dark Mode Switcher -->
-        <button type="button" 
-                onclick="toggleAlamosTheme()" 
-                class="p-2 text-slate-600 dark:text-slate-300 hover:text-alamos-500 hover:bg-slate-100 dark:hover:bg-industrial-900 rounded-lg transition-colors"
-                title="Toggle Light / Dark">
-            <i class="fa-solid fa-moon dark:hidden text-sm"></i>
-            <i class="fa-solid fa-sun hidden dark:inline text-sm text-amber-400"></i>
-        </button>
-
         <!-- Notification Bell -->
         <button type="button" 
-                class="relative p-2 text-slate-600 dark:text-slate-300 hover:text-alamos-500 hover:bg-slate-100 dark:hover:bg-industrial-900 rounded-lg transition-colors"
+                class="relative p-2 text-slate-600 hover:text-alamos-500 hover:bg-slate-100 rounded-lg transition-colors"
                 title="Notifications">
             <i class="fa-regular fa-bell text-sm"></i>
             <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-500"></span>
         </button>
 
         <!-- Public Site Link -->
-        <a href="<?= url('index.php') ?>" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-industrial-900 transition-colors">
+        <a href="<?= url('index.php') ?>" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-mono font-medium text-slate-700 hover:bg-slate-50 transition-colors">
             <i class="fa-solid fa-globe text-[11px] text-alamos-500"></i>
             <span>View Site</span>
         </a>

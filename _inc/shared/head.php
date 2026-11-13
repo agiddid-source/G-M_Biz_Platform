@@ -15,13 +15,12 @@ $page_desc = $page_desc ?? 'Sale, hire, and repair of diesel and petrol generato
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?= asset('assets/image/logo.png') ?>">
 
-    <!-- Prevent Dark Mode Flicker -->
+    <!-- Enforce Crisp Clean Light Mode -->
     <script>
-        if (localStorage.getItem('alamos_theme') === 'dark' || (!('alamos_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
+        try {
+            localStorage.removeItem('alamos_theme');
             document.documentElement.classList.remove('dark');
-        }
+        } catch(e) {}
     </script>
 
     <!-- Google Fonts: Barlow (Display), Inter (Body), JetBrains Mono (Technical/KVA) -->
@@ -32,11 +31,10 @@ $page_desc = $page_desc ?? 'Sale, hire, and repair of diesel and petrol generato
     <!-- Font Awesome 6.7.2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Tailwind CSS with Dark Mode Enabled -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -86,4 +84,4 @@ $page_desc = $page_desc ?? 'Sale, hire, and repair of diesel and petrol generato
     <!-- Custom Design System Overrides & Animations -->
     <link rel="stylesheet" href="<?= asset('assets/css/custom.css') ?>">
 </head>
-<body class="min-h-full flex flex-col font-sans bg-slate-50 dark:bg-industrial-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-industrial-950 transition-colors duration-200">
+<body class="min-h-full flex flex-col font-sans bg-slate-50 text-slate-900 antialiased selection:bg-alamos-500 selection:text-white transition-colors duration-200">

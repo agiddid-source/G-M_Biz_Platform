@@ -30,13 +30,6 @@ function toggleAdminSidebar() {
         if (backdrop) backdrop.classList.add('hidden');
     }
 }
-
-// Dark Mode Toggle
-function toggleAlamosTheme() {
-    const html = document.documentElement;
-    const isDark = html.classList.toggle('dark');
-    localStorage.setItem('alamos_theme', isDark ? 'dark' : 'light');
-}
 </script>
 
 <?php require_once __DIR__ . '/../shared/scripts.php'; ?>

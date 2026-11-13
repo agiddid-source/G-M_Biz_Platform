@@ -88,26 +88,6 @@
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
 }
 
-/* In Dark Mode, wipe to glowing amber border with bright text */
-.dark .btn-cummins,
-.dark .btn-power {
-  background-color: var(--safety-amber);
-  color: #0F172A;
-  border-color: var(--safety-amber);
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
-}
-
-.dark .btn-cummins::before,
-.dark .btn-power::before {
-  background-color: #050811;
-}
-
-.dark .btn-cummins:hover,
-.dark .btn-power:hover {
-  color: var(--safety-amber);
-  border-color: var(--safety-amber);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
-}
 
 .btn-cummins i,
 .btn-cummins svg,
@@ -206,11 +186,6 @@
   color: #0F172A;
 }
 
-.dark .btn-cummins-outline-dark {
-  border-color: rgba(245, 158, 11, 0.35);
-  background-color: rgba(15, 23, 42, 0.85);
-  color: #FFFFFF;
-}
 
 .btn-cummins-outline-dark:hover {
   border-color: var(--safety-amber);
@@ -355,15 +330,6 @@
   box-shadow: 0 8px 24px rgba(1, 53, 171, 0.35);
 }
 
-.dark .btn-cummins-blue::before {
-  background-color: #050811;
-}
-
-.dark .btn-cummins-blue:hover {
-  color: #60A5FA;
-  border-color: #2563EB;
-  box-shadow: 0 0 25px rgba(37, 99, 235, 0.45);
-}
 
 .btn-cummins-blue i,
 .btn-cummins-blue svg {
@@ -403,18 +369,6 @@
   flex-direction: column;
 }
 
-/* Dark Mode Clean Card Styling */
-.dark .alamos-card {
-  --card-bg: #0B132B;
-  --card-text: #F8FAFC;
-  border-color: #1E293B;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.dark .alamos-card:hover {
-  border-color: #2563EB;
-  box-shadow: 0 10px 25px rgba(1, 53, 171, 0.25);
-}
 
 .card__glow {
   position: absolute;
@@ -456,11 +410,6 @@
   box-shadow: 0 4px 12px rgba(1, 53, 171, 0.3);
 }
 
-.dark .card__badge {
-  background: #0135AB;
-  color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(1, 53, 171, 0.5);
-}
 
 .card__image {
   width: 100%;
@@ -501,10 +450,6 @@
   color: var(--alamos-blue);
 }
 
-.dark .card__brand {
-  color: #60A5FA;
-}
-
 .card__title {
   color: var(--card-text);
   font-size: 0.95rem;
@@ -521,10 +466,6 @@
   margin-top: 1.25rem;
   padding-top: 0.85rem;
   border-top: 1px solid #F1F5F9;
-}
-
-.dark .card__footer {
-  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .card__price-box {
@@ -546,10 +487,6 @@
   font-size: 1.15rem;
   font-family: 'JetBrains Mono', monospace;
   transition: all 0.3s ease;
-}
-
-.dark .card__price {
-  color: #FFFFFF;
 }
 
 /* Card Action Button in Alamo Blue */
@@ -574,16 +511,6 @@
   color: #FFFFFF;
   transform: scale(1.08);
   box-shadow: 0 6px 16px rgba(1, 53, 171, 0.4);
-}
-
-.dark .card__button {
-  background: #0135AB;
-  color: #FFFFFF;
-}
-
-.dark .card__button:hover {
-  background: #012B8A;
-  box-shadow: 0 0 18px rgba(1, 53, 171, 0.6);
 }
 
 /* Hover States */

@@ -12,13 +12,12 @@ $admin_title = isset($admin_page_title) ? $admin_page_title . ' — ALAMOS Admin
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?= asset('assets/image/logo.png') ?>">
 
-    <!-- Dark Mode Init -->
+    <!-- Enforce Crisp Clean Light Mode -->
     <script>
-        if (localStorage.getItem('alamos_theme') === 'dark' || (!('alamos_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
+        try {
+            localStorage.removeItem('alamos_theme');
             document.documentElement.classList.remove('dark');
-        }
+        } catch(e) {}
     </script>
 
     <!-- Google Fonts -->
@@ -33,7 +32,6 @@ $admin_title = isset($admin_page_title) ? $admin_page_title . ' — ALAMOS Admin
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -83,7 +81,7 @@ $admin_title = isset($admin_page_title) ? $admin_page_title . ' — ALAMOS Admin
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?= asset('assets/css/custom.css') ?>">
 </head>
-<body class="bg-slate-50 dark:bg-industrial-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans antialiased transition-colors">
+<body class="bg-slate-50 text-slate-800 min-h-screen font-sans antialiased transition-colors">
 
 <!-- Sidebar -->
 <?php require_once __DIR__ . '/sidebar.php'; ?>
