@@ -1,0 +1,334 @@
+{
+  "prototype": {
+    "demo_today": "2026-11-05",
+    "note": "Set demo_today to null to use the real date."
+  },
+  "business": {
+    "name": "Alamos Generator",
+    "tagline": "Generators, parts and rentals you can rely on",
+    "logo": "assets/image/logo/alamos-logo.png",
+    "address": "Plot 12, Industrial Layout (placeholder address)",
+    "phone": "+234 800 000 0000",
+    "email": "info@alamos.example.com",
+    "operating_hours": "Mon-Fri 8:00-17:00, Sat 9:00-14:00",
+    "currency": "NGN",
+    "currency_symbol": "₦"
+  },
+  "rental_pricing": {
+    "deposit_percent": 30,
+    "late_fee_percent_of_daily_rate_per_day": 10,
+    "minimum_rental_days": 1,
+    "delivery_available": true
+  },
+  "rental_terms": [
+    "A refundable security deposit is required before the generator leaves the premises.",
+    "Fuel is not included unless agreed in writing.",
+    "The customer is responsible for the generator while it is on hire.",
+    "Late returns attract a daily late fee.",
+    "Generators must be returned clean and in the condition they were issued."
+  ],
+  "modules": [
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "icon": "fa-gauge-high",
+      "href": "admin/dashboard.php"
+    },
+    {
+      "id": "inventory",
+      "label": "Inventory",
+      "icon": "fa-boxes-stacked",
+      "href": "inventory/index.php"
+    },
+    {
+      "id": "sales",
+      "label": "Sales & POS",
+      "icon": "fa-cash-register",
+      "href": "sales/index.php"
+    },
+    {
+      "id": "customers",
+      "label": "Customers",
+      "icon": "fa-users",
+      "href": "customers/index.php"
+    },
+    {
+      "id": "rentals",
+      "label": "Rentals",
+      "icon": "fa-calendar-check",
+      "href": "rentals/index.php"
+    },
+    {
+      "id": "workers",
+      "label": "Workers",
+      "icon": "fa-id-badge",
+      "href": "workers/index.php"
+    },
+    {
+      "id": "equipment",
+      "label": "Equipment",
+      "icon": "fa-screwdriver-wrench",
+      "href": "equipment/index.php"
+    },
+    {
+      "id": "reports",
+      "label": "Reports",
+      "icon": "fa-chart-line",
+      "href": "reports/index.php"
+    },
+    {
+      "id": "settings",
+      "label": "Settings",
+      "icon": "fa-gear",
+      "href": "settings/index.php"
+    }
+  ],
+  "roles": [
+    {
+      "role_id": "owner",
+      "label": "Owner",
+      "description": "Full access to every module.",
+      "permissions": {
+        "dashboard": [
+          "view"
+        ],
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "sales": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "customers": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "rentals": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "workers": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "equipment": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "reports": [
+          "view"
+        ],
+        "settings": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ]
+      }
+    },
+    {
+      "role_id": "manager",
+      "label": "Manager",
+      "description": "Operational and management access; settings are view-only.",
+      "permissions": {
+        "dashboard": [
+          "view"
+        ],
+        "inventory": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "sales": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "customers": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "rentals": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "workers": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "equipment": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "reports": [
+          "view"
+        ],
+        "settings": [
+          "view"
+        ]
+      }
+    },
+    {
+      "role_id": "sales_staff",
+      "label": "Sales Staff",
+      "description": "Sales, customers and product availability.",
+      "permissions": {
+        "dashboard": [
+          "view"
+        ],
+        "inventory": [
+          "view"
+        ],
+        "sales": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "customers": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "rentals": [
+          "view"
+        ]
+      }
+    },
+    {
+      "role_id": "inventory_staff",
+      "label": "Inventory Staff",
+      "description": "Inventory and equipment.",
+      "permissions": {
+        "dashboard": [
+          "view"
+        ],
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "delete"
+        ],
+        "equipment": [
+          "view",
+          "create",
+          "edit"
+        ]
+      }
+    },
+    {
+      "role_id": "rental_staff",
+      "label": "Rental Staff",
+      "description": "Rental bookings and returns.",
+      "permissions": {
+        "dashboard": [
+          "view"
+        ],
+        "customers": [
+          "view"
+        ],
+        "rentals": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "equipment": [
+          "view"
+        ]
+      }
+    }
+  ],
+  "users": [
+    {
+      "user_id": "USR-001",
+      "name": "Chinedu Okeke",
+      "email": "owner@alamos.example.com",
+      "role_id": "owner",
+      "worker_id": "WRK-001",
+      "status": "Active"
+    },
+    {
+      "user_id": "USR-002",
+      "name": "Ngozi Eze",
+      "email": "manager@alamos.example.com",
+      "role_id": "manager",
+      "worker_id": "WRK-002",
+      "status": "Active"
+    },
+    {
+      "user_id": "USR-003",
+      "name": "Ifeanyi Nwosu",
+      "email": "sales@alamos.example.com",
+      "role_id": "sales_staff",
+      "worker_id": "WRK-003",
+      "status": "Active"
+    },
+    {
+      "user_id": "USR-004",
+      "name": "Amaka Obi",
+      "email": "inventory@alamos.example.com",
+      "role_id": "inventory_staff",
+      "worker_id": "WRK-004",
+      "status": "Active"
+    },
+    {
+      "user_id": "USR-005",
+      "name": "Emeka Onyeama",
+      "email": "rentals@alamos.example.com",
+      "role_id": "rental_staff",
+      "worker_id": "WRK-005",
+      "status": "Active"
+    }
+  ],
+  "notifications": {
+    "new_rental_enquiry": true,
+    "overdue_rental": true,
+    "low_stock": true,
+    "equipment_missing_or_damaged": true,
+    "channels": {
+      "in_app": true,
+      "email": false
+    }
+  },
+  "lists": {
+    "departments": [
+      "Administration",
+      "Sales",
+      "Inventory",
+      "Rentals",
+      "Technical Workshop",
+      "Logistics"
+    ],
+    "employment_types": [
+      "Full-time",
+      "Part-time",
+      "Contract",
+      "Intern"
+    ],
+    "equipment_categories": [
+      "Testing Instruments",
+      "Hand Tools",
+      "Power Tools",
+      "Lifting & Handling",
+      "Vehicles & Transport",
+      "Safety Gear"
+    ]
+  }
+}
