@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/../ght-data.php';
+require_once __DIR__ . '/../_inc/config.php';
 
 $ghtAdminTitle = 'Operations overview';
 $ghtAdminDescription = 'A clear view of the Alamos Generator demo catalog and connected data.';

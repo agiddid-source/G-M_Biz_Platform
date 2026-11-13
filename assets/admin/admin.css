@@ -453,6 +453,20 @@ body.ght-admin-body {
 .ght-admin-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: clip; clip-path: inset(50%); white-space: nowrap; }
 .ght-admin-skip:focus-visible { z-index: 10; top: 10px; left: 10px; width: auto; height: auto; padding: 10px 14px; clip-path: none; border-radius: 5px; background: var(--ght-admin-surface); color: var(--ght-admin-ink); }
 
+.ght-entry-page { display: grid; min-height: 100vh; place-items: center; padding: 24px; }
+.ght-entry-card { width: min(100%, 660px); padding: clamp(28px, 5vw, 54px); border: 1px solid var(--ght-admin-border); border-radius: 16px; background: var(--ght-admin-surface); box-shadow: var(--ght-admin-shadow); }
+.ght-entry-brand { display: inline-flex; align-items: center; gap: 13px; margin-bottom: clamp(44px, 8vh, 80px); color: var(--ght-admin-muted); font-size: 12px; }
+.ght-entry-brand img { display: block; width: 142px; height: 48px; object-fit: contain; object-position: left center; }
+.ght-entry-brand > span { padding-left: 13px; border-left: 1px solid var(--ght-admin-border); }
+.ght-entry-kicker { margin: 0 0 10px; color: var(--ght-admin-blue); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.ght-entry-card h1 { margin: 0; color: var(--ght-admin-ink); font: 700 clamp(36px, 6vw, 54px)/1 var(--ght-admin-display); letter-spacing: -.03em; }
+.ght-entry-summary { max-width: 480px; margin: 14px 0 25px; color: var(--ght-admin-muted); font-size: 14px; line-height: 1.7; }
+.ght-entry-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.ght-entry-store-link { color: var(--ght-admin-blue); font-size: 12px; font-weight: 600; }
+.ght-entry-store-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ght-entry-path { margin: 34px 0 0; padding-top: 15px; border-top: 1px solid var(--ght-admin-border); color: var(--ght-admin-muted); font-size: 11px; }
+.ght-entry-path code { margin-left: 7px; color: var(--ght-admin-ink-soft); font: 600 11px/1.4 var(--ght-admin-body); }
+
 @media (max-width: 1120px) {
     .ght-admin-shell { grid-template-columns: 218px minmax(0, 1fr); }
     .ght-admin-sidebar { padding-inline: 14px; }
