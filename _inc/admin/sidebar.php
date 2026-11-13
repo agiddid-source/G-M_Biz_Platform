@@ -4,7 +4,7 @@ $admin_page = basename($_SERVER['PHP_SELF']);
 $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
 ?>
 <!-- Admin Sidebar Navigation -->
-<aside id="adminSidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 dark:bg-black text-slate-300 flex flex-col justify-between border-r border-slate-800 transition-transform duration-200 transform -translate-x-full lg:translate-x-0">
+<aside id="adminSidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-slate-300 flex flex-col justify-between border-r border-slate-800 transition-transform duration-200 transform -translate-x-full lg:translate-x-0">
     <div>
         <!-- Brand Header -->
         <div class="h-16 flex items-center justify-between px-6 border-b border-slate-800">

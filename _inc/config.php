@@ -34,33 +34,22 @@ if (!defined('ALAMOS_CONFIG_LOADED')) {
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
         $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
         
-        // Detect script subpath relative to web root
-        $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
-        $docRoot = $_SERVER['DOCUMENT_ROOT'] ?? '';
-        
-        // If run under Apache/XAMPP with subdirectory (e.g. /G-M_Biz_Platform or /generator-ms)
-        $dirName = dirname($scriptName);
-        $parts = explode('/', trim($dirName, '/'));
-        
-        // Find if project root folder is in the path
-        $projectFolderName = basename(ROOT_PATH);
         $subFolder = '';
-        foreach ($parts as $p) {
-            if (!empty($p) && $p !== '.') {
-                $subFolder .= '/' . $p;
-                if ($p === $projectFolderName) {
-                    break;
-                }
-            }
-        }
-        
-        // Fallback check against ROOT_PATH
-        if (empty($subFolder) && !empty($docRoot)) {
-            $realDoc = realpath($docRoot);
-            $realRoot = ROOT_PATH;
-            if ($realDoc && strpos($realRoot, $realDoc) === 0) {
-                $rel = trim(substr($realRoot, strlen($realDoc)), DIRECTORY_SEPARATOR);
-                $subFolder = $rel ? '/' . str_replace('\\', '/', $rel) : '';
+        $docRoot = !empty($_SERVER['DOCUMENT_ROOT']) ? realpath($_SERVER['DOCUMENT_ROOT']) : false;
+        $realRoot = realpath(ROOT_PATH);
+
+        if ($docRoot && $realRoot && strpos($realRoot, $docRoot) === 0) {
+            $rel = trim(substr($realRoot, strlen($docRoot)), DIRECTORY_SEPARATOR);
+            $subFolder = $rel ? '/' . str_replace('\\', '/', $rel) : '';
+        } else {
+            // Check if project folder name appears in SCRIPT_NAME
+            $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+            $projectFolderName = basename(ROOT_PATH);
+            $pos = strpos($scriptName, '/' . $projectFolderName);
+            if ($pos !== false) {
+                $subFolder = substr($scriptName, 0, $pos + strlen('/' . $projectFolderName));
+            } else {
+                $subFolder = '';
             }
         }
         

@@ -1,22 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
   <defs>
-    <linearGradient id="p_flt" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E2E8F0"/><stop offset="40%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#CBD5E1"/></linearGradient>
-    <linearGradient id="p_glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#38BDF8" stop-opacity="0.6"/><stop offset="100%" stop-color="#0284C7" stop-opacity="0.8"/></linearGradient>
+    <linearGradient id="p_bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+    <linearGradient id="p_flt" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F1F5F9"/><stop offset="40%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#E2E8F0"/></linearGradient>
+    <linearGradient id="p_glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#38BDF8" stop-opacity="0.5"/><stop offset="100%" stop-color="#0284C7" stop-opacity="0.7"/></linearGradient>
   </defs>
-  <rect width="400" height="300" fill="#0F172A"/>
-  <!-- Top Mounting Head -->
-  <rect x="145" y="35" width="110" height="18" rx="4" fill="#334155"/>
-  <!-- Main Canister -->
-  <rect x="135" y="50" width="130" height="140" rx="8" fill="url(#p_flt)"/>
+  <!-- Studio Canvas Background -->
+  <rect width="400" height="300" fill="url(#p_bg)" rx="10" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Floor Contact Shadow -->
+  <ellipse cx="200" cy="268" rx="80" ry="8" fill="#0F172A" opacity="0.08"/>
+
+  <!-- Top Mounting Head in Cast Aluminum Grey -->
+  <rect x="145" y="32" width="110" height="20" rx="4" fill="#475569" stroke="#334155" stroke-width="1.5"/>
+  <circle cx="160" cy="42" r="5" fill="#0F172A"/>
+  <circle cx="240" cy="42" r="5" fill="#0F172A"/>
+
+  <!-- Main Filter Canister (Perkins Clean Finish) -->
+  <rect x="135" y="50" width="130" height="138" rx="8" fill="url(#p_flt)" stroke="#CBD5E1" stroke-width="1.5"/>
+
   <!-- Perkins Label Decal -->
-  <text x="200" y="95" font-family="'Barlow', Arial Black" font-weight="900" font-size="18" fill="#0035AB" text-anchor="middle">Perkins</text>
-  <text x="200" y="115" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="16" fill="#0F172A" text-anchor="middle">26560201</text>
+  <text x="200" y="92" font-family="'Barlow', Arial Black, sans-serif" font-weight="900" font-size="20" fill="#0135AB" text-anchor="middle">Perkins</text>
+  <text x="200" y="115" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="17" fill="#0F172A" text-anchor="middle">26560201</text>
   <text x="200" y="135" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#D97706" text-anchor="middle" letter-spacing="1">FUEL / WATER SEPARATOR</text>
-  <text x="200" y="155" font-family="'Inter', sans-serif" font-size="7" fill="#64748B" text-anchor="middle">GENUINE UK SPEC</text>
+  <text x="200" y="155" font-family="'Inter', sans-serif" font-size="8" font-weight="600" fill="#64748B" text-anchor="middle">10 MICRON TRAP • UK SPEC</text>
+
   <!-- Clear Glass Water Trap Bowl -->
-  <rect x="145" y="190" width="110" height="45" rx="8" fill="url(#p_glass)" stroke="#94A3B8" stroke-width="1.5"/>
-  <text x="200" y="215" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">SEDIMENT TRAP</text>
-  <!-- Bottom Drain Valve -->
-  <rect x="190" y="235" width="20" height="18" rx="3" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
-  <line x1="185" y1="244" x2="215" y2="244" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+  <rect x="145" y="188" width="110" height="48" rx="8" fill="url(#p_glass)" stroke="#38BDF8" stroke-width="1.5"/>
+  <line x1="145" y1="212" x2="255" y2="212" stroke="#FFFFFF" stroke-dasharray="4 2" stroke-width="1.5"/>
+  <text x="200" y="222" font-family="'Inter', sans-serif" font-size="8" font-weight="800" fill="#FFFFFF" text-anchor="middle">SEDIMENT TRAP</text>
+
+  <!-- Bottom Drain Petcock Valve -->
+  <rect x="190" y="236" width="20" height="18" rx="3" fill="#D97706" stroke="#B45309" stroke-width="1.5"/>
+  <line x1="184" y1="245" x2="216" y2="245" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round"/>
 </svg>

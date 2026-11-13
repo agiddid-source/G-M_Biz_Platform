@@ -3,16 +3,16 @@ require_once __DIR__ . '/../config.php';
 $admin_page_title = $admin_page_title ?? 'Inventory Dashboard';
 ?>
 <!-- Admin Topbar Header -->
-<header class="h-16 bg-white dark:bg-industrial-950 border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-30 transition-colors">
+<header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 lg:px-8 flex items-center justify-between sticky top-0 z-30 transition-colors">
     <div class="flex items-center gap-4">
         <!-- Mobile Sidebar Toggle -->
-        <button type="button" onclick="toggleAdminSidebar()" class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-industrial-900 rounded-lg">
+        <button type="button" onclick="toggleAdminSidebar()" class="lg:hidden p-2 text-slate-600 hover:bg-slate-100:bg-industrial-900 rounded-lg">
             <i class="fa-solid fa-bars text-base"></i>
         </button>
 
         <!-- Current Module & Page Title -->
         <div>
-            <h1 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">
                 <?= htmlspecialchars($admin_page_title) ?>
             </h1>
         </div>

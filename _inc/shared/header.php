@@ -77,7 +77,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 </div>
 
 <!-- Fullscreen Mobile Navigation Drawer with Refined Typography -->
-<div id="fullscreenNav" class="hidden fixed inset-0 z-50 bg-slate-950/95 dark:bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-10 transition-all duration-300">
+<div id="fullscreenNav" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-10 transition-all duration-300">
     <!-- Top Header in Drawer -->
     <div class="flex items-center justify-between border-b border-white/10 pb-5">
         <img src="<?= asset('assets/image/logo-white.png') ?>" alt="ALAMOS" class="h-9 w-auto object-contain">

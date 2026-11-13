@@ -13,11 +13,11 @@ if (!$history) $history = [];
     <!-- Top Action Bar -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Stock Movement Audit Trail</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Immutable record of import batches, outright sales dispatches, and rental mobilizations.</p>
+            <h2 class="text-xl font-bold text-slate-900">Stock Movement Audit Trail</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Immutable record of import batches, outright sales dispatches, and rental mobilizations.</p>
         </div>
         <div class="flex items-center gap-2">
-            <button type="button" onclick="window.print()" class="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-industrial-800 transition-colors">
+            <button type="button" onclick="window.print()" class="px-3 py-2 rounded-lg border border-slate-200 text-xs font-mono font-medium text-slate-700 hover:bg-slate-100:bg-industrial-800 transition-colors">
                 <i class="fa-solid fa-print mr-1.5"></i>
                 <span>Export Audit Log</span>
             </button>
@@ -25,18 +25,18 @@ if (!$history) $history = [];
     </div>
 
     <!-- Movement Filter Tabs -->
-    <div class="bg-white dark:bg-industrial-900 border border-slate-200 dark:border-slate-800 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="bg-white border border-slate-200 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 scrollbar-none text-xs font-semibold">
             <button type="button" onclick="filterMovementType('all')" id="btnHist-all" class="hist-tab-btn px-3 py-1.5 rounded-lg bg-alamos-500 text-white font-bold transition-all">
                 All Logs (<?= count($history) ?>)
             </button>
-            <button type="button" onclick="filterMovementType('inflow')" id="btnHist-inflow" class="hist-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-industrial-950 text-slate-700 dark:text-slate-300 hover:text-alamos-500 transition-all">
+            <button type="button" onclick="filterMovementType('inflow')" id="btnHist-inflow" class="hist-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:text-alamos-500 transition-all">
                 Inflow (Imports)
             </button>
-            <button type="button" onclick="filterMovementType('outflow')" id="btnHist-outflow" class="hist-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-industrial-950 text-slate-700 dark:text-slate-300 hover:text-alamos-500 transition-all">
+            <button type="button" onclick="filterMovementType('outflow')" id="btnHist-outflow" class="hist-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:text-alamos-500 transition-all">
                 Outflow (Sales)
             </button>
-            <button type="button" onclick="filterMovementType('rental_dispatch')" id="btnHist-rental_dispatch" class="hist-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-industrial-950 text-slate-700 dark:text-slate-300 hover:text-alamos-500 transition-all">
+            <button type="button" onclick="filterMovementType('rental_dispatch')" id="btnHist-rental_dispatch" class="hist-tab-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:text-alamos-500 transition-all">
                 Rental Dispatches
             </button>
         </div>
@@ -46,17 +46,17 @@ if (!$history) $history = [];
                    id="histSearch" 
                    oninput="filterHistoryTable()" 
                    placeholder="Search reference, SKU, or user..." 
-                   class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 dark:bg-industrial-950 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-alamos-500/30">
+                   class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-alamos-500/30">
             <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2 text-slate-400 text-xs"></i>
         </div>
     </div>
 
     <!-- Audit Log Table -->
-    <div class="bg-white dark:bg-industrial-900 border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden shadow-sm">
+    <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs border-collapse">
                 <thead>
-                    <tr class="bg-slate-50 dark:bg-industrial-950 border-b border-slate-200 dark:border-slate-800 text-slate-500 font-mono uppercase tracking-wider text-[11px]">
+                    <tr class="bg-slate-50 border-b border-slate-200 text-slate-500 font-mono uppercase tracking-wider text-[11px]">
                         <th class="py-3.5 px-4">Timestamp</th>
                         <th class="py-3.5 px-4">Type</th>
                         <th class="py-3.5 px-4">Item & SKU</th>
@@ -67,25 +67,25 @@ if (!$history) $history = [];
                         <th class="py-3.5 px-4">Notes</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                <tbody class="divide-y divide-slate-100">
                     <?php foreach ($history as $log): 
                         $type = $log['type'] ?? 'adjustment';
                         $qty = $log['quantity'] ?? 0;
                         
-                        $type_badge = 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300';
+                        $type_badge = 'bg-slate-100 text-slate-700';
                         $type_label = 'Adjustment';
                         if ($type === 'inflow') {
-                            $type_badge = 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300';
+                            $type_badge = 'bg-emerald-100 text-emerald-800';
                             $type_label = 'Inflow / Import';
                         } elseif ($type === 'outflow') {
-                            $type_badge = 'bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300';
+                            $type_badge = 'bg-blue-100 text-blue-800';
                             $type_label = 'Outright Sale';
                         } elseif ($type === 'rental_dispatch') {
-                            $type_badge = 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300';
+                            $type_badge = 'bg-amber-100 text-amber-800';
                             $type_label = 'Rental Mobilization';
                         }
                     ?>
-                    <tr class="hist-row hover:bg-slate-50/60 dark:hover:bg-industrial-950/40 transition-colors"
+                    <tr class="hist-row hover:bg-slate-50/60:bg-industrial-950/40 transition-colors"
                         data-type="<?= $type ?>"
                         data-sku="<?= strtolower(htmlspecialchars($log['sku'] ?? '')) ?>"
                         data-ref="<?= strtolower(htmlspecialchars($log['reference'] ?? '')) ?>"
@@ -106,7 +106,7 @@ if (!$history) $history = [];
 
                         <!-- Item & SKU -->
                         <td class="py-3 px-4">
-                            <div class="font-bold text-slate-900 dark:text-white line-clamp-1 max-w-[200px]">
+                            <div class="font-bold text-slate-900 line-clamp-1 max-w-[200px]">
                                 <?= htmlspecialchars($log['product_name']) ?>
                             </div>
                             <span class="text-[10px] font-mono text-slate-400 block"><?= htmlspecialchars($log['sku']) ?></span>
@@ -114,28 +114,28 @@ if (!$history) $history = [];
 
                         <!-- Movement Quantity -->
                         <td class="py-3 px-4 text-center font-mono font-bold text-sm whitespace-nowrap">
-                            <span class="<?= ($qty > 0) ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-800 dark:text-slate-200' ?>">
+                            <span class="<?= ($qty > 0) ? 'text-emerald-600' : 'text-slate-800' ?>">
                                 <?= ($qty > 0 ? '+' : '') . $qty ?>
                             </span>
                         </td>
 
                         <!-- Stock Flow Before / After -->
                         <td class="py-3 px-4 text-center font-mono text-[11px] text-slate-500 whitespace-nowrap">
-                            <?= $log['previous_stock'] ?> <i class="fa-solid fa-arrow-right text-[9px] mx-1 text-slate-400"></i> <strong class="text-slate-900 dark:text-white"><?= $log['new_stock'] ?></strong>
+                            <?= $log['previous_stock'] ?> <i class="fa-solid fa-arrow-right text-[9px] mx-1 text-slate-400"></i> <strong class="text-slate-900"><?= $log['new_stock'] ?></strong>
                         </td>
 
                         <!-- Reference -->
-                        <td class="py-3 px-4 font-mono text-[11px] font-semibold text-alamos-600 dark:text-blue-400 whitespace-nowrap">
+                        <td class="py-3 px-4 font-mono text-[11px] font-semibold text-alamos-600 whitespace-nowrap">
                             <?= htmlspecialchars($log['reference']) ?>
                         </td>
 
                         <!-- User -->
-                        <td class="py-3 px-4 font-mono text-[11px] text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                        <td class="py-3 px-4 font-mono text-[11px] text-slate-600 whitespace-nowrap">
                             <?= htmlspecialchars($log['user']) ?>
                         </td>
 
                         <!-- Notes -->
-                        <td class="py-3 px-4 text-slate-600 dark:text-slate-400 max-w-xs truncate" title="<?= htmlspecialchars($log['note']) ?>">
+                        <td class="py-3 px-4 text-slate-600 max-w-xs truncate" title="<?= htmlspecialchars($log['note']) ?>">
                             <?= htmlspecialchars($log['note']) ?>
                         </td>
                     </tr>
@@ -156,12 +156,12 @@ function filterMovementType(type) {
 
     document.querySelectorAll('.hist-tab-btn').forEach(btn => {
         btn.classList.remove('bg-alamos-500', 'text-white', 'font-bold');
-        btn.classList.add('bg-slate-100', 'dark:bg-industrial-950', 'text-slate-700', 'dark:text-slate-300');
+        btn.classList.add('bg-slate-100', '', 'text-slate-700', '');
     });
 
     const activeBtn = document.getElementById('btnHist-' + type);
     if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-100', 'dark:bg-industrial-950', 'text-slate-700', 'dark:text-slate-300');
+        activeBtn.classList.remove('bg-slate-100', '', 'text-slate-700', '');
         activeBtn.classList.add('bg-alamos-500', 'text-white', 'font-bold');
     }
 

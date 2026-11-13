@@ -51,7 +51,7 @@
     "stock_quantity": 10,
     "low_stock_threshold": 2,
     "status": "available",
-    "image": "assets/image/products/firman-10kva.svg",
+    "image": "assets/image/products/lutian-8kva.svg",
     "specs": {
       "capacity_kva": 8.5,
       "prime_power_kw": 7,
@@ -131,7 +131,7 @@
     "stock_quantity": 6,
     "low_stock_threshold": 2,
     "status": "available",
-    "image": "assets/image/products/mikano-30kva.svg",
+    "image": "assets/image/products/mikano-50kva.svg",
     "specs": {
       "capacity_kva": 50,
       "prime_power_kw": 40,
@@ -211,7 +211,7 @@
     "stock_quantity": 3,
     "low_stock_threshold": 1,
     "status": "available",
-    "image": "assets/image/products/cummins-150kva.svg",
+    "image": "assets/image/products/caterpillar-150kva.svg",
     "specs": {
       "capacity_kva": 150,
       "prime_power_kw": 120,
@@ -251,7 +251,7 @@
     "stock_quantity": 2,
     "low_stock_threshold": 1,
     "status": "available",
-    "image": "assets/image/products/cummins-150kva.svg",
+    "image": "assets/image/products/cummins-250kva.svg",
     "specs": {
       "capacity_kva": 250,
       "prime_power_kw": 200,
@@ -339,7 +339,7 @@
     "stock_quantity": 52,
     "low_stock_threshold": 10,
     "status": "available",
-    "image": "assets/image/products/perkins-filter.svg",
+    "image": "assets/image/products/perkins-oil-filter.svg",
     "specs": {
       "part_type": "Lube Oil Filter",
       "oem_number": "2654403",

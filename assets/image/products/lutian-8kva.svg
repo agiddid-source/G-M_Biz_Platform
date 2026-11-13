@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="lu_bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+    <linearGradient id="lu_tank" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EA580C"/><stop offset="100%" stop-color="#C2410C"/></linearGradient>
+    <linearGradient id="lu_frame" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+    <linearGradient id="lu_eng" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#64748B"/><stop offset="100%" stop-color="#334155"/></linearGradient>
+  </defs>
+  <!-- Studio Background -->
+  <rect width="400" height="300" fill="url(#lu_bg)" rx="10" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Floor Contact Shadow -->
+  <ellipse cx="200" cy="270" rx="145" ry="10" fill="#0F172A" opacity="0.08"/>
+
+  <!-- Tubular Roll Cage in Deep Industrial Slate -->
+  <rect x="55" y="50" width="290" height="205" rx="14" fill="none" stroke="url(#lu_frame)" stroke-width="14"/>
+  <line x1="65" y1="145" x2="335" y2="145" stroke="url(#lu_frame)" stroke-width="10"/>
+
+  <!-- Signature Orange Lutian Fuel Tank -->
+  <rect x="75" y="58" width="250" height="52" rx="8" fill="url(#lu_tank)"/>
+  <rect x="175" y="50" width="50" height="8" rx="2" fill="#0F172A"/>
+  <text x="200" y="93" font-family="'Barlow', Arial Black, sans-serif" font-weight="900" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">LUTIAN 8.5kVA</text>
+
+  <!-- 420cc Engine Block -->
+  <rect x="85" y="125" width="135" height="110" rx="6" fill="url(#lu_eng)"/>
+  <line x1="95" y1="140" x2="210" y2="140" stroke="#94A3B8" stroke-width="2.5"/>
+  <line x1="95" y1="155" x2="210" y2="155" stroke="#94A3B8" stroke-width="2.5"/>
+  <line x1="95" y1="170" x2="210" y2="170" stroke="#94A3B8" stroke-width="2.5"/>
+  <line x1="95" y1="185" x2="210" y2="185" stroke="#94A3B8" stroke-width="2.5"/>
+
+  <!-- Alternator Housing with Blue Accent -->
+  <rect x="225" y="130" width="90" height="95" rx="8" fill="#0F172A" stroke="#EA580C" stroke-width="2"/>
+  <circle cx="270" cy="177" r="24" fill="none" stroke="#EA580C" stroke-width="3" stroke-dasharray="5 3"/>
+  <text x="270" y="181" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#EA580C" text-anchor="middle">LT8000EB</text>
+
+  <!-- Control Dashboard -->
+  <rect x="90" y="190" width="125" height="42" rx="4" fill="#020617"/>
+  <circle cx="115" cy="210" r="7" fill="#EF4444"/>
+  <rect x="135" y="202" width="28" height="15" rx="2" fill="#38BDF8"/>
+  <circle cx="190" cy="210" r="5" fill="#10B981"/>
+
+  <!-- Transport Wheels -->
+  <circle cx="85" cy="255" r="25" fill="#1E293B" stroke="#475569" stroke-width="6"/>
+  <circle cx="85" cy="255" r="9" fill="#EA580C"/>
+  <circle cx="315" cy="255" r="25" fill="#1E293B" stroke="#475569" stroke-width="6"/>
+  <circle cx="315" cy="255" r="9" fill="#EA580C"/>
+</svg>

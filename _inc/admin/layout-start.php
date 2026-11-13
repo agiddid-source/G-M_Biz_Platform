@@ -32,6 +32,7 @@ $admin_title = isset($admin_page_title) ? $admin_page_title . ' — ALAMOS Admin
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {

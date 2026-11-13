@@ -414,7 +414,7 @@
 .card__image {
   width: 100%;
   height: 190px;
-  background-color: #070D1D;
+  background-color: #F8FAFC;
   border-radius: var(--radius-inner);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -422,7 +422,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid #E2E8F0;
 }
 
 .card__image img {

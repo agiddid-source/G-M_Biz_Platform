@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="c250_bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+    <linearGradient id="c250_canopy" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#02287A"/><stop offset="100%" stop-color="#081438"/></linearGradient>
+    <linearGradient id="c250_base" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#020617"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+  </defs>
+  <!-- Studio Canvas Background -->
+  <rect width="400" height="300" fill="url(#c250_bg)" rx="10" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Floor Contact Shadow -->
+  <ellipse cx="200" cy="270" rx="175" ry="10" fill="#0F172A" opacity="0.09"/>
+
+  <!-- Reinforced Heavy Skid Base with 4 Pocket Cutouts -->
+  <rect x="20" y="222" width="360" height="38" rx="4" fill="url(#c250_base)"/>
+  <rect x="45" y="236" width="50" height="12" rx="2" fill="#334155"/>
+  <rect x="135" y="236" width="50" height="12" rx="2" fill="#334155"/>
+  <rect x="220" y="236" width="50" height="12" rx="2" fill="#334155"/>
+  <rect x="305" y="236" width="50" height="12" rx="2" fill="#334155"/>
+
+  <!-- Cummins 250kVA Extended Heavy Canopy -->
+  <rect x="28" y="60" width="344" height="164" rx="8" fill="url(#c250_canopy)" stroke="#1D4ED8" stroke-width="2"/>
+
+  <!-- Twin Exhaust Silencer Stacks with Rain Caps -->
+  <rect x="65" y="38" width="35" height="24" rx="3" fill="#475569"/>
+  <rect x="70" y="28" width="25" height="10" fill="#020617"/>
+  <rect x="115" y="38" width="35" height="24" rx="3" fill="#475569"/>
+  <rect x="120" y="28" width="25" height="10" fill="#020617"/>
+
+  <!-- Roof Crane Lifting Lugs -->
+  <circle cx="210" cy="50" r="8" fill="none" stroke="#F59E0B" stroke-width="3"/>
+  <circle cx="310" cy="50" r="8" fill="none" stroke="#F59E0B" stroke-width="3"/>
+
+  <!-- 4 Heavy Access Doors with Safety Latches -->
+  <rect x="38" y="75" width="76" height="135" rx="3" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.6"/>
+  <rect x="105" y="135" width="6" height="15" rx="1.5" fill="#F59E0B"/>
+
+  <rect x="120" y="75" width="76" height="135" rx="3" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.6"/>
+  <rect x="187" y="135" width="6" height="15" rx="1.5" fill="#F59E0B"/>
+
+  <rect x="202" y="75" width="76" height="135" rx="3" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.6"/>
+  <rect x="269" y="135" width="6" height="15" rx="1.5" fill="#F59E0B"/>
+
+  <rect x="284" y="75" width="80" height="135" rx="3" fill="none" stroke="#38BDF8" stroke-width="1.2" opacity="0.6"/>
+  <rect x="354" y="135" width="6" height="15" rx="1.5" fill="#F59E0B"/>
+
+  <!-- Radiator Intake Louvers on Door 1 -->
+  <line x1="48" y1="92" x2="102" y2="92" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+  <line x1="48" y1="102" x2="102" y2="102" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+  <line x1="48" y1="112" x2="102" y2="112" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+  <line x1="48" y1="122" x2="102" y2="122" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Big C Cummins Decal on Door 2 -->
+  <rect x="135" y="90" width="32" height="32" rx="3" fill="#DC2626"/>
+  <path d="M143 97h16v5h-10v8h10v5H143z" fill="#FFFFFF"/>
+  <text x="158" y="150" font-family="'Barlow', Arial Black, sans-serif" font-weight="900" font-size="14" fill="#FFFFFF" text-anchor="middle">Cummins</text>
+  <text x="158" y="165" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#93C5FD" text-anchor="middle">6LTAA8.9</text>
+
+  <!-- Door 3: Spec & Power Rating -->
+  <text x="240" y="115" font-family="'Barlow', Arial Black, sans-serif" font-weight="900" font-size="18" fill="#F59E0B" text-anchor="middle">250 kVA</text>
+  <text x="240" y="132" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">C250D5</text>
+  <text x="240" y="152" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#CBD5E1" text-anchor="middle">HEAVY PRIME</text>
+  <text x="240" y="166" font-family="'Inter', sans-serif" font-size="7" fill="#94A3B8" text-anchor="middle">CONTINUOUS LOAD</text>
+
+  <!-- Door 4: PowerCommand Digital Panel -->
+  <rect x="295" y="88" width="60" height="42" rx="3" fill="#020617" stroke="#475569" stroke-width="1.5"/>
+  <rect x="302" y="94" width="46" height="18" rx="2" fill="#0369A1"/>
+  <circle cx="310" cy="120" r="3" fill="#22C55E"/>
+  <circle cx="325" cy="120" r="3" fill="#EAB308"/>
+  <circle cx="340" cy="120" r="3" fill="#EF4444"/>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mk50_bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
+    <linearGradient id="mk50_canopy" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#E2E8F0"/></linearGradient>
+    <linearGradient id="mk50_base" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#020617"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+  </defs>
+  <!-- Studio Canvas Background -->
+  <rect width="400" height="300" fill="url(#mk50_bg)" rx="10" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Floor Contact Shadow -->
+  <ellipse cx="200" cy="268" rx="170" ry="10" fill="#0F172A" opacity="0.08"/>
+
+  <!-- Extended Heavy Base with 3 Reinforcing Ribs -->
+  <rect x="25" y="222" width="350" height="34" rx="4" fill="url(#mk50_base)"/>
+  <rect x="55" y="234" width="55" height="12" rx="2" fill="#334155"/>
+  <rect x="175" y="234" width="50" height="12" rx="2" fill="#334155"/>
+  <rect x="290" y="234" width="55" height="12" rx="2" fill="#334155"/>
+
+  <!-- 50kVA Extended Acoustic Canopy -->
+  <rect x="35" y="65" width="330" height="160" rx="10" fill="url(#mk50_canopy)" stroke="#CBD5E1" stroke-width="2"/>
+
+  <!-- Twin Exhaust Silencers & Roof Lifting Lugs -->
+  <rect x="75" y="46" width="35" height="22" rx="3" fill="#475569"/>
+  <rect x="80" y="36" width="25" height="10" fill="#1E293B"/>
+  <circle cx="160" cy="54" r="9" fill="none" stroke="#334155" stroke-width="4"/>
+  <circle cx="280" cy="54" r="9" fill="none" stroke="#334155" stroke-width="4"/>
+
+  <!-- 3-Bay Maintenance Access Doors -->
+  <rect x="48" y="80" width="95" height="132" rx="4" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+  <rect x="135" y="140" width="6" height="16" rx="2" fill="#334155"/>
+
+  <rect x="152" y="80" width="95" height="132" rx="4" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+  <rect x="239" y="140" width="6" height="16" rx="2" fill="#334155"/>
+
+  <rect x="256" y="80" width="98" height="132" rx="4" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+  <rect x="346" y="140" width="6" height="16" rx="2" fill="#334155"/>
+
+  <!-- Air Intake Louvers in Bay 1 & 2 -->
+  <line x1="60" y1="100" x2="130" y2="100" stroke="#64748B" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="60" y1="112" x2="130" y2="112" stroke="#64748B" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="60" y1="124" x2="130" y2="124" stroke="#64748B" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="60" y1="136" x2="130" y2="136" stroke="#64748B" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Bay 2 Turbocharge Logo Decal -->
+  <text x="200" y="130" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="900" fill="#DC2626" text-anchor="middle">TURBO</text>
+  <text x="200" y="145" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#475569" text-anchor="middle">PERKINS 1103</text>
+
+  <!-- Bay 3 Digital Controller & Brand Decal -->
+  <rect x="270" y="92" width="70" height="48" rx="4" fill="#020617" stroke="#334155" stroke-width="2"/>
+  <rect x="278" y="100" width="54" height="22" rx="2" fill="#0284C7"/>
+  <circle cx="290" cy="130" r="3" fill="#22C55E"/>
+  <circle cx="305" cy="130" r="3" fill="#EF4444"/>
+
+  <text x="305" y="175" font-family="'Barlow', Arial Black, sans-serif" font-weight="900" font-size="19" font-style="italic" fill="#0135AB" text-anchor="middle">MIKANO</text>
+  <text x="305" y="190" font-family="'Inter', sans-serif" font-weight="800" font-size="9" fill="#D97706" text-anchor="middle" letter-spacing="1">50 kVA TURBO</text>
+</svg>

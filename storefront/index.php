@@ -57,91 +57,91 @@ $featured_parts = array_filter($all_products, function($p) {
 </section>
 
 <!-- 2. VALUE PROPOSITION: DELIVERY, INSTALLATION & TERMS -->
-<section class="py-28 lg:py-36 bg-white dark:bg-industrial-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
+<section class="py-28 lg:py-36 bg-white border-b border-slate-200 transition-colors">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
             <!-- Item 1: Free Delivery & Setup -->
             <div class="space-y-3">
-                <div class="w-12 h-12 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl">
+                <div class="w-12 h-12 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-truck-ramp-box"></i>
                 </div>
-                <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white">
+                <h3 class="text-xl font-display font-bold text-slate-900">
                     Free Delivery &amp; Wiring in Lagos
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Buy any generator from 20kVA upward and our truck delivers it to your site in Lagos at no extra charge. Our electricians wire the changeover switch, balance the three phases, and stay until the set runs your full load.
                 </p>
             </div>
 
             <!-- Item 2: Factory New Engines -->
             <div class="space-y-3">
-                <div class="w-12 h-12 rounded-lg bg-alamos-500/10 text-alamos-600 dark:text-amber-400 flex items-center justify-center text-2xl">
+                <div class="w-12 h-12 rounded-lg bg-alamos-500/10 text-alamos-600 flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
-                <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white">
+                <h3 class="text-xl font-display font-bold text-slate-900">
                     Factory-New, Never Tokunbo
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     A lot of buyers go for Tokunbo to cut initial costs, then spend months rewinding alternators and swapping injector pumps. Everything we sell comes brand new in the original crate with factory serial numbers.
                 </p>
             </div>
 
             <!-- Item 3: Generator Rentals -->
             <div class="space-y-3">
-                <div class="w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-amber-400 flex items-center justify-center text-2xl">
+                <div class="w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-calendar-check"></i>
                 </div>
-                <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white">
+                <h3 class="text-xl font-display font-bold text-slate-900">
                     Generator Rentals
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     If your transformer blows up or you have a 3-month construction contract in Ikeja, Lekki, or Sagamu, renting saves you capital. We bring the generator, send our operator, and handle all routine servicing.
                 </p>
             </div>
 
             <!-- Item 4: Milestone Payments -->
             <div class="space-y-3 pt-4 sm:pt-0">
-                <div class="w-12 h-12 rounded-lg bg-blue-500/10 text-blue-600 dark:text-amber-400 flex items-center justify-center text-2xl">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-credit-card"></i>
                 </div>
-                <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white">
+                <h3 class="text-xl font-display font-bold text-slate-900">
                     Milestone Payments for Companies
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     We understand cash flow. For verified manufacturing companies and registered estates, you do not have to pay everything upfront. We can spread the payment across agreed milestones.
                 </p>
             </div>
 
             <!-- Item 5: Rent-to-Buy Credit -->
             <div class="space-y-3 pt-4 sm:pt-0">
-                <div class="w-12 h-12 rounded-lg bg-purple-500/10 text-purple-600 dark:text-amber-400 flex items-center justify-center text-2xl">
+                <div class="w-12 h-12 rounded-lg bg-purple-500/10 text-purple-600 flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-handshake"></i>
                 </div>
-                <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white">
+                <h3 class="text-xl font-display font-bold text-slate-900">
                     Rent-to-Buy Credit
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     If you rent a machine from us for a few months and decide you want to keep it permanently, we deduct what you already paid for rent from the final purchase price.
                 </p>
             </div>
 
             <!-- Item 6: Routine Servicing -->
             <div class="space-y-3 pt-4 sm:pt-0">
-                <div class="w-12 h-12 rounded-lg bg-rose-500/10 text-rose-600 dark:text-amber-400 flex items-center justify-center text-2xl">
+                <div class="w-12 h-12 rounded-lg bg-rose-500/10 text-rose-600 flex items-center justify-center text-2xl">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                 </div>
-                <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white">
+                <h3 class="text-xl font-display font-bold text-slate-900">
                     Scheduled Servicing
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Most diesel engines break down because someone forgot an oil change or poured dirty fuel. We track running hours on your set and send technicians with fresh lube oil and genuine filters before the engine knocks.
                 </p>
             </div>
         </div>
 
         <!-- 3. BRAND LOGOS SECTION (Responsive: Infinite Marquee on Mobile, Clean Grid on Desktop) -->
-        <div class="mt-24 pt-20 border-t border-slate-200 dark:border-slate-800">
-            <span class="block text-center text-xs font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-8">
+        <div class="mt-24 pt-20 border-t border-slate-200">
+            <span class="block text-center text-xs font-mono font-bold uppercase tracking-widest text-slate-400 mb-8">
                 Brands We Stock and Service
             </span>
 
@@ -161,14 +161,14 @@ $featured_parts = array_filter($all_products, function($p) {
             <div class="sm:hidden brand-marquee-wrapper py-2">
                 <div class="brand-marquee-track">
                     <?php foreach ($partner_brands as $pb): ?>
-                        <div class="brand-card px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center h-16 w-36 shrink-0">
+                        <div class="brand-card px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center h-16 w-36 shrink-0">
                             <img src="<?= asset('assets/image/brands/' . $pb['file']) ?>" alt="<?= htmlspecialchars($pb['name']) ?>" class="brand-logo-img h-8 w-auto object-contain">
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="brand-marquee-track" aria-hidden="true">
                     <?php foreach ($partner_brands as $pb): ?>
-                        <div class="brand-card px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center h-16 w-36 shrink-0">
+                        <div class="brand-card px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center h-16 w-36 shrink-0">
                             <img src="<?= asset('assets/image/brands/' . $pb['file']) ?>" alt="<?= htmlspecialchars($pb['name']) ?>" class="brand-logo-img h-8 w-auto object-contain">
                         </div>
                     <?php endforeach; ?>
@@ -178,7 +178,7 @@ $featured_parts = array_filter($all_products, function($p) {
             <!-- Desktop & Tablet Grid -->
             <div class="hidden sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-5 items-center">
                 <?php foreach ($partner_brands as $pb): ?>
-                    <div class="brand-card p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
+                    <div class="brand-card p-4 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-center hover:border-slate-400 transition-colors h-20 group">
                         <img src="<?= asset('assets/image/brands/' . $pb['file']) ?>" alt="<?= htmlspecialchars($pb['name']) ?>" class="brand-logo-img h-9 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity">
                     </div>
                 <?php endforeach; ?>
@@ -188,64 +188,64 @@ $featured_parts = array_filter($all_products, function($p) {
 </section>
 
 <!-- 4. HOW IT WORKS -->
-<section class="py-28 lg:py-36 bg-slate-100/70 dark:bg-industrial-950 border-b border-slate-200 dark:border-slate-800 transition-colors">
+<section class="py-28 lg:py-36 bg-slate-100/70 border-b border-slate-200 transition-colors">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900 dark:text-white">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-slate-900">
             How It Works
         </h2>
-        <p class="mt-4 text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        <p class="mt-4 text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             From picking the right size to running your machines on site.
         </p>
 
         <div class="mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
             <!-- Step 1 -->
-            <div class="bg-white dark:bg-slate-900 rounded-lg p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="bg-white rounded-lg p-8 border border-slate-200 shadow-sm space-y-4">
                 <div class="w-11 h-11 rounded-lg bg-amber-500 text-industrial-950 font-display font-black flex items-center justify-center text-lg">
                     1
                 </div>
-                <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">
+                <h3 class="font-display font-bold text-xl text-slate-900">
                     Tell us your load
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Pick a generator from our list, or tell us what you run: AC units, injection molders, welding machines, or pumps. We calculate the exact kVA so your compressor does not trip the breaker on startup.
                 </p>
             </div>
 
             <!-- Step 2 -->
-            <div class="bg-white dark:bg-slate-900 rounded-lg p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="bg-white rounded-lg p-8 border border-slate-200 shadow-sm space-y-4">
                 <div class="w-11 h-11 rounded-lg bg-amber-500 text-industrial-950 font-display font-black flex items-center justify-center text-lg">
                     2
                 </div>
-                <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">
+                <h3 class="font-display font-bold text-xl text-slate-900">
                     Get an honest price
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     We send you a quote covering the machine, haulage, and wiring. What you see is what you pay. No sudden logistics surprises on delivery day.
                 </p>
             </div>
 
             <!-- Step 3 -->
-            <div class="bg-white dark:bg-slate-900 rounded-lg p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="bg-white rounded-lg p-8 border border-slate-200 shadow-sm space-y-4">
                 <div class="w-11 h-11 rounded-lg bg-amber-500 text-industrial-950 font-display font-black flex items-center justify-center text-lg">
                     3
                 </div>
-                <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">
+                <h3 class="font-display font-bold text-xl text-slate-900">
                     Offloading and testing
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Our truck brings the generator to your address. Our team connects the cables, checks the transfer switch, and tests the set under your actual factory load.
                 </p>
             </div>
 
             <!-- Step 4 -->
-            <div class="bg-white dark:bg-slate-900 rounded-lg p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div class="bg-white rounded-lg p-8 border border-slate-200 shadow-sm space-y-4">
                 <div class="w-11 h-11 rounded-lg bg-amber-500 text-industrial-950 font-display font-black flex items-center justify-center text-lg">
                     4
                 </div>
-                <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">
+                <h3 class="font-display font-bold text-xl text-slate-900">
                     Maintenance support
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Whenever your engine hits its service interval, call us. We keep genuine filters in stock and send technicians who know how to work on Perkins and Cummins engines.
                 </p>
             </div>
@@ -254,17 +254,17 @@ $featured_parts = array_filter($all_products, function($p) {
 </section>
 
 <!-- 5. FEATURED GENERATORS -->
-<section class="py-28 lg:py-36 bg-white dark:bg-industrial-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
+<section class="py-28 lg:py-36 bg-white border-b border-slate-200 transition-colors">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 lg:mb-20 gap-6">
             <div>
-                <span class="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest block mb-2">
+                <span class="text-xs font-mono font-bold text-amber-600 uppercase tracking-widest block mb-2">
                     In Stock at Ikeja
                 </span>
-                <h2 class="text-3xl lg:text-4xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <h2 class="text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
                     GENERATORS IN STOCK
                 </h2>
-                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-xl">
+                <p class="text-sm text-slate-600 mt-2 max-w-xl">
                     Tested sets ready for immediate delivery from our Ikeja workshop.
                 </p>
             </div>
@@ -394,17 +394,17 @@ $featured_parts = array_filter($all_products, function($p) {
 </section>
 
 <!-- 7. FAST-MOVING ORIGINAL SPARE PARTS -->
-<section class="py-28 lg:py-36 bg-slate-50 dark:bg-industrial-900/60 border-b border-slate-200 dark:border-slate-800 transition-colors">
+<section class="py-28 lg:py-36 bg-slate-50 border-b border-slate-200 transition-colors">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 lg:mb-20 gap-6">
             <div>
-                <span class="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest block mb-2">
+                <span class="text-xs font-mono font-bold text-amber-600 uppercase tracking-widest block mb-2">
                     Genuine Parts
                 </span>
-                <h2 class="text-3xl lg:text-4xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <h2 class="text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
                     ORIGINAL ENGINE FILTERS &amp; AVRS
                 </h2>
-                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-xl">
+                <p class="text-sm text-slate-600 mt-2 max-w-xl">
                     Water and sediment in diesel kill fuel pumps quickly. We only supply genuine factory filters in sealed boxes.
                 </p>
             </div>

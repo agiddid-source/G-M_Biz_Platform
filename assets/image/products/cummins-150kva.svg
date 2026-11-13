@@ -1,30 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
   <defs>
+    <linearGradient id="c_bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F1F5F9"/></linearGradient>
     <linearGradient id="c_canopy" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0135AB"/><stop offset="100%" stop-color="#0B1A48"/></linearGradient>
     <linearGradient id="c_base" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#020617"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
   </defs>
-  <rect width="400" height="300" fill="#0F172A"/>
+  <!-- Studio Canvas Background -->
+  <rect width="400" height="300" fill="url(#c_bg)" rx="10" stroke="#E2E8F0" stroke-width="1.5"/>
+  <!-- Floor Contact Shadow -->
+  <ellipse cx="200" cy="268" rx="170" ry="10" fill="#0F172A" opacity="0.08"/>
+
   <!-- Heavy Industrial Skid Base -->
   <rect x="30" y="225" width="340" height="35" rx="4" fill="url(#c_base)"/>
   <rect x="55" y="238" width="70" height="12" rx="2" fill="#334155"/>
   <rect x="275" y="238" width="70" height="12" rx="2" fill="#334155"/>
+
   <!-- Cummins Deep Blue Canopy -->
-  <rect x="40" y="65" width="320" height="160" rx="8" fill="url(#c_canopy)"/>
+  <rect x="40" y="65" width="320" height="160" rx="8" fill="url(#c_canopy)" stroke="#1E3A8A" stroke-width="2"/>
+
   <!-- Top Rain Cap & Exhaust -->
   <rect x="80" y="45" width="40" height="20" rx="3" fill="#475569"/>
   <rect x="85" y="35" width="30" height="10" fill="#020617"/>
+
   <!-- Double Center Access Doors -->
   <rect x="55" y="80" width="135" height="130" rx="4" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity="0.5"/>
   <rect x="205" y="80" width="135" height="130" rx="4" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity="0.5"/>
+
   <!-- Heavy Industrial Door Latches -->
   <rect x="175" y="145" width="10" height="18" rx="2" fill="#F59E0B"/>
   <rect x="325" y="145" width="10" height="18" rx="2" fill="#F59E0B"/>
+
   <!-- Cummins Big C Emblem Decal -->
   <rect x="85" y="105" width="35" height="35" rx="3" fill="#DC2626"/>
   <path d="M95 113h15v5h-10v9h10v5H95z" fill="#FFFFFF"/>
-  <text x="130" y="130" font-family="'Barlow', Arial Black" font-weight="900" font-size="20" fill="#FFFFFF">Cummins</text>
+  <text x="130" y="130" font-family="'Barlow', Arial Black, sans-serif" font-weight="900" font-size="20" fill="#FFFFFF">Cummins</text>
   <text x="85" y="165" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="14" fill="#F59E0B" letter-spacing="1">C150D5 • 150 kVA</text>
   <text x="85" y="182" font-family="'Inter', sans-serif" font-size="10" fill="#94A3B8">6BTA5.9 HEAVY TURBO</text>
+
   <!-- PowerCommand Controller Panel -->
   <rect x="235" y="95" width="85" height="55" rx="4" fill="#020617" stroke="#475569" stroke-width="2"/>
   <rect x="245" y="103" width="65" height="25" rx="2" fill="#0369A1"/>

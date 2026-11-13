@@ -35,6 +35,7 @@ $page_desc = $page_desc ?? 'Sale, hire, and repair of diesel and petrol generato
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
