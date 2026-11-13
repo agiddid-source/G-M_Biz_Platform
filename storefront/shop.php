@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 $page_title = 'Equipment Catalogue';
 $page_desc = 'Direct supply of soundproof diesel generators, basic workhorses, and original factory spare parts in Lagos, Nigeria.';
 require_once __DIR__ . '/../_inc/shared/head.php';
@@ -23,61 +25,60 @@ $spare_count     = count(array_filter($all_products, fn($p) => $p['type'] === 's
 $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for_rent'])));
 ?>
 
-<!-- 1. AIRY CATALOGUE HEADER WITH ALAMO BLUE ACCENTS -->
-<section class="pt-16 pb-12 lg:pt-24 lg:pb-16 bg-white dark:bg-industrial-950 border-b border-slate-200 dark:border-slate-800 transition-colors">
+<!-- 01 · AIRY CATALOGUE HEADER & CLASSIFICATION (HYBRID EDITORIAL STYLE) -->
+<section class="pt-16 pb-12 lg:pt-20 lg:pb-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Breadcrumbs -->
-        <nav class="flex items-center gap-2 text-xs text-slate-400 font-mono mb-4">
-            <a href="<?= url('index.php') ?>" class="hover:text-alamos-500 transition-colors">Home</a>
-            <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 dark:text-slate-600"></i>
-            <span class="text-slate-800 dark:text-slate-200 font-medium">Catalogue</span>
+        <nav class="flex items-center gap-2 text-xs text-slate-400 font-mono mb-4" aria-label="Breadcrumb">
+            <a href="<?= url('index.php') ?>" class="hover:text-alamos-600 transition-colors">Home</a>
+            <i class="fa-solid fa-chevron-right text-[9px] text-slate-300"></i>
+            <span class="text-slate-800 font-medium">Catalogue</span>
         </nav>
 
         <div class="max-w-3xl space-y-3">
-            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-alamos-600 dark:text-blue-400 font-mono text-xs font-bold uppercase tracking-wider">
-                <i class="fa-solid fa-bolt text-alamos-500"></i>
-                Ikeja Yard Inventory
-            </span>
-            <h1 class="text-3xl sm:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">
+            <p class="text-xs font-mono font-bold uppercase tracking-wider text-alamos-600 mb-1">
+                01 · Direct Ikeja Yard Inventory
+            </p>
+            <h1 class="text-3xl sm:text-5xl font-display font-extrabold text-slate-900 tracking-tight uppercase">
                 Equipment Catalogue
             </h1>
-            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
                 Brand new soundproof diesel generators, basic commercial workhorses, and factory-sealed filters in stock for fast delivery across Nigeria.
             </p>
         </div>
 
         <!-- Alamo Blue Navigation Tabs (Uncluttered & Clean) -->
-        <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none text-xs">
+        <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none text-xs">
             <button type="button" 
                     onclick="filterByType('')" 
                     id="tabAll"
-                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_type === '' && $filter_rent === '') ? 'bg-alamos-500 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-alamos-500 border border-slate-200 dark:border-slate-800' ?>">
+                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_type === '' && $filter_rent === '') ? 'bg-alamos-600 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 text-slate-700 hover:text-alamos-600 border border-slate-200' ?>">
                 All Equipment (<?= count($all_products) ?>)
             </button>
             <button type="button" 
                     onclick="filterByType('generator')" 
                     id="tabGenerators"
-                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_type === 'generator') ? 'bg-alamos-500 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-alamos-500 border border-slate-200 dark:border-slate-800' ?>">
+                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_type === 'generator') ? 'bg-alamos-600 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 text-slate-700 hover:text-alamos-600 border border-slate-200' ?>">
                 Generators (<?= $generator_count ?>)
             </button>
             <button type="button" 
                     onclick="filterByType('spare_part')" 
                     id="tabSpares"
-                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_type === 'spare_part') ? 'bg-alamos-500 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-alamos-500 border border-slate-200 dark:border-slate-800' ?>">
+                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_type === 'spare_part') ? 'bg-alamos-600 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 text-slate-700 hover:text-alamos-600 border border-slate-200' ?>">
                 Original Spare Parts (<?= $spare_count ?>)
             </button>
             <button type="button" 
                     onclick="filterByRentOnly()" 
                     id="tabRentals"
-                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_rent === '1') ? 'bg-alamos-500 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-alamos-500 border border-slate-200 dark:border-slate-800' ?>">
+                    class="type-tab px-5 py-2.5 rounded-lg font-bold transition-all shrink-0 <?= ($filter_rent === '1') ? 'bg-alamos-600 text-white shadow-md shadow-blue-900/20' : 'bg-slate-50 text-slate-700 hover:text-alamos-600 border border-slate-200' ?>">
                 Available for Rent (<?= $rental_count ?>)
             </button>
         </div>
     </div>
 </section>
 
-<!-- 2. SPACIOUS CATALOGUE GRID & SIMPLIFIED SIDEBAR -->
-<section class="py-16 lg:py-24 bg-slate-50/70 dark:bg-industrial-950 transition-colors">
+<!-- 02 · SPACIOUS CATALOGUE GRID & SIMPLIFIED SIDEBAR -->
+<section class="py-16 lg:py-20 bg-slate-50/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
 
@@ -85,20 +86,20 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
             <aside class="hidden lg:block lg:col-span-3 space-y-8">
                 <!-- Search Box -->
                 <div class="space-y-2">
-                    <label for="sideSearchInput" class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                        Search Stock
-                    </label>
+                    <p class="text-[11px] font-mono font-bold uppercase tracking-wider text-alamos-600">
+                        02 · Search Stock
+                    </p>
                     <div class="relative">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
                         <input type="text" 
                                id="sideSearchInput" 
                                value="<?= htmlspecialchars($search_q) ?>"
                                placeholder="Model, KVA, or Part #..." 
-                               class="w-full pl-9 pr-8 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-lg text-xs outline-none focus:border-alamos-500 focus:ring-1 focus:ring-alamos-500 transition-colors">
+                               class="w-full pl-9 pr-8 py-2.5 bg-white border border-slate-300 text-slate-900 rounded-lg text-xs outline-none focus:border-alamos-600 focus:ring-2 focus:ring-alamos-500/20 transition-colors">
                         <button type="button" 
                                 id="sideSearchClear"
                                 onclick="clearSideSearch()" 
-                                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs <?= ($search_q === '') ? 'hidden' : '' ?>">
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs <?= ($search_q === '') ? 'hidden' : '' ?>">
                             <i class="fa-solid fa-circle-xmark"></i>
                         </button>
                     </div>
@@ -106,26 +107,24 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
 
                 <!-- Capacity Filter -->
                 <div id="sideKvaFilterGroup" class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                            Generator Capacity
-                        </label>
-                    </div>
+                    <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
+                        Generator Capacity
+                    </label>
                     <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 dark:text-slate-300 hover:text-alamos-600 transition-colors">
-                            <input type="radio" name="side_kva_tier" value="" onchange="applyFilters()" <?= ($filter_tier === '') ? 'checked' : '' ?> class="accent-alamos-500">
+                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 hover:text-alamos-600 transition-colors">
+                            <input type="radio" name="side_kva_tier" value="" onchange="applyFilters()" <?= ($filter_tier === '') ? 'checked' : '' ?> class="accent-alamos-600">
                             <span>Any Capacity</span>
                         </label>
-                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 dark:text-slate-300 hover:text-alamos-600 transition-colors">
-                            <input type="radio" name="side_kva_tier" value="basic" onchange="applyFilters()" <?= ($filter_tier === 'basic') ? 'checked' : '' ?> class="accent-alamos-500">
+                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 hover:text-alamos-600 transition-colors">
+                            <input type="radio" name="side_kva_tier" value="basic" onchange="applyFilters()" <?= ($filter_tier === 'basic') ? 'checked' : '' ?> class="accent-alamos-600">
                             <span>8kVA – 15kVA (Basic Workhorse)</span>
                         </label>
-                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 dark:text-slate-300 hover:text-alamos-600 transition-colors">
-                            <input type="radio" name="side_kva_tier" value="commercial" onchange="applyFilters()" <?= ($filter_tier === 'commercial') ? 'checked' : '' ?> class="accent-alamos-500">
+                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 hover:text-alamos-600 transition-colors">
+                            <input type="radio" name="side_kva_tier" value="commercial" onchange="applyFilters()" <?= ($filter_tier === 'commercial') ? 'checked' : '' ?> class="accent-alamos-600">
                             <span>20kVA – 50kVA (Commercial)</span>
                         </label>
-                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 dark:text-slate-300 hover:text-alamos-600 transition-colors">
-                            <input type="radio" name="side_kva_tier" value="heavy" onchange="applyFilters()" <?= ($filter_tier === 'heavy') ? 'checked' : '' ?> class="accent-alamos-500">
+                        <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 hover:text-alamos-600 transition-colors">
+                            <input type="radio" name="side_kva_tier" value="heavy" onchange="applyFilters()" <?= ($filter_tier === 'heavy') ? 'checked' : '' ?> class="accent-alamos-600">
                             <span>150kVA+ (Heavy Industrial)</span>
                         </label>
                     </div>
@@ -133,7 +132,7 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
 
                 <!-- Brand Filter -->
                 <div class="space-y-3">
-                    <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
                         Brand
                     </label>
                     <div class="space-y-2 text-xs">
@@ -142,9 +141,9 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
                             $b_count = count(array_filter($all_products, fn($p) => $p['brand_id'] === $b['id']));
                             if ($b_count === 0) continue;
                             ?>
-                            <label class="flex items-center justify-between cursor-pointer group text-slate-700 dark:text-slate-300 hover:text-alamos-600">
+                            <label class="flex items-center justify-between cursor-pointer group text-slate-700 hover:text-alamos-600">
                                 <span class="flex items-center gap-2">
-                                    <input type="checkbox" name="side_brand" value="<?= $b['id'] ?>" onchange="applyFilters()" <?= ($filter_brand === $b['id']) ? 'checked' : '' ?> class="brand-check accent-alamos-500 rounded">
+                                    <input type="checkbox" name="side_brand" value="<?= $b['id'] ?>" onchange="applyFilters()" <?= ($filter_brand === $b['id']) ? 'checked' : '' ?> class="brand-check accent-alamos-600 rounded">
                                     <?= htmlspecialchars($b['name']) ?>
                                 </span>
                                 <span class="text-[11px] font-mono text-slate-400"><?= $b_count ?></span>
@@ -154,8 +153,8 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
                 </div>
 
                 <!-- Reset Action -->
-                <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
-                    <button type="button" onclick="resetAllFilters()" class="text-xs text-slate-500 hover:text-alamos-600 dark:hover:text-blue-400 font-mono flex items-center gap-2">
+                <div class="pt-4 border-t border-slate-200">
+                    <button type="button" onclick="resetAllFilters()" class="text-xs text-slate-500 hover:text-alamos-600 font-mono flex items-center gap-2">
                         <i class="fa-solid fa-rotate-left"></i>
                         <span>Reset all filters</span>
                     </button>
@@ -166,18 +165,18 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
             <main class="lg:col-span-9 space-y-8">
 
                 <!-- Header Utility Strip -->
-                <div class="flex items-center justify-between text-xs font-mono text-slate-500 pb-2 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-500 pb-2 border-b border-slate-200">
                     <div class="flex items-center gap-3">
                         <!-- Mobile Filter Button -->
                         <button type="button" 
                                 onclick="openMobileFilters()" 
-                                class="lg:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 font-medium">
-                            <i class="fa-solid fa-sliders text-alamos-500"></i>
+                                class="lg:hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 bg-white font-medium">
+                            <i class="fa-solid fa-sliders text-alamos-600"></i>
                             <span>Filters</span>
                         </button>
 
                         <div>
-                            Showing <strong id="visibleCount" class="text-slate-900 dark:text-white"><?= count($all_products) ?></strong> items in stock
+                            Showing <strong id="visibleCount" class="text-slate-900"><?= count($all_products) ?></strong> items in stock
                         </div>
                     </div>
 
@@ -186,7 +185,7 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
                         <label for="sortSelector" class="hidden sm:inline">Sort:</label>
                         <select id="sortSelector" 
                                 onchange="applyFilters()" 
-                                class="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-lg text-xs outline-none focus:border-alamos-500 transition-colors font-sans">
+                                class="px-3 py-1.5 bg-white border border-slate-300 text-slate-900 rounded-lg text-xs outline-none focus:border-alamos-600 transition-colors font-sans">
                             <option value="default" <?= ($filter_sort === 'default') ? 'selected' : '' ?>>Featured Stock</option>
                             <option value="price_asc" <?= ($filter_sort === 'price_asc') ? 'selected' : '' ?>>Price: Low to High</option>
                             <option value="price_desc" <?= ($filter_sort === 'price_desc') ? 'selected' : '' ?>>Price: High to Low</option>
@@ -215,14 +214,14 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
                 </div>
 
                 <!-- Zero-Match Empty State -->
-                <div id="emptyStateContainer" class="hidden bg-white dark:bg-industrial-900 border border-slate-200 dark:border-slate-800 rounded-lg p-16 text-center space-y-4">
-                    <div class="w-16 h-16 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-alamos-500 flex items-center justify-center text-2xl mx-auto">
+                <div id="emptyStateContainer" class="hidden bg-white border border-slate-200 rounded-lg p-16 text-center space-y-4">
+                    <div class="w-16 h-16 rounded-lg bg-blue-50 text-alamos-600 flex items-center justify-center text-2xl mx-auto">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">
+                    <h3 class="font-display font-bold text-xl text-slate-900">
                         No equipment matches your selection
                     </h3>
-                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
                         Try resetting your filters or search terms to see all available inventory in our yard.
                     </p>
                     <div class="pt-2">
@@ -239,52 +238,52 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
 </section>
 
 <!-- MOBILE FILTER DRAWER -->
-<div id="mobileFilterModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end">
-    <div class="bg-white dark:bg-industrial-900 w-full max-w-xs h-full flex flex-col justify-between p-6 overflow-y-auto">
-        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
-            <h3 class="font-display font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
-                <i class="fa-solid fa-sliders text-alamos-500"></i>
+<div id="mobileFilterModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex justify-end">
+    <div class="bg-white w-full max-w-xs h-full flex flex-col justify-between p-6 overflow-y-auto shadow-2xl">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+            <h3 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-alamos-600"></i>
                 Filters
             </h3>
-            <button type="button" onclick="closeMobileFilters()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 flex items-center justify-center">
+            <button type="button" onclick="closeMobileFilters()" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center">
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
         </div>
 
         <div class="space-y-6 flex-1 text-xs">
             <div>
-                <label class="block font-mono font-bold uppercase text-slate-500 dark:text-slate-400 mb-2">Search</label>
-                <input type="text" id="mobileSearchInput" placeholder="Model, KVA..." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-lg text-xs outline-none focus:border-alamos-500">
+                <label class="block font-mono font-bold uppercase text-slate-700 mb-2">Search</label>
+                <input type="text" id="mobileSearchInput" placeholder="Model, KVA..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 text-slate-900 rounded-lg text-xs outline-none focus:border-alamos-600">
             </div>
 
             <div>
-                <label class="block font-mono font-bold uppercase text-slate-500 dark:text-slate-400 mb-2">Capacity</label>
+                <label class="block font-mono font-bold uppercase text-slate-700 mb-2">Capacity</label>
                 <div class="space-y-2">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="mobile_kva" value="" checked class="accent-alamos-500">
+                        <input type="radio" name="mobile_kva" value="" checked class="accent-alamos-600">
                         <span>Any Capacity</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="mobile_kva" value="basic" class="accent-alamos-500">
+                        <input type="radio" name="mobile_kva" value="basic" class="accent-alamos-600">
                         <span>8kVA – 15kVA</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="mobile_kva" value="commercial" class="accent-alamos-500">
+                        <input type="radio" name="mobile_kva" value="commercial" class="accent-alamos-600">
                         <span>20kVA – 50kVA</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="mobile_kva" value="heavy" class="accent-alamos-500">
+                        <input type="radio" name="mobile_kva" value="heavy" class="accent-alamos-600">
                         <span>150kVA+</span>
                     </label>
                 </div>
             </div>
         </div>
 
-        <div class="border-t border-slate-200 dark:border-slate-800 pt-5 mt-6 space-y-3">
+        <div class="border-t border-slate-200 pt-5 mt-6 space-y-3">
             <button type="button" onclick="syncMobileToDesktop(); closeMobileFilters();" class="btn-cummins-blue w-full justify-center !py-3 font-bold text-xs">
                 <span>Apply</span>
             </button>
-            <button type="button" onclick="resetAllFilters(); closeMobileFilters();" class="w-full py-2 text-center text-xs font-mono text-slate-500 hover:text-slate-800 dark:hover:text-white">
+            <button type="button" onclick="resetAllFilters(); closeMobileFilters();" class="w-full py-2 text-center text-xs font-mono text-slate-500 hover:text-slate-800">
                 Reset
             </button>
         </div>
@@ -333,8 +332,8 @@ function filterByRentOnly() {
 }
 
 function updateTabStyles() {
-    const activeClass = 'bg-alamos-500 text-white shadow-md shadow-blue-900/20';
-    const inactiveClass = 'bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-alamos-500 border border-slate-200 dark:border-slate-800';
+    const activeClass = 'bg-alamos-600 text-white shadow-md shadow-blue-900/20';
+    const inactiveClass = 'bg-slate-50 text-slate-700 hover:text-alamos-600 border border-slate-200';
 
     const tabs = [
         { id: 'tabAll', active: (currentType === '' && !currentRentOnly) },

@@ -27,7 +27,7 @@ $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
                 <i class="fa-solid fa-bolt mr-1"></i><?= $product['specs']['capacity_kva'] ?> KVA
             </div>
         <?php else: ?>
-            <div class="card__badge !bg-slate-900 !text-slate-200 dark:!bg-slate-800">
+            <div class="card__badge !bg-slate-900 !text-slate-200">
                 GENUINE PART
             </div>
         <?php endif; ?>
@@ -41,18 +41,18 @@ $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
         <div class="card__text">
             <span class="card__brand"><?= htmlspecialchars($brand_name) ?> • <?= $is_generator ? 'Brand New' : 'Factory Genuine' ?></span>
             <h3 class="card__title">
-                <a href="<?= url('storefront/product-details.php?id=' . $product['id']) ?>" class="hover:text-alamos-500 transition-colors line-clamp-2">
+                <a href="<?= url('storefront/product-details.php?id=' . $product['id']) ?>" class="hover:text-alamos-600 transition-colors line-clamp-2">
                     <?= htmlspecialchars($product['name']) ?>
                 </a>
             </h3>
 
             <!-- Clean Single-Line Specification Highlight (No Cluttered 4-Box Grid) -->
             <?php if ($is_generator): ?>
-                <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-1">
+                <div class="text-[11px] font-mono text-slate-500 mt-1">
                     <?= $product['specs']['fuel_type'] ?? 'Diesel' ?> • <?= $product['specs']['phase'] ?? '3-Phase' ?> • <?= $product['specs']['sound_level_dba'] ?? 'Silent' ?>
                 </div>
             <?php else: ?>
-                <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-1 truncate">
+                <div class="text-[11px] font-mono text-slate-500 mt-1 truncate">
                     Part #: <?= $product['specs']['oem_number'] ?? 'Standard' ?>
                 </div>
             <?php endif; ?>
@@ -64,7 +64,7 @@ $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
                 <span class="card__price-label">Price</span>
                 <div class="card__price"><?= format_naira($price) ?></div>
                 <?php if ($has_rental): ?>
-                    <span class="text-[10px] text-amber-600 dark:text-amber-400 font-mono font-semibold">
+                    <span class="text-[10px] text-amber-600 font-mono font-semibold">
                         Rent: <?= format_naira($product['rental_rates']['daily']) ?>/day
                     </span>
                 <?php endif; ?>
