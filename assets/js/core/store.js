@@ -10,7 +10,7 @@
 
   var NS = 'gms:';
   // Bump when any seed file changes shape: wipes local changes on next load.
-  var SEED_VERSION = '2026-11-12.1';
+  var SEED_VERSION = '2026-11-14.1';
 
   var COLLECTIONS = {
     'products':         { idField: 'product_id',   prefix: 'PRD' },
@@ -91,7 +91,11 @@
     }
     return global.fetch(seedUrl(name)).then(function (res) {
       if (!res.ok) throw new Error('Store: could not load ' + seedUrl(name) + ' (' + res.status + ')');
-      return res.json();
+      // Seed files that nobody has filled in yet (0 bytes) load as empty, so one unfinished file doesn't break every page.
+      return res.text().then(function (txt) {
+        if (!txt.trim()) return OBJECTS.indexOf(name) !== -1 ? {} : [];
+        return JSON.parse(txt);
+      });
     }).then(function (data) {
       cache[name] = data;
       persist(name);

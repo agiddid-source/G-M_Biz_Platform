@@ -15,7 +15,7 @@ $pageTitle = 'Sign in';
   <section class="flex flex-1 items-center justify-center px-4 py-10 sm:px-8">
     <div class="w-full max-w-md">
       <a href="<?= gms_e(gms_url('index.php')) ?>" class="mb-8 inline-block lg:hidden" aria-label="Alamos storefront">
-        <img src="<?= gms_e(gms_url('assets/image/logo/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:48px;width:auto">
+        <img src="<?= gms_e(gms_url('assets/image/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:48px;width:auto">
       </a>
 
       <div id="banner" class="alert mb-5" hidden role="status"></div>

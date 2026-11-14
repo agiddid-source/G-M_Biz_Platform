@@ -1,0 +1,277 @@
+[
+  {
+    "equipment_id": "EQP-001",
+    "reference_no": "AG-TST-001",
+    "name": "Digital Multimeter",
+    "brand_model": "Fluke 87V",
+    "serial_number": "FLK-87V-20431",
+    "category": "Testing Instruments",
+    "purchase_date": "2022-04-12",
+    "condition": "Good",
+    "availability": "Assigned",
+    "notes": "Issued to field technician for site visits.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-001",
+        "worker_id": "WRK-007",
+        "assigned_date": "2022-05-02",
+        "expected_return_date": "2022-06-02",
+        "returned_date": "2022-06-01",
+        "condition_out": "Excellent",
+        "condition_in": "Excellent",
+        "notes": "Initial issue."
+      },
+      {
+        "assignment_id": "ASG-002",
+        "worker_id": "WRK-006",
+        "assigned_date": "2026-10-20",
+        "expected_return_date": "2026-11-20",
+        "returned_date": null,
+        "condition_out": "Good",
+        "condition_in": null,
+        "notes": "For commissioning jobs this month."
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-002",
+    "reference_no": "AG-TST-002",
+    "name": "Clamp Meter",
+    "brand_model": "Fluke 376 FC",
+    "serial_number": "FLK-376-77812",
+    "category": "Testing Instruments",
+    "purchase_date": "2023-01-18",
+    "condition": "Excellent",
+    "availability": "Available",
+    "notes": "In the workshop cabinet.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-003",
+        "worker_id": "WRK-006",
+        "assigned_date": "2026-09-01",
+        "expected_return_date": "2026-09-15",
+        "returned_date": "2026-09-14",
+        "condition_out": "Excellent",
+        "condition_in": "Excellent",
+        "notes": ""
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-003",
+    "reference_no": "AG-TST-003",
+    "name": "Insulation Resistance Tester",
+    "brand_model": "Megger MIT515",
+    "serial_number": "MGR-515-30918",
+    "category": "Testing Instruments",
+    "purchase_date": "2021-08-30",
+    "condition": "Fair",
+    "availability": "Assigned",
+    "notes": "Return was due 30 Oct. Follow up with the holder.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-004",
+        "worker_id": "WRK-007",
+        "assigned_date": "2026-10-16",
+        "expected_return_date": "2026-10-30",
+        "returned_date": null,
+        "condition_out": "Fair",
+        "condition_in": null,
+        "notes": "Site testing at a client plant."
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-004",
+    "reference_no": "AG-HND-001",
+    "name": "Socket and Spanner Set (94 pc)",
+    "brand_model": "Stanley STMT82830",
+    "serial_number": "STN-94-55012",
+    "category": "Hand Tools",
+    "purchase_date": "2022-02-07",
+    "condition": "Good",
+    "availability": "Available",
+    "notes": "Complete set, all sizes present.",
+    "assignments": []
+  },
+  {
+    "equipment_id": "EQP-005",
+    "reference_no": "AG-PWR-001",
+    "name": "Cordless Drill/Driver",
+    "brand_model": "DeWalt DCD796",
+    "serial_number": "DWT-796-88213",
+    "category": "Power Tools",
+    "purchase_date": "2023-06-22",
+    "condition": "Good",
+    "availability": "Assigned",
+    "notes": "Long-term issue to the field technician.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-005",
+        "worker_id": "WRK-006",
+        "assigned_date": "2023-07-03",
+        "expected_return_date": null,
+        "returned_date": null,
+        "condition_out": "Good",
+        "condition_in": null,
+        "notes": "Open-ended issue."
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-006",
+    "reference_no": "AG-PWR-002",
+    "name": "Angle Grinder",
+    "brand_model": "Bosch GWS 18V-10",
+    "serial_number": "BSH-1810-43307",
+    "category": "Power Tools",
+    "purchase_date": "2022-10-10",
+    "condition": "Needs Repair",
+    "availability": "In Repair",
+    "notes": "Carbon brushes worn. Waiting for spare parts.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-006",
+        "worker_id": "WRK-007",
+        "assigned_date": "2026-08-10",
+        "expected_return_date": "2026-08-24",
+        "returned_date": "2026-08-22",
+        "condition_out": "Good",
+        "condition_in": "Needs Repair",
+        "notes": "Sparking and losing power."
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-007",
+    "reference_no": "AG-LFT-001",
+    "name": "Engine Hoist (2 ton)",
+    "brand_model": "Hi-Lift 2T Foldable",
+    "serial_number": "HL-2T-10294",
+    "category": "Lifting & Handling",
+    "purchase_date": "2021-05-14",
+    "condition": "Good",
+    "availability": "Available",
+    "notes": "Stored in the workshop bay.",
+    "assignments": []
+  },
+  {
+    "equipment_id": "EQP-008",
+    "reference_no": "AG-LFT-002",
+    "name": "Pallet Jack (2.5 ton)",
+    "brand_model": "Jinan HP25",
+    "serial_number": "JN-HP25-60177",
+    "category": "Lifting & Handling",
+    "purchase_date": "2022-09-05",
+    "condition": "Fair",
+    "availability": "Assigned",
+    "notes": "Used for loading in the stockroom.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-007",
+        "worker_id": "WRK-004",
+        "assigned_date": "2026-10-01",
+        "expected_return_date": "2026-11-12",
+        "returned_date": null,
+        "condition_out": "Fair",
+        "condition_in": null,
+        "notes": "Stockroom reorganisation."
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-009",
+    "reference_no": "AG-VEH-001",
+    "name": "Delivery Truck",
+    "brand_model": "Mitsubishi Canter FE",
+    "serial_number": "MC-FE-2019-7731",
+    "category": "Vehicles & Transport",
+    "purchase_date": "2020-02-17",
+    "condition": "Good",
+    "availability": "Assigned",
+    "notes": "Assigned for generator deliveries.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-008",
+        "worker_id": "WRK-010",
+        "assigned_date": "2022-03-01",
+        "expected_return_date": "2022-12-31",
+        "returned_date": "2022-12-20",
+        "condition_out": "Good",
+        "condition_in": "Good",
+        "notes": "Delivery runs."
+      },
+      {
+        "assignment_id": "ASG-009",
+        "worker_id": "WRK-008",
+        "assigned_date": "2023-03-13",
+        "expected_return_date": null,
+        "returned_date": null,
+        "condition_out": "Good",
+        "condition_in": null,
+        "notes": "Open-ended: main delivery vehicle."
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-010",
+    "reference_no": "AG-SAF-001",
+    "name": "Full-body Safety Harness",
+    "brand_model": "3M Protecta Pro",
+    "serial_number": "3M-PRO-90245",
+    "category": "Safety Gear",
+    "purchase_date": "2023-02-02",
+    "condition": "Excellent",
+    "availability": "Available",
+    "notes": "Inspected and tagged.",
+    "assignments": []
+  },
+  {
+    "equipment_id": "EQP-011",
+    "reference_no": "AG-SAF-002",
+    "name": "Auto-darkening Welding Helmet",
+    "brand_model": "Lincoln Viking 3350",
+    "serial_number": "LNC-3350-18864",
+    "category": "Safety Gear",
+    "purchase_date": "2022-11-28",
+    "condition": "Missing",
+    "availability": "Missing",
+    "notes": "Not found after the 28 Oct site visit. Holder asked to confirm.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-010",
+        "worker_id": "WRK-007",
+        "assigned_date": "2026-10-26",
+        "expected_return_date": "2026-10-29",
+        "returned_date": null,
+        "condition_out": "Fair",
+        "condition_in": null,
+        "notes": "Welding repairs on site."
+      }
+    ]
+  },
+  {
+    "equipment_id": "EQP-012",
+    "reference_no": "AG-HND-002",
+    "name": "Soldering Station",
+    "brand_model": "Hakko FX-888D",
+    "serial_number": "HKO-888-20155",
+    "category": "Hand Tools",
+    "purchase_date": "2020-09-09",
+    "condition": "Damaged",
+    "availability": "Retired",
+    "notes": "Heating element failed. Retired from use.",
+    "assignments": [
+      {
+        "assignment_id": "ASG-011",
+        "worker_id": "WRK-006",
+        "assigned_date": "2024-04-08",
+        "expected_return_date": "2024-05-08",
+        "returned_date": "2024-05-06",
+        "condition_out": "Good",
+        "condition_in": "Damaged",
+        "notes": "Dropped, heating element failed."
+      }
+    ]
+  }
+]

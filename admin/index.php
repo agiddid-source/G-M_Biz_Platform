@@ -12,7 +12,7 @@ $pageTitle = 'Portal';
 <body class="auth-page">
 <main class="grid min-h-screen place-items-center px-4 text-center">
   <div>
-    <img class="mx-auto" src="<?= gms_e(gms_url('assets/image/logo/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:56px;width:auto">
+    <img class="mx-auto" src="<?= gms_e(gms_url('assets/image/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:56px;width:auto">
     <p class="mt-6 text-slate-600"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Opening the portal...</p>
   </div>
 </main>

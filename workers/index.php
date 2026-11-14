@@ -7,7 +7,7 @@ $pageTitle = 'Workers';
 $module = 'workers';
 $pageScripts = [
     'assets/admin/M3/equipment-service.js',
-    'assets/admin/M3/equipment-modals.js',
+    'assets/admin/M3/equipment-modal.js',
     'assets/admin/M3/workers.js',
 ];
 include __DIR__ . '/../_inc/admin/layout-start.php';

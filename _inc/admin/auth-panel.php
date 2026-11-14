@@ -6,7 +6,7 @@
 ?>
 <aside class="hero-panel relative hidden overflow-hidden lg:flex lg:w-1/2 lg:flex-col lg:justify-between lg:p-12 xl:p-16">
   <a class="logo-chip self-start" href="<?= gms_e(gms_url("index.php")) ?>" aria-label="Alamos storefront">
-    <img src="<?= gms_e(gms_url("assets/image/logo/alamos-logo.png")) ?>" alt="Alamos Resources &amp; Services" style="height:44px">
+    <img src="<?= gms_e(gms_url("assets/image/alamos-logo.png")) ?>" alt="Alamos Resources &amp; Services" style="height:44px">
   </a>
   <div class="relative">
     <span class="inline-block rounded-full bg-amber px-3 py-1 text-xs font-bold text-deep">Staff portal</span>

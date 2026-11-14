@@ -1,14 +1,14 @@
 <?php
 /**
  * [M3] Equipment & tools: company-owned operational equipment (NOT commercial stock).
- * Behaviour: assets/admin/M3/equipment.js (+ equipment-modals.js, equipment-service.js).
+ * Behaviour: assets/admin/M3/equipment.js (+ equipment-modal.js, equipment-service.js).
  * Data: data/M3/equipment.json (each record nests its assignment history) and data/M3/workers.json.
  */
 $pageTitle = 'Equipment & Tools';
 $module = 'equipment';
 $pageScripts = [
     'assets/admin/M3/equipment-service.js',
-    'assets/admin/M3/equipment-modals.js',
+    'assets/admin/M3/equipment-modal.js',
     'assets/admin/M3/equipment.js',
 ];
 include __DIR__ . '/../_inc/admin/layout-start.php';

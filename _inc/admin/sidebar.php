@@ -8,7 +8,7 @@ require_once __DIR__ . '/../config.php';
 <aside id="sidebar" class="portal-sidebar" aria-label="Portal sidebar">
   <div class="sidebar-brand">
     <a class="logo-chip" href="<?= gms_e(gms_url('admin/')) ?>" aria-label="Alamos Resources &amp; Services, portal home">
-      <img src="<?= gms_e(gms_url('assets/image/logo/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services">
+      <img src="<?= gms_e(gms_url('assets/image/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services">
     </a>
     <button type="button" id="sidebarClose" class="modal-x text-white lg:hidden" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
   </div>

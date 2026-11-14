@@ -47,5 +47,5 @@ $gmsTitle = isset($pageTitle) && $pageTitle !== '' ? $pageTitle . ' | Alamos Gen
   };
 </script>
 <link rel="stylesheet" href="<?= gms_e(gms_url('assets/css/custom.css')) ?>">
-<link rel="icon" type="image/png" href="<?= gms_e(gms_url('assets/image/logo/alamos-logo.png')) ?>">
+<link rel="icon" type="image/png" href="<?= gms_e(gms_url('assets/image/alamos-logo.png')) ?>">
 <script>window.GMS_BASE = <?= json_encode($BASE) ?>;</script>
