@@ -106,18 +106,29 @@
     });
   }
 
+  /** Icon for the tile at the start of each row, by category. */
+  var CATEGORY_ICON = {
+    'Testing Instruments': 'fa-gauge-high', 'Hand Tools': 'fa-wrench', 'Power Tools': 'fa-screwdriver-wrench',
+    'Lifting & Handling': 'fa-dolly', 'Vehicles & Transport': 'fa-truck', 'Safety Gear': 'fa-helmet-safety'
+  };
+
+  /** One fixed-width slot per action so the icons line up in every row, even when an action does not apply. */
+  function slot(html) { return html || '<span class="inline-block h-8 w-8"></span>'; }
+
   function rowHtml(e) {
     var pa = primaryAction(e);
-    var acts = '';
-    if (pa) acts += '<button type="button" class="btn btn-outline btn-sm mr-1" data-act="' + pa.act + '" data-id="' + e.equipment_id + '"><i class="fa-solid ' + pa.icon + '"></i>' + pa.label + '</button>';
-    if (canEdit() && ['Available', 'Assigned'].indexOf(e.availability) > -1) acts += '<button type="button" class="btn btn-ghost btn-icon" data-act="issue" data-id="' + e.equipment_id + '" title="Report damaged or missing" aria-label="Report an issue with ' + UI.esc(e.name) + '"><i class="fa-solid fa-triangle-exclamation"></i></button>';
-    if (canEdit()) acts += '<button type="button" class="btn btn-ghost btn-icon" data-act="edit" data-id="' + e.equipment_id + '" title="Edit" aria-label="Edit ' + UI.esc(e.name) + '"><i class="fa-regular fa-pen-to-square"></i></button>';
-    acts += '<a class="btn btn-ghost btn-icon" href="' + UI.esc(viewUrl(e.equipment_id)) + '" title="View details" aria-label="View ' + UI.esc(e.name) + '"><i class="fa-regular fa-eye"></i></a>';
+    var primary = pa ? '<button type="button" class="btn btn-ghost btn-icon !text-alamos-600" data-act="' + pa.act + '" data-id="' + e.equipment_id + '" title="' + pa.label + '" aria-label="' + pa.label + ' ' + UI.esc(e.name) + '"><i class="fa-solid ' + pa.icon + '"></i></button>' : '';
+    var issue = (canEdit() && ['Available', 'Assigned'].indexOf(e.availability) > -1)
+      ? '<button type="button" class="btn btn-ghost btn-icon" data-act="issue" data-id="' + e.equipment_id + '" title="Report damaged or missing" aria-label="Report an issue with ' + UI.esc(e.name) + '"><i class="fa-solid fa-triangle-exclamation"></i></button>' : '';
+    var edit = canEdit()
+      ? '<button type="button" class="btn btn-ghost btn-icon" data-act="edit" data-id="' + e.equipment_id + '" title="Edit" aria-label="Edit ' + UI.esc(e.name) + '"><i class="fa-regular fa-pen-to-square"></i></button>' : '';
+    var view = '<a class="btn btn-ghost btn-icon" href="' + UI.esc(viewUrl(e.equipment_id)) + '" title="View details" aria-label="View ' + UI.esc(e.name) + '"><i class="fa-regular fa-eye"></i></a>';
+    var acts = '<div class="inline-flex items-center gap-1">' + slot(primary) + slot(issue) + slot(edit) + view + '</div>';
     return '<tr>' +
-      '<td class="mono whitespace-nowrap font-bold">' + UI.esc(e.reference_no) + '</td>' +
-      '<td><a class="font-bold hover:text-brand" href="' + UI.esc(viewUrl(e.equipment_id)) + '">' + UI.esc(e.name) + '</a>' +
-        '<div class="text-xs text-slate-500">' + UI.esc(e.brand_model || '') + '</div></td>' +
-      '<td>' + UI.esc(e.category) + '</td>' +
+      '<td><div class="flex items-center gap-3"><span class="avatar avatar-sq"><i class="fa-solid ' + (CATEGORY_ICON[e.category] || 'fa-toolbox') + '"></i></span><div class="min-w-0">' +
+        '<a class="font-bold hover:text-brand" href="' + UI.esc(viewUrl(e.equipment_id)) + '">' + UI.esc(e.name) + '</a>' +
+        '<div class="mono text-xs text-slate-500">' + UI.esc(e.reference_no) + (e.brand_model ? ' &middot; ' + UI.esc(e.brand_model) : '') + '</div></div></div></td>' +
+      '<td class="whitespace-nowrap">' + UI.esc(e.category) + '</td>' +
       '<td>' + UI.badge(e.condition, 'condition') + '</td>' +
       '<td>' + UI.badge(e.availability, 'equipment') + '</td>' +
       '<td>' + heldByCell(e) + '</td>' +
@@ -209,7 +220,7 @@
 
     var buttons = '';
     var pa = primaryAction(e);
-    if (pa) buttons += '<button type="button" class="btn btn-primary" data-act="' + pa.act + '"><i class="fa-solid ' + pa.icon + '"></i>' + pa.label + '</button>';
+    if (pa) buttons += '<button type="button" class="btn btn-brand" data-act="' + pa.act + '"><i class="fa-solid ' + pa.icon + '"></i>' + pa.label + '</button>';
     if (canEdit()) {
       if (['Available', 'Assigned'].indexOf(e.availability) > -1) buttons += '<button type="button" class="btn btn-secondary" data-act="issue"><i class="fa-solid fa-triangle-exclamation"></i>Report issue</button>';
       buttons += '<button type="button" class="btn btn-secondary" data-act="edit"><i class="fa-regular fa-pen-to-square"></i>Edit</button>';
@@ -217,10 +228,10 @@
     }
 
     var hero =
-      '<section class="hero-panel overflow-hidden rounded-2xl p-6 sm:p-8"><div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">' +
+      '<section class="card p-5 sm:p-6"><div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">' +
         '<div class="min-w-0"><span class="mono inline-block rounded-full bg-white/15 px-3 py-1 text-sm font-bold">' + UI.esc(e.reference_no) + '</span>' +
-        '<h2 class="h mt-3 text-4xl sm:text-5xl">' + UI.esc(e.name) + '</h2>' +
-        '<p class="mt-2 text-blue-100">' + UI.esc([e.brand_model, e.category].filter(Boolean).join(' - ')) + '</p>' +
+        '<h2 class="h mt-3 text-xl text-slate-900">' + UI.esc(e.name) + '</h2>' +
+        '<p class="mt-1 text-xs text-slate-500">' + UI.esc([e.brand_model, e.category].filter(Boolean).join(' - ')) + '</p>' +
         '<div class="mt-4 flex flex-wrap gap-2">' + UI.badge(e.availability, 'equipment') + UI.badge(e.condition, 'condition') +
           (overdue ? '<span class="badge badge-maintenance">Return overdue</span>' : '') + '</div></div>' +
         '<div class="flex flex-wrap gap-2 lg:max-w-md lg:justify-end">' + buttons + '</div>' +
@@ -233,9 +244,9 @@
     ].map(function (r) {
       return '<dt>' + r[0] + '</dt><dd>' + (r[0] === 'Reference no.' || r[0] === 'Serial number' ? '<span class="mono">' + UI.esc(r[1]) + '</span>' : UI.esc(r[1])) + '</dd>';
     }).join('');
-    var details = '<section class="card p-6"><h3 class="h text-2xl">Details</h3><div class="accent-bar mt-2"></div><dl class="kv mt-5">' + specs + '</dl></section>';
+    var details = '<section class="card p-6"><h3 class="h text-base">Details</h3><dl class="kv mt-5">' + specs + '</dl></section>';
 
-    var notes = '<section class="card p-6"><h3 class="h text-2xl">Status note</h3><div class="accent-bar mt-2"></div><p class="mt-5 text-sm ' + (e.notes ? 'text-ink' : 'text-slate-500') + '">' + UI.esc(e.notes || 'No notes recorded.') + '</p></section>';
+    var notes = '<section class="card p-6"><h3 class="h text-base">Status note</h3><p class="mt-5 text-sm ' + (e.notes ? 'text-ink' : 'text-slate-500') + '">' + UI.esc(e.notes || 'No notes recorded.') + '</p></section>';
 
     var holder;
     if (open) {
@@ -250,7 +261,7 @@
     } else {
       holder = '<p class="text-sm text-slate-500">Not assigned to anyone.</p>';
     }
-    var holderCard = '<section class="card p-6"><h3 class="h text-2xl">' + (e.availability === 'Missing' ? 'Last known holder' : 'Current holder') + '</h3><div class="accent-bar mt-2"></div><div class="mt-5">' + holder + '</div></section>';
+    var holderCard = '<section class="card p-6"><h3 class="h text-base">' + (e.availability === 'Missing' ? 'Last known holder' : 'Current holder') + '</h3><div class="mt-5">' + holder + '</div></section>';
 
     var hist = (e.assignments || []).slice().reverse();
     var rows = hist.map(function (a) {
@@ -264,7 +275,7 @@
     var histBody = rows.length
       ? '<div class="table-wrap"><table class="table"><thead><tr><th>Worker</th><th>Assigned</th><th>Due back</th><th>Returned</th><th>Out</th><th>In</th><th>Notes</th></tr></thead><tbody>' + rows.join('') + '</tbody></table></div>'
       : '<div class="p-2"><div class="empty"><div class="empty-icon"><i class="fa-solid fa-clock-rotate-left"></i></div><p class="font-bold text-ink">Never assigned yet</p></div></div>';
-    var histCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-2xl">Assignment history</h3><div class="accent-bar mt-2"></div>' +
+    var histCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-base">Assignment history</h3>' +
       '<p class="mt-2 text-sm text-slate-500">' + hist.length + (hist.length === 1 ? ' assignment' : ' assignments') + ' recorded.</p></div>' + histBody + '</section>';
 
     root.innerHTML =

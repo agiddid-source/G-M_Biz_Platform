@@ -7,7 +7,7 @@ require_once __DIR__ . '/../_inc/config.php';
 $pageTitle = 'Reset password';
 ?><!DOCTYPE html>
 <html lang="en">
-<head><?php include __DIR__ . '/../_inc/shared/head.php'; ?></head>
+<head><?php include __DIR__ . '/../_inc/admin/auth-head.php'; ?></head>
 <body class="auth-page" data-page="forgot">
 <div class="flex min-h-screen">
   <?php include __DIR__ . '/../_inc/admin/auth-panel.php'; ?>
@@ -15,12 +15,11 @@ $pageTitle = 'Reset password';
   <section class="flex flex-1 items-center justify-center px-4 py-10 sm:px-8">
     <div class="w-full max-w-md">
       <a href="<?= gms_e(gms_url('index.php')) ?>" class="mb-8 inline-block lg:hidden" aria-label="Alamos storefront">
-        <img src="<?= gms_e(gms_url('assets/image/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:48px;width:auto">
+        <img src="<?= gms_e(gms_url('assets/image/logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:48px;width:auto">
       </a>
 
       <span class="eyebrow">Account help</span>
-      <h1 class="h mt-2 text-5xl sm:text-6xl">Reset password</h1>
-      <div class="accent-bar mt-3"></div>
+      <h1 class="h mt-2 text-3xl">Reset password</h1>
 
       <!-- Step 1: ask for the email -->
       <div id="stepRequest">
@@ -45,7 +44,7 @@ $pageTitle = 'Reset password';
           <div>
             <p class="font-bold">Prototype note</p>
             <p class="mt-1 text-sm" id="protoNote">No email is actually sent.</p>
-            <button type="button" id="openReset" class="btn btn-primary btn-sm mt-3" hidden>Open the simulated reset link</button>
+            <button type="button" id="openReset" class="btn btn-brand btn-sm mt-3" hidden>Open the simulated reset link</button>
           </div>
         </div>
       </div>
@@ -72,7 +71,7 @@ $pageTitle = 'Reset password';
     </div>
   </section>
 </div>
-<?php include __DIR__ . '/../_inc/shared/scripts.php'; ?>
+<?php include __DIR__ . '/../_inc/admin/auth-scripts.php'; ?>
 <script src="<?= gms_e(gms_url('assets/admin/M3/login.js')) ?>"></script>
 </body>
 </html>

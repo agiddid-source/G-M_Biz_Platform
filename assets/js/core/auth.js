@@ -170,6 +170,31 @@
       }).join('');
     },
 
+    /**
+     * Static sidebar (the Design System's _inc/admin/sidebar.php): hide the links the role may not
+     * open (data-nav-module="workers") and any section left with no visible link (data-nav-group).
+     */
+    filterNav: function (root) {
+      if (!root) return;
+      Array.prototype.forEach.call(root.querySelectorAll('[data-nav-module]'), function (a) {
+        a.style.display = Auth.can(a.getAttribute('data-nav-module'), 'view') ? '' : 'none';
+      });
+      Array.prototype.forEach.call(root.querySelectorAll('[data-nav-group]'), function (g) {
+        var any = Array.prototype.some.call(g.querySelectorAll('[data-nav-module]'), function (a) { return a.style.display !== 'none'; });
+        g.style.display = any ? '' : 'none';
+      });
+    },
+
+    /** Sidebar footer card: initials, name and role of the signed-in user. */
+    fillSidebarUser: function () {
+      var doc = global.document, u = Auth.user(), r = Auth.role(), UI = global.UI;
+      if (!u) return;
+      var ini = doc.getElementById('sbUserInitials'), nm = doc.getElementById('sbUserName'), rl = doc.getElementById('sbUserRole');
+      if (ini) ini.textContent = UI.initials(u.name);
+      if (nm) nm.textContent = u.name;
+      if (rl) rl.textContent = r ? r.label : '';
+    },
+
     renderUserMenu: function (root) {
       if (!root) return;
       var UI = global.UI, u = Auth.user(), r = Auth.role();
@@ -208,6 +233,8 @@
     initChrome: function () {
       var doc = global.document;
       Auth.renderNav(doc.getElementById('sideNav'), doc.body.getAttribute('data-module') || '');
+      Auth.filterNav(doc.getElementById('adminSidebar'));
+      Auth.fillSidebarUser();
       Auth.renderUserMenu(doc.getElementById('userMenu'));
       var scrim = doc.getElementById('sidebarScrim');
       function setSidebar(open) {

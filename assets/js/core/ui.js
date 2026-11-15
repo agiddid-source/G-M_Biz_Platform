@@ -179,7 +179,7 @@
       wrap.setAttribute('aria-modal', 'true');
       wrap.innerHTML =
         '<div class="modal-panel max-w-md">' +
-          '<div class="modal-head"><h2 class="h text-2xl">' + esc(opts.title || 'Please confirm') + '</h2></div>' +
+          '<div class="modal-head"><h2 class="h text-base">' + esc(opts.title || 'Please confirm') + '</h2></div>' +
           '<div class="modal-body"><p class="text-slate-600">' + esc(message) + '</p></div>' +
           '<div class="modal-foot">' +
             '<button type="button" class="btn btn-secondary" data-answer="no">' + esc(opts.cancelText || 'Cancel') + '</button>' +

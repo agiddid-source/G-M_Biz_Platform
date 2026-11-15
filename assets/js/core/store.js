@@ -10,7 +10,7 @@
 
   var NS = 'gms:';
   // Bump when any seed file changes shape: wipes local changes on next load.
-  var SEED_VERSION = '2026-11-14.1';
+  var SEED_VERSION = '2026-11-15.1';
 
   var COLLECTIONS = {
     'products':         { idField: 'product_id',   prefix: 'PRD' },

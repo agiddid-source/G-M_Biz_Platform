@@ -4,7 +4,7 @@
  * Behaviour: assets/admin/M3/equipment.js (+ equipment-modal.js, equipment-service.js).
  * Data: data/M3/equipment.json (each record nests its assignment history) and data/M3/workers.json.
  */
-$pageTitle = 'Equipment & Tools';
+$pageTitle = 'Field Equipment & Tools';
 $module = 'equipment';
 $pageScripts = [
     'assets/admin/M3/equipment-service.js',
@@ -13,14 +13,12 @@ $pageScripts = [
 ];
 include __DIR__ . '/../_inc/admin/layout-start.php';
 ?>
-<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
   <div>
-    <span class="eyebrow">Operations</span>
-    <h2 class="h mt-1 text-4xl sm:text-5xl">Equipment &amp; tools</h2>
-    <div class="accent-bar mt-3"></div>
-    <p class="mt-3 max-w-2xl text-slate-600">Tools and instruments the company owns and issues to workers. Generators and parts for sale are managed in Inventory.</p>
+    <h2 class="text-xl font-bold text-slate-900">Field Equipment &amp; Tools</h2>
+    <p class="text-xs text-slate-500 mt-0.5">Tools and instruments the company owns and issues to workers. Generators and parts for sale are managed in Inventory.</p>
   </div>
-  <button type="button" id="btnAddEquipment" class="btn btn-primary" data-can="equipment:create"><i class="fa-solid fa-plus"></i>Register equipment</button>
+  <button type="button" id="btnAddEquipment" class="btn btn-brand" data-can="equipment:create"><i class="fa-solid fa-plus"></i>Register equipment</button>
 </div>
 
 <div id="equipmentStats" class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></div>
@@ -51,7 +49,7 @@ include __DIR__ . '/../_inc/admin/layout-start.php';
 
   <div id="equipmentTableWrap" class="table-wrap">
     <table class="table">
-      <thead><tr><th>Ref</th><th>Equipment</th><th>Category</th><th>Condition</th><th>Availability</th><th>Held by</th><th class="text-right">Actions</th></tr></thead>
+      <thead><tr><th>Equipment</th><th>Category</th><th>Condition</th><th>Availability</th><th>Held by</th><th class="text-right">Actions</th></tr></thead>
       <tbody id="equipmentRows"></tbody>
     </table>
   </div>

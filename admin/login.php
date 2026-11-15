@@ -7,7 +7,7 @@ require_once __DIR__ . '/../_inc/config.php';
 $pageTitle = 'Sign in';
 ?><!DOCTYPE html>
 <html lang="en">
-<head><?php include __DIR__ . '/../_inc/shared/head.php'; ?></head>
+<head><?php include __DIR__ . '/../_inc/admin/auth-head.php'; ?></head>
 <body class="auth-page" data-page="login">
 <div class="flex min-h-screen">
   <?php include __DIR__ . '/../_inc/admin/auth-panel.php'; ?>
@@ -15,14 +15,13 @@ $pageTitle = 'Sign in';
   <section class="flex flex-1 items-center justify-center px-4 py-10 sm:px-8">
     <div class="w-full max-w-md">
       <a href="<?= gms_e(gms_url('index.php')) ?>" class="mb-8 inline-block lg:hidden" aria-label="Alamos storefront">
-        <img src="<?= gms_e(gms_url('assets/image/alamos-logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:48px;width:auto">
+        <img src="<?= gms_e(gms_url('assets/image/logo.png')) ?>" alt="Alamos Resources &amp; Services" style="height:48px;width:auto">
       </a>
 
       <div id="banner" class="alert mb-5" hidden role="status"></div>
 
       <span class="eyebrow">Staff portal</span>
-      <h1 class="h mt-2 text-5xl sm:text-6xl">Sign in</h1>
-      <div class="accent-bar mt-3"></div>
+      <h1 class="h mt-2 text-3xl">Sign in</h1>
       <p class="mt-4 text-slate-600">Use your staff account to open the management portal.</p>
 
       <form id="loginForm" class="card-xl mt-8 p-6 sm:p-7" novalidate>
@@ -62,7 +61,7 @@ $pageTitle = 'Sign in';
     </div>
   </section>
 </div>
-<?php include __DIR__ . '/../_inc/shared/scripts.php'; ?>
+<?php include __DIR__ . '/../_inc/admin/auth-scripts.php'; ?>
 <script src="<?= gms_e(gms_url('assets/admin/M3/login.js')) ?>"></script>
 </body>
 </html>

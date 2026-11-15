@@ -21,7 +21,7 @@ if (!function_exists('gms_modal_open')) {
   <div class="modal-panel <?= $w ?>">
     <div class="modal-head">
       <div>
-        <h2 id="<?= gms_e($id) ?>-title" class="h text-2xl sm:text-3xl"><?= gms_e($title) ?></h2>
+        <h2 id="<?= gms_e($id) ?>-title" class="h text-base"><?= gms_e($title) ?></h2>
         <?php if ($subtitle !== ''): ?><p class="mt-1 text-sm text-slate-500"><?= gms_e($subtitle) ?></p><?php endif; ?>
       </div>
       <button type="button" class="modal-x" data-modal-close aria-label="Close dialog"><i class="fa-solid fa-xmark"></i></button>

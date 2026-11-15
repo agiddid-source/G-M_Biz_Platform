@@ -214,9 +214,9 @@
       '<td><div class="flex items-center gap-3"><span class="avatar">' + UI.esc(UI.initials(w.full_name)) + '</span><div class="min-w-0">' +
         '<a class="font-bold hover:text-brand" href="' + UI.esc(viewUrl(w.worker_id)) + '">' + UI.esc(w.full_name) + '</a>' +
         '<div class="mono text-xs text-slate-500">' + UI.esc(w.worker_id) + '</div></div></div></td>' +
-      '<td>' + UI.esc(w.job_title) + '</td>' +
+      '<td class="whitespace-nowrap">' + UI.esc(w.job_title) + '</td>' +
       '<td>' + UI.esc(w.department) + '</td>' +
-      '<td class="text-slate-600">' + UI.esc(w.employment_type) + '</td>' +
+      '<td class="whitespace-nowrap text-slate-600">' + UI.esc(w.employment_type) + '</td>' +
       '<td>' + UI.badge(w.employment_status, 'worker') + '</td>' +
       '<td><div>' + UI.esc(w.phone) + '</div><div class="max-w-[200px] truncate text-xs text-slate-500">' + UI.esc(w.email) + '</div></td>' +
       '<td class="text-center">' + (held ? '<span class="chip">' + held + '</span>' : '<span class="text-slate-400">0</span>') + '</td>' +
@@ -299,23 +299,23 @@
     var canAssignNow = canAssign && w.employment_status === 'Active';
 
     var actions = '';
-    if (canEditWorker) actions += '<button type="button" class="btn btn-primary" data-act="edit"><i class="fa-regular fa-pen-to-square"></i>Edit worker</button>';
+    if (canEditWorker) actions += '<button type="button" class="btn btn-brand" data-act="edit"><i class="fa-regular fa-pen-to-square"></i>Edit worker</button>';
     if (canAssign) actions += '<button type="button" class="btn btn-secondary" data-act="assign"' + (canAssignNow ? '' : ' disabled title="Only active workers can be given equipment"') + '><i class="fa-solid fa-screwdriver-wrench"></i>Assign equipment</button>';
     actions += '<a class="btn btn-secondary" href="tel:' + UI.esc(w.phone.replace(/[^\d+]/g, '')) + '"><i class="fa-solid fa-phone"></i>Call</a>';
     actions += '<a class="btn btn-secondary" href="mailto:' + UI.esc(w.email) + '"><i class="fa-regular fa-envelope"></i>Email</a>';
 
     var hero =
-      '<section class="hero-panel overflow-hidden rounded-2xl p-6 sm:p-8"><div class="flex flex-col gap-6 md:flex-row md:items-center">' +
+      '<section class="card p-5 sm:p-6"><div class="flex flex-col gap-5 md:flex-row md:items-center">' +
         '<div class="avatar avatar-lg">' + UI.esc(UI.initials(w.full_name)) + '</div>' +
         '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-3">' +
-          '<h2 class="h text-4xl sm:text-5xl">' + UI.esc(w.full_name) + '</h2>' + UI.badge(w.employment_status, 'worker') + '</div>' +
-          '<p class="mt-2 text-blue-100">' + UI.esc(w.job_title) + ' &middot; ' + UI.esc(w.department) + '</p>' +
-          '<p class="mono mt-1 text-sm text-blue-200">' + UI.esc(w.worker_id) + '</p></div>' +
+          '<h2 class="h text-xl text-slate-900">' + UI.esc(w.full_name) + '</h2>' + UI.badge(w.employment_status, 'worker') + '</div>' +
+          '<p class="mt-1 text-xs text-slate-500">' + UI.esc(w.job_title) + ' &middot; ' + UI.esc(w.department) + '</p>' +
+          '<p class="mono mt-1 text-[11px] text-slate-400">' + UI.esc(w.worker_id) + '</p></div>' +
         '<div class="flex flex-wrap gap-2 md:max-w-[260px] md:justify-end">' + actions + '</div>' +
       '</div></section>';
 
     var details =
-      '<section class="card p-6"><h3 class="h text-2xl">Details</h3><div class="accent-bar mt-2"></div><dl class="kv mt-5">' +
+      '<section class="card p-6"><h3 class="h text-base">Details</h3><dl class="kv mt-5">' +
         '<dt>Employment</dt><dd>' + UI.esc(w.employment_type) + '</dd>' +
         '<dt>Hired</dt><dd>' + UI.esc(UI.date(w.hire_date)) + (tenure(w.hire_date) ? ' <span class="text-slate-500">(' + UI.esc(tenure(w.hire_date)) + ')</span>' : '') + '</dd>' +
         '<dt>Phone</dt><dd>' + UI.esc(w.phone) + '</dd>' +
@@ -326,7 +326,7 @@
     var roleLabel = '';
     if (acct) { var r = settings.roles.filter(function (x) { return x.role_id === acct.role_id; })[0]; roleLabel = r ? r.label : acct.role_id; }
     var account =
-      '<section class="card p-6"><h3 class="h text-2xl">Portal login</h3><div class="accent-bar mt-2"></div>' +
+      '<section class="card p-6"><h3 class="h text-base">Portal login</h3>' +
       (acct
         ? '<dl class="kv mt-5"><dt>Account</dt><dd>' + UI.badge(acct.status, 'account') + '</dd><dt>Role</dt><dd>' + UI.esc(roleLabel) + '</dd><dt>Login email</dt><dd class="break-all">' + UI.esc(acct.email) + '</dd></dl>'
         : '<p class="mt-5 text-sm text-slate-500">This worker has no portal login.</p>') + '</section>';
@@ -351,7 +351,7 @@
         '<td>' + UI.esc(h.item.name) + '</td><td class="whitespace-nowrap">' + UI.esc(UI.date(h.assignment.assigned_date)) + '</td><td class="whitespace-nowrap">' + due + '</td>' +
         '<td>' + UI.badge(h.item.condition, 'condition') + '</td><td class="text-right">' + ret + '</td></tr>';
     });
-    var heldCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-2xl">Equipment held now</h3><div class="accent-bar mt-2"></div></div>' +
+    var heldCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-base">Equipment held now</h3></div>' +
       sectionTable(['Ref', 'Equipment', 'Since', 'Due back', 'Condition', ''], heldRows, 'Not holding any equipment', 'fa-box-open') + '</section>';
 
     var pastRows = history.filter(function (h) { return h.assignment.returned_date; }).map(function (h) {
@@ -360,7 +360,7 @@
         '<td class="whitespace-nowrap">' + UI.esc(UI.date(h.assignment.returned_date)) + '</td>' +
         '<td>' + (h.assignment.condition_in ? UI.badge(h.assignment.condition_in, 'condition') : '-') + '</td></tr>';
     });
-    var histCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-2xl">Assignment history</h3><div class="accent-bar mt-2"></div></div>' +
+    var histCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-base">Assignment history</h3></div>' +
       sectionTable(['Ref', 'Equipment', 'Issued', 'Returned', 'Condition in'], pastRows, 'No returned equipment yet', 'fa-clock-rotate-left') + '</section>';
 
     var rentalRows = rentals.slice(0, 6).map(function (r) {
@@ -371,7 +371,7 @@
         '<td>' + UI.esc(nameOf('customers', r.customer_id)) + '</td><td>' + UI.esc(nameOf('products', r.product_id)) + '</td>' +
         '<td class="whitespace-nowrap">' + UI.esc(UI.date(r.start_date)) + '</td><td>' + UI.badge(rentalStatus(r), 'rental') + '</td></tr>';
     });
-    var rentCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-2xl">Rental activity</h3><div class="accent-bar mt-2"></div>' +
+    var rentCard = '<section class="card"><div class="p-6 pb-2"><h3 class="h text-base">Rental activity</h3>' +
       (rentals.length > 6 ? '<p class="mt-2 text-sm text-slate-500">Showing the latest 6 of ' + rentals.length + '.</p>' : '') + '</div>' +
       sectionTable(['Rental', 'Role', 'Customer', 'Product', 'Start', 'Status'], rentalRows, 'No rentals recorded for this worker', 'fa-calendar-xmark') + '</section>';
 

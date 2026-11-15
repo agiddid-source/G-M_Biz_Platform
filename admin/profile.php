@@ -14,11 +14,11 @@ include __DIR__ . '/../_inc/admin/layout-start.php';
 
   <!-- Identity card -->
   <section class="card overflow-hidden lg:col-span-1" aria-labelledby="idHeading">
-    <div class="hero-panel px-6 pb-10 pt-8 text-center">
+    <div class="border-b border-slate-200 bg-slate-50 px-6 py-8 text-center">
       <div id="pfAvatar" class="avatar avatar-lg mx-auto"></div>
-      <h2 id="idHeading" class="h mt-4 text-4xl"><span id="pfName"></span></h2>
-      <p class="mt-1 text-sm text-blue-100" id="pfEmail"></p>
-      <span class="mt-4 inline-block rounded-full bg-amber px-3 py-1 text-xs font-bold text-deep" id="pfRole"></span>
+      <h2 id="idHeading" class="h mt-4 text-xl text-slate-900"><span id="pfName"></span></h2>
+      <p class="mt-1 text-xs text-slate-500" id="pfEmail"></p>
+      <span class="chip mt-4" id="pfRole"></span>
     </div>
     <dl class="kv p-6">
       <dt>Account</dt><dd id="pfStatus"></dd>
@@ -32,8 +32,8 @@ include __DIR__ . '/../_inc/admin/layout-start.php';
 
     <!-- Details -->
     <section class="card p-6" aria-labelledby="detHeading">
-      <h2 id="detHeading" class="h text-3xl">Account details</h2>
-      <div class="accent-bar mt-2"></div>
+      <h2 id="detHeading" class="h text-base">Account details</h2>
+      
       <form id="detailsForm" class="mt-6" novalidate>
         <div class="form-grid cols-2">
           <?php gms_field('name', 'Display name', ['required' => true, 'id' => 'pName', 'attrs' => 'autocomplete="name"']); ?>
@@ -47,8 +47,8 @@ include __DIR__ . '/../_inc/admin/layout-start.php';
 
     <!-- Password -->
     <section class="card p-6" aria-labelledby="pwHeading">
-      <h2 id="pwHeading" class="h text-3xl">Change password</h2>
-      <div class="accent-bar mt-2"></div>
+      <h2 id="pwHeading" class="h text-base">Change password</h2>
+      
       <div class="alert alert-info mt-5"><i class="fa-solid fa-flask mt-0.5"></i><span>Prototype only. The password is kept in plain text in this browser, so never use a real one.</span></div>
       <form id="passwordForm" class="mt-5" novalidate>
         <div class="form-grid cols-2">
@@ -63,8 +63,8 @@ include __DIR__ . '/../_inc/admin/layout-start.php';
     <!-- Permissions -->
     <section class="card" aria-labelledby="permHeading">
       <div class="p-6 pb-3">
-        <h2 id="permHeading" class="h text-3xl">What my role can do</h2>
-        <div class="accent-bar mt-2"></div>
+        <h2 id="permHeading" class="h text-base">What my role can do</h2>
+        
         <p class="mt-3 text-sm text-slate-600" id="permIntro"></p>
       </div>
       <div class="table-wrap">

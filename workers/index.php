@@ -3,7 +3,7 @@
  * [M3] Worker management: list, search/filter, register and edit (modal), delete rules.
  * Behaviour: assets/admin/M3/workers.js. Data: data/M3/workers.json (+ equipment, rentals).
  */
-$pageTitle = 'Workers';
+$pageTitle = 'Workers & Technicians';
 $module = 'workers';
 $pageScripts = [
     'assets/admin/M3/equipment-service.js',
@@ -12,14 +12,12 @@ $pageScripts = [
 ];
 include __DIR__ . '/../_inc/admin/layout-start.php';
 ?>
-<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
   <div>
-    <span class="eyebrow">Team</span>
-    <h2 class="h mt-1 text-4xl sm:text-5xl">Workers</h2>
-    <div class="accent-bar mt-3"></div>
-    <p class="mt-3 max-w-2xl text-slate-600">Register staff, keep contact and job details up to date, and see who is holding company equipment.</p>
+    <h2 class="text-xl font-bold text-slate-900">Workers &amp; Technicians</h2>
+    <p class="text-xs text-slate-500 mt-0.5">Register staff, keep contact and job details up to date, and see who is holding company equipment.</p>
   </div>
-  <button type="button" id="btnAddWorker" class="btn btn-primary" data-can="workers:create"><i class="fa-solid fa-user-plus"></i>Register worker</button>
+  <button type="button" id="btnAddWorker" class="btn btn-brand" data-can="workers:create"><i class="fa-solid fa-user-plus"></i>Register worker</button>
 </div>
 
 <div id="workerStats" class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></div>
