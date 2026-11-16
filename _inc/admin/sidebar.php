@@ -10,7 +10,7 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
         <div class="h-16 flex items-center justify-between px-6 border-b border-slate-800">
             <a href="<?= url('inventory/index.php') ?>" class="flex items-center gap-2">
                 <img src="<?= asset('assets/image/logo-white.png') ?>" alt="ALAMOS" class="h-8 w-auto">
-                <span class="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-alamos-500 text-white font-bold">Portal</span>
+                
             </a>
             <button type="button" onclick="toggleAdminSidebar()" class="lg:hidden text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
