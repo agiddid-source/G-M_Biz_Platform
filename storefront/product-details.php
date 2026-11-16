@@ -44,7 +44,7 @@ require_once __DIR__ . '/../_inc/shared/header.php';
 $is_generator = ($product['type'] === 'generator');
 $brand_name = $brand_map[$product['brand_id']] ?? 'Industrial';
 $category_name = $cat_map[$product['category_id']] ?? 'Equipment';
-$raw_img = !empty($product['image']) ? $product['image'] : 'assets/image/products/mikano-30kva.svg';
+$raw_img = !empty($product['image']) ? $product['image'] : 'assets/image/products/mikano-30kva.jpg';
 $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
 $stock = (int) ($product['stock_quantity'] ?? 0);
 $in_stock = ($stock > 0);
@@ -341,7 +341,7 @@ $related = array_slice($related, 0, 3);
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <?php foreach ($related as $rel): 
                 $r_brand = $brand_map[$rel['brand_id']] ?? 'Industrial';
-                $r_img = !empty($rel['image']) ? $rel['image'] : 'assets/image/products/mikano-30kva.svg';
+                $r_img = !empty($rel['image']) ? $rel['image'] : 'assets/image/products/mikano-30kva.jpg';
                 $r_url = (strpos($r_img, 'http') === 0) ? $r_img : asset($r_img);
             ?>
             <div class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col justify-between hover:shadow-md transition-shadow">

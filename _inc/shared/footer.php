@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../config.php';
 ?>
-<!-- Pre-Footer Callout Bar (With JMG White Space Breathing Room) -->
-<section class="bg-industrial-900 border-t border-slate-800 py-20 lg:py-28 text-white relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:20px_20px]"></div>
+<!-- Pre-Footer Callout Bar (With Image Background) -->
+<section class="relative py-20 lg:py-28 text-white overflow-hidden bg-cover bg-center border-t border-slate-800" style="background-image: url('https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=2000&q=80');">
+    <div class="absolute inset-0 bg-gradient-to-r from-industrial-950/95 via-industrial-950/90 to-industrial-900/85"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
         <div>
             <div class="inline-flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-widest font-bold mb-3">
@@ -34,10 +34,10 @@ require_once __DIR__ . '/../config.php';
 <footer class="bg-industrial-950 text-industrial-400 border-t border-slate-850 text-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-14">
-            <!-- Col 1: Brand & Credentials (White Logo Inverted for Dark Background) -->
+            <!-- Col 1: Brand & Credentials (Subtle White Logo with Opacity for Dark Background) -->
             <div class="lg:col-span-2 space-y-5">
                 <a href="<?= url('index.php') ?>" class="inline-block">
-                    <img src="<?= asset('assets/image/logo-white.png') ?>" alt="ALAMOS Resources & Services" class="h-10 w-auto object-contain">
+                    <img src="<?= asset('assets/image/logo-white.png') ?>" alt="ALAMOS Resources & Services" class="h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity">
                 </a>
                 <p class="text-industrial-400 text-xs leading-relaxed max-w-sm">
                     <strong>ALAMOS Resources & Services</strong> sells, rents, and repairs industrial diesel and petrol generators. Original engines, genuine parts, and experienced technicians in Lagos.

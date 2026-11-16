@@ -172,7 +172,7 @@ foreach ($products as $p) {
                             $stock = (int) ($item['stock_quantity'] ?? 0);
                             $thresh = (int) ($item['low_stock_threshold'] ?? 2);
                             $is_low = ($stock <= $thresh);
-                            $raw_img = !empty($item['image']) ? $item['image'] : 'assets/image/products/mikano-30kva.svg';
+                            $raw_img = !empty($item['image']) ? $item['image'] : 'assets/image/products/mikano-30kva.jpg';
                             $img_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
                         ?>
                         <tr class="inv-row hover:bg-slate-50/70 transition-colors"

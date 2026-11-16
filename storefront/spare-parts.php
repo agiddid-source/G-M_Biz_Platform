@@ -96,7 +96,7 @@ foreach ($brands as $b) {
         <div id="sparesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php foreach ($spares as $part): 
                 $brand_name = $brand_lookup[$part['brand_id']] ?? 'Genuine OEM';
-                $raw_img = !empty($part['image']) ? $part['image'] : 'assets/image/products/perkins-filter.svg';
+                $raw_img = !empty($part['image']) ? $part['image'] : 'assets/image/products/perkins-filter.jpg';
                 $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
                 $oem_no = $part['specs']['oem_number'] ?? 'Standard';
                 $part_type = $part['specs']['part_type'] ?? 'Component';
@@ -167,7 +167,7 @@ foreach ($brands as $b) {
 
                     <!-- Cummins Sliding Button -->
                     <div class="grid grid-cols-2 gap-2">
-                        <a href="<?= url('storefront/product-details.php?id=' . $part['id']) ?>" class="btn-cummins-outline !py-2.5 !text-xs !justify-center">
+                        <a href="<?= url('storefront/product-details.php?id=' . $part['id']) ?>" class="btn-cummins-outline btn-cummins-outline-dark !py-2.5 !text-xs !justify-center">
                             <span>Details</span>
                         </a>
                         <button type="button" 

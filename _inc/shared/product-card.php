@@ -13,7 +13,7 @@ $has_rental = !empty($product['is_for_rent']) && !empty($product['rental_rates']
 $brand_name = strtoupper(str_replace('brand-', '', $product['brand_id'] ?? 'ORIGINAL'));
 
 // Resolve image URL
-$raw_img = !empty($product['image']) ? $product['image'] : 'assets/image/products/cummins-150kva.svg';
+$raw_img = !empty($product['image']) ? $product['image'] : 'assets/image/products/cummins-150kva.jpg';
 $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
 ?>
 <div class="alamos-card group">

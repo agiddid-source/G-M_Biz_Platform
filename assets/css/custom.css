@@ -179,17 +179,26 @@
   transform: scale(0.98);
 }
 
-/* 3. Cummins Outline Button for Light Backgrounds */
+/* 3. Cummins Outline Button for Light Backgrounds (Crisp black outline & text before hover) */
 .btn-cummins-outline-dark {
-  border-color: #CBD5E1;
-  background-color: #FFFFFF;
-  color: #0F172A;
+  border: 1.5px solid #000000 !important;
+  background-color: transparent !important;
+  color: #000000 !important;
 }
 
-
 .btn-cummins-outline-dark:hover {
-  border-color: var(--safety-amber);
-  color: #0F172A;
+  border-color: var(--safety-amber) !important;
+  color: #0F172A !important;
+}
+
+.btn-cummins-outline-dark i,
+.btn-cummins-outline-dark svg {
+  color: #000000 !important;
+}
+
+.btn-cummins-outline-dark:hover i,
+.btn-cummins-outline-dark:hover svg {
+  color: #0F172A !important;
 }
 
 /* ==========================================================================

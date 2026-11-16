@@ -113,7 +113,7 @@ $selected_fuel = trim($_GET['fuel'] ?? 'all');
         <div id="genGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php foreach ($generators as $gen): 
                 $brand_name = $brand_lookup[$gen['brand_id']] ?? 'Industrial';
-                $raw_img = !empty($gen['image']) ? $gen['image'] : 'assets/image/products/mikano-30kva.svg';
+                $raw_img = !empty($gen['image']) ? $gen['image'] : 'assets/image/products/mikano-30kva.jpg';
                 $image_url = (strpos($raw_img, 'http') === 0) ? $raw_img : asset($raw_img);
                 $kva = $gen['specs']['capacity_kva'] ?? 0;
                 $fuel = $gen['specs']['fuel_type'] ?? 'Diesel';
@@ -200,7 +200,7 @@ $selected_fuel = trim($_GET['fuel'] ?? 'all');
 
                     <!-- Cummins sliding color wipe buttons -->
                     <div class="grid grid-cols-2 gap-2">
-                        <a href="<?= url('storefront/product-details.php?id=' . $gen['id']) ?>" class="btn-cummins-outline !py-2.5 !text-xs !justify-center">
+                        <a href="<?= url('storefront/product-details.php?id=' . $gen['id']) ?>" class="btn-cummins-outline btn-cummins-outline-dark !py-2.5 !text-xs !justify-center">
                             <span>Details</span>
                         </a>
                         <button type="button" 

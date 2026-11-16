@@ -5,7 +5,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <!-- Floating Cutout Island Navigation (Uniform rounded-lg, Crisp JMG Light Style) -->
 <div class="sticky top-4 z-40 px-4 sm:px-6 lg:px-8 pointer-events-none">
-    <header class="max-w-6xl mx-auto bg-white/95 backdrop-blur-md border border-slate-200 rounded-lg shadow-sm px-4 sm:px-6 py-3 transition-colors duration-200 pointer-events-auto">
+    <header class="max-w-6xl mx-auto bg-white/60 backdrop-blur-sm  rounded-lg shadow-sm px-4 sm:px-6 py-3 transition-colors duration-200 pointer-events-auto">
         <div class="flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="<?= url('index.php') ?>" class="flex items-center shrink-0">

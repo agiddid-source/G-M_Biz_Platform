@@ -82,20 +82,21 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
 
-            <!-- SIMPLIFIED, BREATHABLE FILTER SIDEBAR (Desktop) -->
-            <aside class="hidden lg:block lg:col-span-3 space-y-8">
+            <!-- SIMPLIFIED, BREATHABLE FILTER SIDEBAR (Desktop - Sticky with Collapsible Accordions) -->
+            <aside class="hidden lg:block lg:col-span-3 space-y-4 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto pr-1 scrollbar-thin">
                 <!-- Search Box -->
-                <div class="space-y-2">
-                    <p class="text-[11px] font-mono font-bold uppercase tracking-wider text-alamos-600">
-                        02 · Search Stock
+                <div class="border border-slate-200 bg-white rounded-lg p-4 space-y-2 shadow-sm">
+                    <p class="text-[11px] font-mono font-bold uppercase tracking-wider text-alamos-600 flex items-center gap-1.5">
+                        <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
+                        <span>Search Stock</span>
                     </p>
                     <div class="relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
                         <input type="text" 
                                id="sideSearchInput" 
                                value="<?= htmlspecialchars($search_q) ?>"
                                placeholder="Model, KVA, or Part #..." 
-                               class="w-full pl-9 pr-8 py-2.5 bg-white border border-slate-300 text-slate-900 rounded-lg text-xs outline-none focus:border-alamos-600 focus:ring-2 focus:ring-alamos-500/20 transition-colors">
+                               class="w-full pl-8 pr-8 py-2 bg-slate-50 border border-slate-300 text-slate-900 rounded-lg text-xs outline-none focus:border-alamos-600 focus:bg-white focus:ring-2 focus:ring-alamos-500/20 transition-colors">
                         <button type="button" 
                                 id="sideSearchClear"
                                 onclick="clearSideSearch()" 
@@ -105,12 +106,18 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
                     </div>
                 </div>
 
-                <!-- Capacity Filter -->
-                <div id="sideKvaFilterGroup" class="space-y-3">
-                    <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
-                        Generator Capacity
-                    </label>
-                    <div class="space-y-2 text-xs">
+                <!-- Capacity Filter (Accordion Toggle) -->
+                <div id="sideKvaFilterGroup" class="border border-slate-200 bg-white rounded-lg p-4 transition-all shadow-sm">
+                    <button type="button" 
+                            onclick="toggleAccordion('sideKvaAccordionContent', 'sideKvaChevron')" 
+                            class="w-full flex items-center justify-between text-left group">
+                        <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 group-hover:text-alamos-600 transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-alamos-600 text-[11px]"></i>
+                            <span>Generator Capacity</span>
+                        </span>
+                        <i id="sideKvaChevron" class="fa-solid fa-chevron-down text-slate-400 group-hover:text-slate-600 text-[11px] transition-transform duration-200"></i>
+                    </button>
+                    <div id="sideKvaAccordionContent" class="mt-3 pt-3 border-t border-slate-100 space-y-2 text-xs">
                         <label class="flex items-center gap-2.5 cursor-pointer text-slate-700 hover:text-alamos-600 transition-colors">
                             <input type="radio" name="side_kva_tier" value="" onchange="applyFilters()" <?= ($filter_tier === '') ? 'checked' : '' ?> class="accent-alamos-600">
                             <span>Any Capacity</span>
@@ -130,32 +137,38 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
                     </div>
                 </div>
 
-                <!-- Brand Filter -->
-                <div class="space-y-3">
-                    <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
-                        Brand
-                    </label>
-                    <div class="space-y-2 text-xs">
+                <!-- Brand Filter (Accordion Toggle with Scroll for Many Brands) -->
+                <div id="sideBrandFilterGroup" class="border border-slate-200 bg-white rounded-lg p-4 transition-all shadow-sm">
+                    <button type="button" 
+                            onclick="toggleAccordion('sideBrandAccordionContent', 'sideBrandChevron')" 
+                            class="w-full flex items-center justify-between text-left group">
+                        <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 group-hover:text-alamos-600 transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-tag text-alamos-600 text-[11px]"></i>
+                            <span>Brand</span>
+                        </span>
+                        <i id="sideBrandChevron" class="fa-solid fa-chevron-down text-slate-400 group-hover:text-slate-600 text-[11px] transition-transform duration-200"></i>
+                    </button>
+                    <div id="sideBrandAccordionContent" class="mt-3 pt-3 border-t border-slate-100 space-y-2 text-xs max-h-56 overflow-y-auto pr-1 scrollbar-thin">
                         <?php foreach ($brands as $b): ?>
                             <?php
                             $b_count = count(array_filter($all_products, fn($p) => $p['brand_id'] === $b['id']));
                             if ($b_count === 0) continue;
                             ?>
-                            <label class="flex items-center justify-between cursor-pointer group text-slate-700 hover:text-alamos-600">
-                                <span class="flex items-center gap-2">
+                            <label class="flex items-center justify-between cursor-pointer group text-slate-700 hover:text-alamos-600 py-0.5">
+                                <span class="flex items-center gap-2 truncate">
                                     <input type="checkbox" name="side_brand" value="<?= $b['id'] ?>" onchange="applyFilters()" <?= ($filter_brand === $b['id']) ? 'checked' : '' ?> class="brand-check accent-alamos-600 rounded">
-                                    <?= htmlspecialchars($b['name']) ?>
+                                    <span class="truncate"><?= htmlspecialchars($b['name']) ?></span>
                                 </span>
-                                <span class="text-[11px] font-mono text-slate-400"><?= $b_count ?></span>
+                                <span class="text-[11px] font-mono text-slate-400 shrink-0 ml-1"><?= $b_count ?></span>
                             </label>
                         <?php endforeach; ?>
                     </div>
                 </div>
 
                 <!-- Reset Action -->
-                <div class="pt-4 border-t border-slate-200">
-                    <button type="button" onclick="resetAllFilters()" class="text-xs text-slate-500 hover:text-alamos-600 font-mono flex items-center gap-2">
-                        <i class="fa-solid fa-rotate-left"></i>
+                <div class="pt-1">
+                    <button type="button" onclick="resetAllFilters()" class="w-full py-2.5 px-3 text-xs text-slate-500 hover:text-alamos-600 hover:bg-slate-100 rounded-lg font-mono flex items-center justify-center gap-2 border border-slate-200 bg-white shadow-sm transition-colors">
+                        <i class="fa-solid fa-rotate-left text-[11px]"></i>
                         <span>Reset all filters</span>
                     </button>
                 </div>
@@ -250,15 +263,19 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
             </button>
         </div>
 
-        <div class="space-y-6 flex-1 text-xs">
+        <div class="space-y-4 flex-1 text-xs">
             <div>
                 <label class="block font-mono font-bold uppercase text-slate-700 mb-2">Search</label>
                 <input type="text" id="mobileSearchInput" placeholder="Model, KVA..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 text-slate-900 rounded-lg text-xs outline-none focus:border-alamos-600">
             </div>
 
-            <div>
-                <label class="block font-mono font-bold uppercase text-slate-700 mb-2">Capacity</label>
-                <div class="space-y-2">
+            <!-- Mobile Capacity Accordion -->
+            <div class="border border-slate-200 bg-slate-50 rounded-lg p-3">
+                <button type="button" onclick="toggleAccordion('mobileKvaContent', 'mobileKvaChevron')" class="w-full flex items-center justify-between text-left">
+                    <span class="block font-mono font-bold uppercase text-slate-700">Generator Capacity</span>
+                    <i id="mobileKvaChevron" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+                </button>
+                <div id="mobileKvaContent" class="space-y-2 mt-3 pt-2 border-t border-slate-200">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="radio" name="mobile_kva" value="" checked class="accent-alamos-600">
                         <span>Any Capacity</span>
@@ -275,6 +292,29 @@ $rental_count    = count(array_filter($all_products, fn($p) => !empty($p['is_for
                         <input type="radio" name="mobile_kva" value="heavy" class="accent-alamos-600">
                         <span>150kVA+</span>
                     </label>
+                </div>
+            </div>
+
+            <!-- Mobile Brand Accordion -->
+            <div class="border border-slate-200 bg-slate-50 rounded-lg p-3">
+                <button type="button" onclick="toggleAccordion('mobileBrandContent', 'mobileBrandChevron')" class="w-full flex items-center justify-between text-left">
+                    <span class="block font-mono font-bold uppercase text-slate-700">Brand</span>
+                    <i id="mobileBrandChevron" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+                </button>
+                <div id="mobileBrandContent" class="space-y-2 mt-3 pt-2 border-t border-slate-200 max-h-48 overflow-y-auto">
+                    <?php foreach ($brands as $b): ?>
+                        <?php
+                        $b_count = count(array_filter($all_products, fn($p) => $p['brand_id'] === $b['id']));
+                        if ($b_count === 0) continue;
+                        ?>
+                        <label class="flex items-center justify-between cursor-pointer py-0.5">
+                            <span class="flex items-center gap-2 truncate">
+                                <input type="checkbox" name="mobile_brand" value="<?= $b['id'] ?>" class="mobile-brand-check accent-alamos-600 rounded">
+                                <span class="truncate"><?= htmlspecialchars($b['name']) ?></span>
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-400 shrink-0 ml-1"><?= $b_count ?></span>
+                        </label>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -359,11 +399,34 @@ function updateTabStyles() {
     }
 }
 
+function toggleAccordion(contentId, chevronId) {
+    const content = document.getElementById(contentId);
+    const chevron = document.getElementById(chevronId);
+    if (!content) return;
+    const isHidden = content.classList.contains('hidden');
+    if (isHidden) {
+        content.classList.remove('hidden');
+        if (chevron) {
+            chevron.style.transform = 'rotate(0deg)';
+        }
+    } else {
+        content.classList.add('hidden');
+        if (chevron) {
+            chevron.style.transform = 'rotate(-90deg)';
+        }
+    }
+}
+
 function openMobileFilters() {
     document.getElementById('mobileSearchInput').value = document.getElementById('sideSearchInput').value;
     const sideKva = document.querySelector('input[name="side_kva_tier"]:checked')?.value || '';
     const mobileKvaRadio = document.querySelector(`input[name="mobile_kva"][value="${sideKva}"]`);
     if (mobileKvaRadio) mobileKvaRadio.checked = true;
+
+    const activeBrands = Array.from(document.querySelectorAll('.brand-check:checked')).map(cb => cb.value);
+    document.querySelectorAll('.mobile-brand-check').forEach(cb => {
+        cb.checked = activeBrands.includes(cb.value);
+    });
 
     document.getElementById('mobileFilterModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -379,6 +442,12 @@ function syncMobileToDesktop() {
     const mobileKva = document.querySelector('input[name="mobile_kva"]:checked')?.value || '';
     const sideKvaRadio = document.querySelector(`input[name="side_kva_tier"][value="${mobileKva}"]`);
     if (sideKvaRadio) sideKvaRadio.checked = true;
+
+    const activeMobileBrands = Array.from(document.querySelectorAll('.mobile-brand-check:checked')).map(cb => cb.value);
+    document.querySelectorAll('.brand-check').forEach(cb => {
+        cb.checked = activeMobileBrands.includes(cb.value);
+    });
+
     applyFilters();
 }
 
@@ -387,6 +456,7 @@ function resetAllFilters() {
     document.getElementById('sideSearchClear')?.classList.add('hidden');
     document.querySelectorAll('input[name="side_kva_tier"]').forEach(r => r.checked = (r.value === ''));
     document.querySelectorAll('.brand-check').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.mobile-brand-check').forEach(cb => cb.checked = false);
     document.getElementById('sortSelector').value = 'default';
     currentType = '';
     currentRentOnly = false;

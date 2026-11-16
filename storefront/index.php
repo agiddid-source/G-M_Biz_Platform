@@ -25,20 +25,15 @@ $featured_parts = array_filter($all_products, function($p) {
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div class="max-w-3xl space-y-8">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 text-amber-400 font-mono text-xs uppercase tracking-wider font-semibold">
-                <i class="fa-solid fa-bolt text-amber-400"></i>
-                Ikeja Workshop • Delivery Across Nigeria
-            </div>
-
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-white tracking-tight uppercase leading-[1.04]">
-                WHEN THE LIGHT GOES OFF, <br>
+                NEPA OUT? <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-industrial-200 to-amber-400">
-                    YOUR BUSINESS CANNOT STOP.
+                    BUSINESS ON.
                 </span>
             </h1>
 
-            <p class="text-industrial-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-                Running a factory, clinic, or cold room on public power alone in Nigeria means losing money every time the line drops. We sell new soundproof diesel generators from 10kVA to 1000kVA, keep genuine filters in our Ikeja yard, and rent backup machines when you have an urgent production run. If an engine gives you trouble, our technicians come to your compound to fix it.
+            <p class="text-industrial-300 text-base sm:text-lg max-w-xl font-normal leading-relaxed">
+                Reliable power when the grid fails. Factory-new soundproof generators (10kVA – 1000kVA), rapid site rentals, and genuine parts delivered across Nigeria.
             </p>
 
             <div class="pt-6 flex flex-wrap items-center gap-5">

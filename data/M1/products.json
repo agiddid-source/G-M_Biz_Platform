@@ -15,7 +15,7 @@
     "stock_quantity": 14,
     "low_stock_threshold": 3,
     "status": "available",
-    "image": "assets/image/products/firman-10kva.svg",
+    "image": "assets/image/products/firman-10kva.jpg",
     "specs": {
       "capacity_kva": 10,
       "prime_power_kw": 8,
@@ -51,7 +51,7 @@
     "stock_quantity": 10,
     "low_stock_threshold": 2,
     "status": "available",
-    "image": "assets/image/products/lutian-8kva.svg",
+    "image": "assets/image/products/lutian-8kva.jpg",
     "specs": {
       "capacity_kva": 8.5,
       "prime_power_kw": 7,
@@ -91,7 +91,7 @@
     "stock_quantity": 8,
     "low_stock_threshold": 2,
     "status": "available",
-    "image": "assets/image/products/mikano-30kva.svg",
+    "image": "assets/image/products/mikano-30kva.jpg",
     "specs": {
       "capacity_kva": 30,
       "prime_power_kw": 24,
@@ -131,7 +131,7 @@
     "stock_quantity": 6,
     "low_stock_threshold": 2,
     "status": "available",
-    "image": "assets/image/products/mikano-50kva.svg",
+    "image": "assets/image/products/mikano-50kva.jpg",
     "specs": {
       "capacity_kva": 50,
       "prime_power_kw": 40,
@@ -171,7 +171,7 @@
     "stock_quantity": 4,
     "low_stock_threshold": 2,
     "status": "available",
-    "image": "assets/image/products/cummins-150kva.svg",
+    "image": "assets/image/products/cummins-150kva.jpg",
     "specs": {
       "capacity_kva": 150,
       "prime_power_kw": 120,
@@ -211,7 +211,7 @@
     "stock_quantity": 3,
     "low_stock_threshold": 1,
     "status": "available",
-    "image": "assets/image/products/caterpillar-150kva.svg",
+    "image": "assets/image/products/caterpillar-150kva.jpg",
     "specs": {
       "capacity_kva": 150,
       "prime_power_kw": 120,
@@ -251,7 +251,7 @@
     "stock_quantity": 2,
     "low_stock_threshold": 1,
     "status": "available",
-    "image": "assets/image/products/cummins-250kva.svg",
+    "image": "assets/image/products/cummins-250kva.jpg",
     "specs": {
       "capacity_kva": 250,
       "prime_power_kw": 200,
@@ -287,13 +287,18 @@
     "stock_quantity": 48,
     "low_stock_threshold": 12,
     "status": "available",
-    "image": "assets/image/products/fleetguard-lf9009.svg",
+    "image": "assets/image/products/fleetguard-lf9009.jpg",
     "specs": {
       "part_type": "Lube Oil Filter",
       "oem_number": "LF9009 / 3401544",
       "filtration_rating": "30 Micron StrataPore",
       "thread_size": "2 1/4-12 UNS-2B",
-      "compatible_engines": ["Cummins 6CTA8.3", "Cummins ISM", "Cummins ISX", "Cummins QSM11"]
+      "compatible_engines": [
+        "Cummins 6CTA8.3",
+        "Cummins ISM",
+        "Cummins ISX",
+        "Cummins QSM11"
+      ]
     },
     "description": "Original factory Fleetguard filter. Direct factory supply providing essential engine protection against dirty fuel and sludge buildup."
   },
@@ -313,13 +318,17 @@
     "stock_quantity": 65,
     "low_stock_threshold": 15,
     "status": "available",
-    "image": "assets/image/products/perkins-filter.svg",
+    "image": "assets/image/products/perkins-filter.jpg",
     "specs": {
       "part_type": "Fuel / Water Separator",
       "oem_number": "26560201",
       "filtration_rating": "10 Micron Trap",
       "thread_size": "M16 x 1.5",
-      "compatible_engines": ["Perkins 1103 Series", "Perkins 1104 Series", "Mikano 30kVA - 100kVA"]
+      "compatible_engines": [
+        "Perkins 1103 Series",
+        "Perkins 1104 Series",
+        "Mikano 30kVA - 100kVA"
+      ]
     },
     "description": "Original UK Perkins fuel-water separator. Protects high-pressure diesel injection pumps from water contamination common in local fuel storage tanks."
   },
@@ -339,13 +348,18 @@
     "stock_quantity": 52,
     "low_stock_threshold": 10,
     "status": "available",
-    "image": "assets/image/products/perkins-oil-filter.svg",
+    "image": "assets/image/products/perkins-oil-filter.jpg",
     "specs": {
       "part_type": "Lube Oil Filter",
       "oem_number": "2654403",
       "filtration_rating": "20 Micron",
       "thread_size": "3/4-16 UNF",
-      "compatible_engines": ["Perkins 1004", "Perkins 1103", "Perkins 1104", "Mikano 30-80kVA"]
+      "compatible_engines": [
+        "Perkins 1004",
+        "Perkins 1103",
+        "Perkins 1104",
+        "Mikano 30-80kVA"
+      ]
     },
     "description": "Genuine Perkins spin-on engine lube filter. Keeps soot and carbon away from crankshaft bearings during long continuous runs."
   },
@@ -365,13 +379,17 @@
     "stock_quantity": 25,
     "low_stock_threshold": 5,
     "status": "available",
-    "image": "assets/image/products/stamford-avr.svg",
+    "image": "assets/image/products/stamford-avr.jpg",
     "specs": {
       "part_type": "Automatic Voltage Regulator",
       "oem_number": "E000-24602/1P",
       "input_voltage": "190-264V AC 1-Phase",
       "voltage_regulation": "+/- 1.0%",
-      "compatible_alternators": ["Stamford UC22", "Stamford UC27", "Stamford Solis Series"]
+      "compatible_alternators": [
+        "Stamford UC22",
+        "Stamford UC27",
+        "Stamford Solis Series"
+      ]
     },
     "description": "Original factory-sealed Stamford AVR. Stabilizes phase voltage to 400V / 230V to protect sensitive facility electronics and heavy air conditioning compressors."
   },
@@ -391,7 +409,7 @@
     "stock_quantity": 8,
     "low_stock_threshold": 3,
     "status": "available",
-    "image": "assets/image/products/dse-7320.svg",
+    "image": "assets/image/products/dse-7320.jpg",
     "specs": {
       "part_type": "Auto Mains Failure Control Module",
       "oem_number": "DSE7320-03 MKII",
