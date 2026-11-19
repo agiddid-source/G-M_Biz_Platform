@@ -12,10 +12,16 @@ gms_modal_open('equipment-modal', 'Register equipment', 'lg', 'Company-owned too
     <?php gms_field('brand_model', 'Brand / model', ['id' => 'eqBrand']); ?>
     <?php gms_field('serial_number', 'Serial number', ['id' => 'eqSerial']); ?>
     <?php gms_field('purchase_date', 'Purchase date', ['type' => 'date', 'id' => 'eqPurchase']); ?>
-    <?php gms_field('condition', 'Condition', ['type' => 'select', 'required' => true, 'id' => 'eqCondition', 'options' => ['Excellent', 'Good', 'Fair', 'Needs Repair']]); ?>
+    <?php gms_field('availability', 'Availability', ['type' => 'select', 'required' => true, 'id' => 'eqAvailability', 'options' => ['Available', 'Assigned', 'In Repair', 'Retired']]); ?>
+    <?php gms_field('condition', 'Condition', ['type' => 'select', 'required' => true, 'id' => 'eqCondition', 'options' => ['Excellent', 'Good', 'Fair', 'Needs Repair', 'Damaged']]); ?>
+    <p id="eqStatusNote" class="self-end text-xs text-slate-500" hidden></p>
+    <div id="eqAssignFields" class="span-2 grid gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4 sm:grid-cols-3" hidden>
+      <?php gms_field('worker_id', 'Give to', ['type' => 'select', 'id' => 'eqWorker', 'placeholder' => 'Select a worker', 'class' => 'sm:col-span-3']); ?>
+      <?php gms_field('assigned_date', 'Assigned on', ['type' => 'date', 'id' => 'eqAssignedOn', 'class' => 'sm:col-span-1']); ?>
+      <?php gms_field('expected_return_date', 'Expected back', ['type' => 'date', 'id' => 'eqExpectedBack', 'class' => 'sm:col-span-2', 'hint' => 'Optional. Leave empty for an open-ended issue.']); ?>
+    </div>
     <?php gms_field('notes', 'Notes', ['type' => 'textarea', 'id' => 'eqNotes', 'class' => 'span-2', 'rows' => 3]); ?>
   </div>
-  <p id="eqConditionNote" class="mt-3 text-xs text-slate-500" hidden></p>
 </form>
 <?php
 gms_modal_close(

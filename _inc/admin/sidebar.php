@@ -4,13 +4,12 @@ $admin_page = basename($_SERVER['PHP_SELF']);
 $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
 ?>
 <!-- Admin Sidebar Navigation -->
-<aside id="adminSidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-slate-300 flex flex-col justify-between border-r border-slate-800 transition-transform duration-200 transform -translate-x-full lg:translate-x-0">
+<aside id="adminSidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-[#102746] text-[#ffffff] flex flex-col justify-between border-r border-slate-800 transition-transform duration-200 transform -translate-x-full lg:translate-x-0">
     <div>
         <!-- Brand Header -->
         <div class="h-16 flex items-center justify-between px-6 border-b border-slate-800">
             <a href="<?= url('inventory/index.php') ?>" class="flex items-center gap-2">
                 <img src="<?= asset('assets/image/logo-white.png') ?>" alt="ALAMOS" class="h-8 w-auto">
-                
             </a>
             <button type="button" onclick="toggleAdminSidebar()" class="lg:hidden text-slate-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
@@ -20,13 +19,12 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
         <!-- Navigation Links -->
         <div class="py-4 px-3 space-y-6 overflow-y-auto max-h-[calc(100vh-140px)] scrollbar-none">
             
-            <!-- MODULE 1: INVENTORY & PRODUCTS (@Ezzey) -->
+            <!-- MODULE 1: INVENTORY & PRODUCTS -->
             <div data-nav-group>
                 <div class="px-3 text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold mb-2 flex items-center justify-between">
                     <span>Products & Stock</span>
-                    <span class="text-[9px] text-alamos-400">@Ezzey</span>
                 </div>
-                <nav class="space-y-1 text-xs font-medium">
+                <nav class="space-y-1 text-[15px] font-medium">
                     <a href="<?= url('inventory/index.php') ?>" data-nav-module="inventory"
                        class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'inventory' && $admin_page === 'index.php') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-boxes-stacked w-4 text-center"></i>
@@ -50,13 +48,12 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
                 </nav>
             </div>
 
-            <!-- MODULE 2: SALES & POS (@Ghost) -->
+            <!-- MODULE 2: SALES & POS -->
             <div data-nav-group>
                 <div class="px-3 text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold mb-2 flex items-center justify-between">
                     <span>Sales & Orders</span>
-                    <span class="text-[9px] text-amber-400">@Ghost</span>
                 </div>
-                <nav class="space-y-1 text-xs font-medium">
+                <nav class="space-y-1 text-[15px] font-medium">
                     <a href="<?= url('sales/index.php') ?>" data-nav-module="sales"
                        class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'sales' && $admin_page === 'index.php') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-receipt w-4 text-center"></i>
@@ -75,13 +72,12 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
                 </nav>
             </div>
 
-            <!-- MODULE 3: RENTALS & OPERATIONS (PR0P3LL3R) -->
+            <!-- MODULE 3: RENTALS & OPERATIONS -->
             <div data-nav-group>
                 <div class="px-3 text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold mb-2 flex items-center justify-between">
                     <span>Rentals & Fleet</span>
-                    <span class="text-[9px] text-emerald-400">PR0P3LL3R</span>
                 </div>
-                <nav class="space-y-1 text-xs font-medium">
+                <nav class="space-y-1 text-[15px] font-medium">
                     <a href="<?= url('rentals/index.php') ?>" data-nav-module="rentals"
                        class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'rentals') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-truck-ramp-box w-4 text-center"></i>
@@ -100,13 +96,12 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
                 </nav>
             </div>
 
-            <!-- MODULE 3 (cont.): REPORTS & ADMINISTRATION (PR0P3LL3R) -->
+            <!-- MODULE 3 (cont.): REPORTS & ADMINISTRATION -->
             <div data-nav-group>
                 <div class="px-3 text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold mb-2 flex items-center justify-between">
                     <span>Reports & Admin</span>
-                    <span class="text-[9px] text-emerald-400">PR0P3LL3R</span>
                 </div>
-                <nav class="space-y-1 text-xs font-medium">
+                <nav class="space-y-1 text-[15px] font-medium">
                     <a href="<?= url('reports/index.php') ?>" data-nav-module="reports"
                        class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'reports') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-chart-column w-4 text-center"></i>
@@ -125,7 +120,7 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
 
     <!-- User Profile & Storefront Exit -->
     <div class="p-3 border-t border-slate-800 space-y-2">
-        <a href="<?= url('storefront/index.php') ?>" class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-colors">
+        <a href="<?= url('storefront/index.php') ?>" class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white text-[15px] font-mono transition-colors">
             <span class="flex items-center gap-2">
                 <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-alamos-400"></i>
                 <span>Storefront</span>
@@ -134,11 +129,11 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
         </a>
 
         <a href="<?= url('admin/profile.php') ?>" id="sbUserCard" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-950/60 border border-slate-800/60 hover:border-slate-700 transition-colors">
-            <div id="sbUserInitials" class="w-8 h-8 rounded-full bg-alamos-500 flex items-center justify-center font-bold text-white text-xs font-mono">
+            <div id="sbUserInitials" class="w-8 h-8 rounded-full bg-alamos-500 flex items-center justify-center font-bold text-white text-[15px] font-mono">
                 EZ
             </div>
             <div class="overflow-hidden">
-                <div id="sbUserName" class="text-xs font-bold text-white truncate">Ezzey</div>
+                <div id="sbUserName" class="text-[15px]  font-bold text-white truncate">Ezzey</div>
                 <div id="sbUserRole" class="text-[10px] text-slate-400 font-mono truncate">Inventory Lead</div>
             </div>
         </a>

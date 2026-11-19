@@ -26,6 +26,17 @@
     'Lifting & Handling': 'LFT', 'Vehicles & Transport': 'VEH', 'Safety Gear': 'SAF'
   };
   var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  var FORM_CONDITIONS = ['Excellent', 'Good', 'Fair', 'Needs Repair', 'Damaged'];   // what the register / edit form may set
+  var BROKEN = ['Needs Repair', 'Damaged'];
+  /** Which availability an item may move to from each current state (register uses "New"). */
+  var MOVES = {
+    'New': ['Available', 'Assigned', 'In Repair', 'Retired'],
+    'Available': ['Available', 'Assigned', 'In Repair', 'Retired'],
+    'Assigned': ['Assigned'],
+    'In Repair': ['In Repair', 'Available', 'Retired'],
+    'Retired': ['Retired', 'Available', 'In Repair'],
+    'Missing': ['Missing']
+  };
 
   function today() { return global.Store.today(); }
   function fail(error) { return { ok: false, error: error }; }
@@ -41,6 +52,29 @@
   }
 
   function save(id, patch) { return global.Store.update('equipment', id, patch); }
+
+  /** Returns an error message when the data cannot be used to give an item to a worker, otherwise ''. */
+  function assignmentProblem(data) {
+    var worker = global.Store.find('workers', data.worker_id);
+    if (!worker) return 'Choose a worker.';
+    if (worker.employment_status !== 'Active') return worker.full_name + ' is ' + worker.employment_status + ' and cannot be given equipment.';
+    if (!isDate(data.assigned_date)) return 'Enter the assignment date.';
+    if (data.assigned_date > today()) return 'The assignment date cannot be in the future.';
+    if (data.expected_return_date) {
+      if (!isDate(data.expected_return_date)) return 'Enter a valid expected return date.';
+      if (data.expected_return_date < data.assigned_date) return 'The expected return date must be on or after the assignment date.';
+    }
+    return '';
+  }
+
+  /** Availability and condition have to agree. Returns an error message or ''. */
+  function pairingProblem(availability, condition, wasAssigned) {
+    var usable = USABLE.indexOf(condition) > -1, broken = BROKEN.indexOf(condition) > -1;
+    if (availability === 'Available' && !usable) return 'Available equipment must be in Excellent, Good or Fair condition. Choose In Repair for equipment that needs repair.';
+    if (availability === 'Assigned' && !usable && !(wasAssigned && condition === 'Needs Repair')) return 'Equipment can only be assigned in Excellent, Good or Fair condition.';
+    if (availability === 'In Repair' && !broken) return 'In Repair equipment should be in Needs Repair or Damaged condition. Choose Available if it works.';
+    return '';
+  }
 
   function nextAssignmentId() {
     var max = 0;
@@ -64,6 +98,9 @@
     CONDITIONS: CONDITIONS,
     AVAILABILITY: ['Available', 'Assigned', 'In Repair', 'Missing', 'Retired'],
     REGISTER_CONDITIONS: ['Excellent', 'Good', 'Fair'],
+    FORM_CONDITIONS: FORM_CONDITIONS,
+    MOVES: MOVES,
+    pairingProblem: pairingProblem,
 
     openAssignment: openAssignment,
 
@@ -133,9 +170,26 @@
 
     /* ---------------------------------------------------------------- register / edit */
 
+    /**
+     * Register a new item. data.availability may be Available (default), Assigned, In Repair or Retired.
+     * Assigned also needs worker_id, assigned_date and optionally expected_return_date.
+     */
     register: function (data) {
+      var av = data.availability || 'Available';
+      if (MOVES['New'].indexOf(av) === -1) return fail('A new item can be Available, Assigned, In Repair or Retired.');
+      if (FORM_CONDITIONS.indexOf(data.condition) === -1) return fail('Choose its condition.');
+      var pp = pairingProblem(av, data.condition, false);
+      if (pp) return fail(pp);
       if (EquipmentService.referenceTaken(data.reference_no)) return fail('That reference number is already in use.');
       if (data.purchase_date && data.purchase_date > today()) return fail('Purchase date cannot be in the future.');
+      var asg = null;
+      if (av === 'Assigned') {
+        var ap = assignmentProblem(data);
+        if (ap) return fail(ap);
+        asg = { assignment_id: nextAssignmentId(), worker_id: data.worker_id, assigned_date: data.assigned_date,
+          expected_return_date: data.expected_return_date || null, returned_date: null,
+          condition_out: data.condition, condition_in: null, notes: '' };
+      }
       var rec = global.Store.add('equipment', {
         reference_no: data.reference_no.trim(),
         name: data.name.trim(),
@@ -144,23 +198,29 @@
         serial_number: (data.serial_number || '').trim(),
         purchase_date: data.purchase_date || '',
         condition: data.condition,
-        availability: 'Available',
-        notes: (data.notes || '').trim(),
-        assignments: []
+        availability: av,
+        notes: av === 'Available' || av === 'Assigned' ? (data.notes || '').trim() : stampNote((data.notes || '').trim(), today(), 'Registered as ' + av),
+        assignments: asg ? [asg] : []
       });
       return { ok: true, item: rec };
     },
 
     /**
-     * Edit descriptive fields. Condition may change while the item is Available or Assigned
-     * (Excellent, Good, Fair, Needs Repair); marking an Available item Needs Repair moves it to
-     * In Repair. For other states use Return / Report / Restore.
+     * Edit an item. Availability may change only along MOVES (an item with a worker is changed through
+     * Return / Report issue, a missing one through Mark found). Condition has to agree with availability.
+     * Moving to Assigned also needs worker_id, assigned_date and optionally expected_return_date.
      */
     update: function (id, data) {
       var item = eq(id);
       if (!item) return fail('Equipment not found.');
       if (EquipmentService.referenceTaken(data.reference_no, id)) return fail('That reference number is already in use.');
       if (data.purchase_date && data.purchase_date > today()) return fail('Purchase date cannot be in the future.');
+      var cur = item.availability, av = data.availability || cur, cond = data.condition || item.condition;
+      if ((MOVES[cur] || [cur]).indexOf(av) === -1) {
+        return fail(cur === 'Assigned' ? 'This item is with a worker. Record its return first (or report it damaged or missing).'
+          : cur === 'Missing' ? 'This item is missing. Use "Mark found" to bring it back.'
+          : 'An item that is ' + cur + ' cannot be changed to ' + av + ' here.');
+      }
       var patch = {
         reference_no: data.reference_no.trim(),
         name: data.name.trim(),
@@ -170,14 +230,29 @@
         purchase_date: data.purchase_date || '',
         notes: (data.notes || '').trim()
       };
-      var movedToRepair = false;
-      var editable = item.availability === 'Available' || item.availability === 'Assigned';
-      if (editable && data.condition && data.condition !== item.condition) {
-        if (['Excellent', 'Good', 'Fair', 'Needs Repair'].indexOf(data.condition) === -1) return fail('Use Report issue for damaged or missing equipment.');
-        patch.condition = data.condition;
-        if (data.condition === 'Needs Repair' && item.availability === 'Available') { patch.availability = 'In Repair'; movedToRepair = true; }
+      if (cur === 'Missing') {
+        if (cond !== item.condition) return fail('This item is missing. Use "Mark found" to change its condition.');
+      } else {
+        if (cur === 'Assigned' ? ['Excellent', 'Good', 'Fair', 'Needs Repair'].indexOf(cond) === -1 : FORM_CONDITIONS.indexOf(cond) === -1) {
+          return fail(cur === 'Assigned' ? 'Use Report issue for damaged or missing equipment.' : 'Choose its condition.');
+        }
+        var pp = pairingProblem(av, cond, cur === 'Assigned');
+        if (pp) return fail(pp);
+        patch.condition = cond;
       }
-      return { ok: true, item: save(id, patch), movedToRepair: movedToRepair };
+      var movedToAssigned = av === 'Assigned' && cur !== 'Assigned';
+      if (movedToAssigned) {
+        var ap = assignmentProblem(data);
+        if (ap) return fail(ap);
+        patch.assignments = (item.assignments || []).concat([{ assignment_id: nextAssignmentId(), worker_id: data.worker_id,
+          assigned_date: data.assigned_date, expected_return_date: data.expected_return_date || null, returned_date: null,
+          condition_out: cond, condition_in: null, notes: '' }]);
+      }
+      if (av !== cur) {
+        patch.availability = av;
+        patch.notes = stampNote(patch.notes, today(), 'Status changed from ' + cur + ' to ' + av);
+      }
+      return { ok: true, item: save(id, patch), statusChanged: av !== cur, movedToRepair: av === 'In Repair' && cur === 'Available' };
     },
 
     /* ---------------------------------------------------------------- assignment lifecycle */
@@ -186,15 +261,9 @@
       var item = eq(id);
       var can = EquipmentService.canAssign(item);
       if (!can.ok) return can;
+      var problem = assignmentProblem(data);
+      if (problem) return fail(problem);
       var worker = global.Store.find('workers', data.worker_id);
-      if (!worker) return fail('Choose a worker.');
-      if (worker.employment_status !== 'Active') return fail(worker.full_name + ' is ' + worker.employment_status + ' and cannot be given equipment.');
-      if (!isDate(data.assigned_date)) return fail('Enter the assignment date.');
-      if (data.assigned_date > today()) return fail('The assignment date cannot be in the future.');
-      if (data.expected_return_date) {
-        if (!isDate(data.expected_return_date)) return fail('Enter a valid expected return date.');
-        if (data.expected_return_date < data.assigned_date) return fail('The expected return date must be on or after the assignment date.');
-      }
       var asg = {
         assignment_id: nextAssignmentId(),
         worker_id: worker.worker_id,

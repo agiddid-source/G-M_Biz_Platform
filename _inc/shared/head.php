@@ -1,51 +1,88 @@
 <?php
-/**
- * [ALL] Inner <head> markup for every page (storefront and admin).
- * Visual language follows the Alamos HTML reference: Barlow Condensed headings,
- * DM Sans body, brand blue #0033A0, deep navy #001A57, amber #FFB400, pill buttons.
- * All colors/fonts live in the Tailwind config below and in :root of custom.css,
- * so a design change is a one-file edit.
- *
- * Usage:
- *   <?php $pageTitle = 'Workers'; ?>
- *   <head><?php include __DIR__ . '/../../_inc/shared/head.php'; ?></head>
- */
 require_once __DIR__ . '/../config.php';
-$gmsTitle = isset($pageTitle) && $pageTitle !== '' ? $pageTitle . ' | Alamos Generator' : 'Alamos Generator';
+
+$page_title = isset($page_title) ? $page_title . ' | ' . APP_NAME : APP_NAME . ' — Industrial Generators & Parts Nigeria';
+$page_desc = $page_desc ?? 'Sale, hire, and repair of diesel and petrol generators across Nigeria. Original engines, genuine parts, and on-site engineering.';
 ?>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title><?= gms_e($gmsTitle) ?></title>
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= htmlspecialchars($page_title) ?></title>
+    <meta name="description" content="<?= htmlspecialchars($page_desc) ?>">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?= asset('assets/image/logo.png') ?>">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500;700&display=swap">
+    <!-- Enforce Crisp Clean Light Mode -->
+    <script>
+        try {
+            localStorage.removeItem('alamos_theme');
+            document.documentElement.classList.remove('dark');
+        } catch(e) {}
+    </script>
 
-<!-- Font Awesome 6.7.2 (project rule: icons are Font Awesome, never emojis) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Google Fonts: Barlow (Display + Body), Manrope (sub-text, labels, figures) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: '#0033A0',
-          deep: '#001A57',
-          tint: '#EEF3FF',
-          ink: '#0b1330',
-          night: '#0b0f1a',
-          amber: { DEFAULT: '#FFB400', soft: '#FFF4D1', ink: '#7A5200' }
-        },
-        fontFamily: {
-          head: ['"Barlow Condensed"', 'Impact', 'sans-serif'],
-          body: ['"DM Sans"', 'system-ui', 'sans-serif'],
-          sans: ['"DM Sans"', 'system-ui', 'sans-serif']
+    <!-- Font Awesome 6.7.2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        alamos: {
+                            DEFAULT: '#0135AB',
+                            50: '#edf2fe',
+                            100: '#dce5fd',
+                            500: '#0135AB',
+                            600: '#012b8a',
+                            700: '#01226e',
+                            800: '#011a54',
+                            900: '#011239'
+                        },
+                        amber: {
+                            DEFAULT: '#F59E0B',
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309'
+                        },
+                        industrial: {
+                            50: '#F8FAFC',
+                            100: '#F1F5F9',
+                            200: '#E2E8F0',
+                            300: '#CBD5E1',
+                            400: '#94A3B8',
+                            500: '#64748B',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                            950: '#020617'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Barlow', 'sans-serif'],
+                        sans: ['Barlow', 'sans-serif'],
+                        mono: ['Manrope', 'sans-serif']
+                    }
+                }
+            }
         }
-      }
-    }
-  };
-</script>
-<link rel="stylesheet" href="<?= gms_e(gms_url('assets/css/custom.css')) ?>">
-<link rel="icon" type="image/png" href="<?= gms_e(gms_url('assets/image/alamos-logo.png')) ?>">
-<script>window.GMS_BASE = <?= json_encode($BASE) ?>;</script>
+    </script>
+
+    <!-- Custom Design System Overrides & Animations -->
+    <link rel="stylesheet" href="<?= asset('assets/css/custom.css') ?>">
+</head>
+<body class="min-h-full flex flex-col font-sans bg-slate-50 text-slate-900 antialiased selection:bg-alamos-500 selection:text-white transition-colors duration-200">

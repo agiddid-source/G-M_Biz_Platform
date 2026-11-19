@@ -51,11 +51,74 @@
   /* ------------------------------------------------------------------ register / edit */
 
   var refTouched = false;
+  var ctx = { cur: 'New', wasAssigned: false, locked: false };   // what the form is editing
 
-  function conditionOptions(list, current) {
-    var opts = list.slice();
-    if (current && opts.indexOf(current) === -1) opts.push(current);
-    return opts.map(function (c) { return { value: c, label: c }; });
+  function opt(list) { return list.map(function (c) { return { value: c, label: c }; }); }
+  function isBroken(c) { return c === 'Needs Repair' || c === 'Damaged'; }
+
+  /** Conditions the form offers. All five, except while an item is with a worker (damage goes through Report issue). */
+  function conditionsFor() {
+    if (ctx.locked) return [$('eqCondition').getAttribute('data-locked') || 'Missing'];
+    return ctx.wasAssigned ? ['Excellent', 'Good', 'Fair', 'Needs Repair'] : S().FORM_CONDITIONS.slice();
+  }
+
+  function defaultCondition(av) { return av === 'In Repair' ? 'Needs Repair' : av === 'Retired' ? 'Fair' : 'Good'; }
+
+  function showNote(text) { var n = $('eqStatusNote'); n.textContent = text || ''; n.hidden = !text; }
+
+  /** Refill the condition list for the chosen availability, keeping the current value when it is still allowed. */
+  function refreshCondition() {
+    var sel = $('eqCondition'), keep = sel.value, list = conditionsFor();
+    fill(sel, opt(list), '');
+    sel.value = list.indexOf(keep) > -1 ? keep : defaultCondition($('eqAvailability').value);
+    if (list.indexOf(sel.value) === -1) sel.value = list[0];
+  }
+
+  function toggleAssignFields() {
+    var on = $('eqAvailability').value === 'Assigned' && !ctx.wasAssigned && !ctx.locked;
+    $('eqAssignFields').hidden = !on;
+    ['eqWorker', 'eqAssignedOn'].forEach(function (id) { if (on) $(id).setAttribute('required', ''); else { $(id).removeAttribute('required'); UI.clearError($(id)); } });
+  }
+
+  function onAvailabilityChange() {
+    var before = $('eqCondition').value;
+    refreshCondition();
+    var av = $('eqAvailability').value, sel = $('eqCondition'), c = sel.value;
+    if (!ctx.locked && !ctx.wasAssigned) {
+      if ((av === 'Available' || av === 'Assigned') && isBroken(c)) sel.value = 'Good';        // a working status needs a working condition
+      else if (av === 'In Repair' && !isBroken(c)) sel.value = 'Needs Repair';
+    }
+    toggleAssignFields();
+    var after = sel.value;
+    showNote(after !== before ? 'Condition set to ' + after + ' because ' + av + ' equipment cannot be ' + before + '. Change it if that is wrong.'
+      : av === 'In Repair' ? 'In Repair items are waiting for a fix, so the condition is Needs Repair or Damaged.'
+      : av === 'Assigned' && !ctx.wasAssigned ? 'Choose who gets it below. It is issued as soon as you save.' : '');
+  }
+
+  /** A condition that needs repair puts a free item In Repair; a working condition brings it back. */
+  function onConditionChange() {
+    if (ctx.locked || ctx.wasAssigned) return;
+    var avSel = $('eqAvailability'), av = avSel.value, c = $('eqCondition').value;
+    if (isBroken(c) && (av === 'Available' || av === 'Assigned')) {
+      avSel.value = 'In Repair'; refreshCondition(); toggleAssignFields();
+      showNote('Moved to In Repair because the condition is ' + c + '.');
+    } else if (!isBroken(c) && av === 'In Repair') {
+      avSel.value = 'Available'; refreshCondition(); toggleAssignFields();
+      showNote('Moved to Available because the condition is ' + c + '.');
+    }
+  }
+
+  function fillWorkers() {
+    var workers = Store.all('workers').filter(function (w) { return w.employment_status === 'Active'; })
+      .sort(function (a, b) { return a.full_name.localeCompare(b.full_name); });
+    fill($('eqWorker'), workers.map(function (w) { return { value: w.worker_id, label: w.full_name + ' (' + w.job_title + ')' }; }), 'Select a worker');
+    $('eqAssignedOn').value = today(); $('eqAssignedOn').max = today();
+    $('eqExpectedBack').value = ''; $('eqExpectedBack').min = today();
+  }
+
+  function setAvailabilityChoices(list, value) {
+    fill($('eqAvailability'), opt(list), '');
+    $('eqAvailability').value = value;
   }
 
   function openRegister() {
@@ -63,14 +126,18 @@
     var form = $('equipment-form');
     resetForm(form);
     refTouched = false;
+    ctx = { cur: 'New', wasAssigned: false, locked: false };
     $('equipment-modal-title').textContent = 'Register equipment';
     $('eqId').value = '';
     fill($('eqCategory'), (lists().equipment_categories || []).map(function (c) { return { value: c, label: c }; }), 'Select a category');
-    fill($('eqCondition'), conditionOptions(S().REGISTER_CONDITIONS), '');
+    setAvailabilityChoices(S().MOVES['New'], 'Available');
+    $('eqAvailability').disabled = false; $('eqCondition').disabled = false;
+    $('eqCondition').removeAttribute('data-locked');
+    fill($('eqCondition'), opt(conditionsFor()), '');
     $('eqCondition').value = 'Good';
-    $('eqCondition').disabled = false;
+    fillWorkers();
     $('eqPurchase').max = today();
-    $('eqConditionNote').hidden = true;
+    showNote(''); toggleAssignFields();
     $('eqSave').textContent = 'Register equipment';
     UI.modal('equipment-modal').open();
   }
@@ -82,6 +149,7 @@
     var form = $('equipment-form');
     resetForm(form);
     refTouched = true;
+    ctx = { cur: item.availability, wasAssigned: item.availability === 'Assigned', locked: item.availability === 'Missing' };
     $('equipment-modal-title').textContent = 'Edit equipment';
     $('eqId').value = id;
     var cats = (lists().equipment_categories || []).slice();
@@ -95,13 +163,22 @@
     $('eqPurchase').value = item.purchase_date || '';
     $('eqPurchase').max = today();
     $('eqNotes').value = item.notes || '';
-    var editable = item.availability === 'Available' || item.availability === 'Assigned';
-    fill($('eqCondition'), conditionOptions(['Excellent', 'Good', 'Fair', 'Needs Repair'], item.condition), '');
+    fillWorkers();
+
+    var moves = S().MOVES[item.availability] || [item.availability];
+    setAvailabilityChoices(moves, item.availability);
+    $('eqAvailability').disabled = moves.length < 2;
+    $('eqCondition').setAttribute('data-locked', item.condition);
+    var conds = conditionsFor();
+    if (conds.indexOf(item.condition) === -1) conds.push(item.condition);
+    fill($('eqCondition'), opt(conds), '');
     $('eqCondition').value = item.condition;
-    $('eqCondition').disabled = !editable;
-    var note = $('eqConditionNote');
-    note.hidden = editable;
-    note.textContent = 'Condition changes through Return, Report issue and Restore to service while this item is ' + item.availability + '.';
+    $('eqCondition').disabled = ctx.locked;
+
+    var holder = S().holderId(item), who = holder ? ((Store.find('workers', holder) || {}).full_name || holder) : '';
+    showNote(item.availability === 'Missing' ? 'Reported missing. Use "Mark found" to change its status or condition.'
+      : item.availability === 'Assigned' ? 'With ' + who + '. Use "Record return" to change its availability.' : '');
+    toggleAssignFields();
     $('eqSave').textContent = 'Save changes';
     UI.modal('equipment-modal').open();
   }
@@ -113,24 +190,30 @@
     $('eqCategory').addEventListener('change', function () {
       if (!$('eqId').value && !refTouched && this.value) $('eqRef').value = S().suggestReference(this.value);
     });
+    $('eqAvailability').addEventListener('change', onAvailabilityChange);
+    $('eqCondition').addEventListener('change', onConditionChange);
+    $('eqAssignedOn').addEventListener('change', function () { $('eqExpectedBack').min = this.value || today(); });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!UI.validate(form)) return;
       var data = {
         reference_no: $('eqRef').value, name: $('eqName').value, category: $('eqCategory').value,
         brand_model: $('eqBrand').value, serial_number: $('eqSerial').value, purchase_date: $('eqPurchase').value,
-        condition: $('eqCondition').value, notes: $('eqNotes').value
+        availability: $('eqAvailability').value, condition: $('eqCondition').value, notes: $('eqNotes').value,
+        worker_id: $('eqWorker').value, assigned_date: $('eqAssignedOn').value, expected_return_date: $('eqExpectedBack').value
       };
       var id = $('eqId').value;
       var res = id ? S().update(id, data) : S().register(data);
       if (!res.ok) {
-        showError(form, res.error, [['reference', 'eqRef'], ['purchase', 'eqPurchase']]);
+        showError(form, res.error, [['reference', 'eqRef'], ['purchase', 'eqPurchase'], ['choose a worker', 'eqWorker'], ['cannot be given', 'eqWorker'],
+          ['assignment date', 'eqAssignedOn'], ['expected return', 'eqExpectedBack'], ['available equipment', 'eqCondition'], ['in repair equipment', 'eqCondition'], ['assigned in', 'eqCondition']]);
         return;
       }
       UI.modal('equipment-modal').close();
+      var name = res.item.name;
       UI.toast(id
-        ? (res.movedToRepair ? res.item.name + ' updated and moved to In Repair.' : res.item.name + ' updated.')
-        : res.item.name + ' registered as ' + res.item.reference_no + '.');
+        ? (res.statusChanged ? name + ' updated and set to ' + res.item.availability + '.' : name + ' updated.')
+        : name + ' registered as ' + res.item.reference_no + (res.item.availability !== 'Available' ? ' (' + res.item.availability + ')' : '') + '.');
     });
   }
 

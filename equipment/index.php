@@ -4,7 +4,7 @@
  * Behaviour: assets/admin/M3/equipment.js (+ equipment-modal.js, equipment-service.js).
  * Data: data/M3/equipment.json (each record nests its assignment history) and data/M3/workers.json.
  */
-$pageTitle = 'Field Equipment & Tools';
+$pageTitle = 'Alamos Resources & Services';
 $module = 'equipment';
 $pageScripts = [
     'assets/admin/M3/equipment-service.js',

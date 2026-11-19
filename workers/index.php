@@ -3,7 +3,7 @@
  * [M3] Worker management: list, search/filter, register and edit (modal), delete rules.
  * Behaviour: assets/admin/M3/workers.js. Data: data/M3/workers.json (+ equipment, rentals).
  */
-$pageTitle = 'Workers & Technicians';
+$pageTitle = 'Alamos Resources & Services';
 $module = 'workers';
 $pageScripts = [
     'assets/admin/M3/equipment-service.js',

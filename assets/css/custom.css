@@ -24,11 +24,11 @@
 }
 
 .font-sans {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* ==========================================================================
@@ -404,7 +404,7 @@
   border-radius: var(--radius-inner);
   font-size: 0.75rem;
   font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: 0.05em;
   z-index: 10;
   box-shadow: 0 4px 12px rgba(1, 53, 171, 0.3);
@@ -485,7 +485,7 @@
   color: var(--card-text);
   font-weight: 800;
   font-size: 1.15rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   transition: all 0.3s ease;
 }
 
@@ -566,7 +566,7 @@
   --shadow-lg: 0 20px 40px -8px rgba(15, 23, 42, 0.22);
 }
 
-body.auth-page { background: var(--industrial-canvas); color: var(--industrial-dark); font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+body.auth-page { background: var(--industrial-canvas); color: var(--industrial-dark); font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
 /* Hide protected content until Auth.guard() has approved the session (no flash). */
 body.auth-pending #appChrome, body.auth-pending #adminSidebar { visibility: hidden; }
@@ -576,8 +576,8 @@ body.auth-pending #appChrome, body.auth-pending #adminSidebar { visibility: hidd
 
 /* ---- Typography ---- */
 .h { font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
-.mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-variant-numeric: tabular-nums; }
-.eyebrow { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--alamos-blue-dark); }
+.mono { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--alamos-blue-dark); }
 .accent-bar { height: 3px; width: 40px; background: var(--safety-amber); border-radius: 2px; }
 body.admin .accent-bar { display: none; }   /* Inventory pages have no accent bar under headings */
 
@@ -625,7 +625,7 @@ body.admin .accent-bar { display: none; }   /* Inventory pages have no accent ba
 .btn-secondary:hover:not(:disabled) { background: var(--line-soft); border-color: #CBD5E1; }
 .btn-outline   { background: transparent; color: var(--alamos-blue); border-color: var(--alamos-blue); }
 .btn-outline:hover:not(:disabled)   { background: var(--tint); }
-.btn-ghost     { background: transparent; color: var(--ink-2); text-transform: none; letter-spacing: 0; font-family: 'Inter', sans-serif; font-weight: 600; }
+.btn-ghost     { background: transparent; color: var(--ink-2); text-transform: none; letter-spacing: 0; font-family: 'Barlow', sans-serif; font-weight: 600; }
 .btn-ghost:hover:not(:disabled)     { background: var(--line-soft); color: var(--industrial-dark); }
 .btn-icon { width: 32px; height: 32px; padding: 0; border-radius: 6px; font-size: 13px; }
 .btn-icon:hover:not(:disabled) { color: var(--alamos-blue-dark); }
@@ -633,7 +633,7 @@ body.admin .accent-bar { display: none; }   /* Inventory pages have no accent ba
 /* ---- Status pills: soft fill + border, mono 11px (like the stock-level pills in Inventory) ---- */
 .badge {
   display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; font-weight: 700; line-height: 1.6;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; line-height: 1.6;
   border: 1px solid transparent; border-radius: 4px; white-space: nowrap;
 }
 .badge-available   { color: #065F46; background: #ECFDF5; border-color: #A7F3D0; }   /* emerald */
@@ -641,7 +641,7 @@ body.admin .accent-bar { display: none; }   /* Inventory pages have no accent ba
 .badge-maintenance { color: #991B1B; background: #FEF2F2; border-color: #FECACA; }   /* red: repair, missing, terminated */
 .badge-reserved    { color: #92400E; background: #FFFBEB; border-color: #FDE68A; }   /* amber: on leave, overdue */
 .badge-standby     { color: #334155; background: #F1F5F9; border-color: #E2E8F0; }   /* slate: retired, other */
-.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; font-weight: 700; color: var(--alamos-blue-dark); background: var(--tint); border: 1px solid #DCE5FD; border-radius: 4px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; color: var(--alamos-blue-dark); background: var(--tint); border: 1px solid #DCE5FD; border-radius: 4px; }
 
 /* ---- Forms: slate-50 field, 12px text, Alamo Blue focus ring ---- */
 .label { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 500; color: var(--ink-3); }
@@ -676,30 +676,30 @@ select.input { padding-right: 32px; }
 /* ---- Tables: mono uppercase header on slate-50, hairline row dividers ---- */
 .table-wrap { overflow-x: auto; }
 .table { width: 100%; font-size: 12px; border-collapse: collapse; text-align: left; }
-.table thead th { padding: 14px 16px; text-align: left; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); background: rgba(248, 250, 252, .8); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); white-space: nowrap; }
+.table thead th { padding: 14px 16px; text-align: left; font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); background: rgba(248, 250, 252, .8); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); white-space: nowrap; }
 .table tbody td { padding: 14px 16px; border-top: 1px solid var(--line-soft); vertical-align: middle; }
 .table tbody tr:first-child td { border-top: 0; }
 .table tbody tr:hover { background: rgba(248, 250, 252, .7); }
 
 /* ---- Avatars and stat tiles ---- */
-.avatar { display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 11px; color: #fff; background: var(--alamos-blue); border-radius: 9999px; }
+.avatar { display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 11px; color: #fff; background: var(--alamos-blue); border-radius: 9999px; }
 .avatar-sq { border-radius: var(--radius-standard); color: var(--alamos-blue-dark); background: var(--tint); font-size: 13px; }
 .avatar-lg { width: 80px; height: 80px; font-size: 26px; }
 .stat { display: flex; align-items: center; gap: 14px; padding: 18px 20px; }
 .stat-icon { display: grid; place-items: center; flex: none; width: 40px; height: 40px; font-size: 15px; color: var(--alamos-blue-dark); background: var(--tint); border-radius: var(--radius-standard); }
 .stat-icon.amber { background: var(--safety-amber-light); color: var(--safety-amber-dark); }
-.stat-value { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 24px; line-height: 1.1; color: var(--industrial-dark); }
-.stat-label { margin-top: 2px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
+.stat-value { font-variant-numeric: tabular-nums; font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-weight: 700; font-size: 24px; line-height: 1.1; color: var(--industrial-dark); }
+.stat-label { margin-top: 2px; font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
 .empty { padding: 48px 16px; text-align: center; color: var(--ink-3); font-size: 12px; }
 .empty .empty-icon { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 12px; font-size: 20px; color: var(--alamos-blue); background: var(--tint); border-radius: var(--radius-standard); }
 .kv { display: grid; grid-template-columns: 112px 1fr; gap: 8px 16px; font-size: 12px; }
-.kv dt { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); }
+.kv dt { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); }
 .kv dd { font-weight: 500; color: var(--industrial-dark); }
 
 /* ---- Pagination ---- */
-.pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--line-soft); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: var(--ink-3); }
+.pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--line-soft); font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; color: var(--ink-3); }
 .pager-btns { display: flex; gap: 4px; }
-.pager-btn { min-width: 32px; height: 32px; padding: 0 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 700; color: var(--ink-2); background: #fff; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+.pager-btn { min-width: 32px; height: 32px; padding: 0 8px; font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; font-weight: 700; color: var(--ink-2); background: #fff; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
 .pager-btn:hover:not(:disabled) { background: var(--tint); color: var(--alamos-blue); }
 .pager-btn.on { background: var(--alamos-blue); border-color: var(--alamos-blue); color: #fff; }
 .pager-btn:disabled { opacity: .4; cursor: not-allowed; }
@@ -733,12 +733,19 @@ body.modal-open { overflow: hidden; }
 .menu-pop[hidden] { display: none; }
 .menu-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 10px; font-size: 12px; font-weight: 500; text-align: left; color: var(--industrial-dark); border: 0; background: transparent; border-radius: 6px; cursor: pointer; text-decoration: none; }
 .menu-item:hover { background: var(--line-soft); }
-.menu-heading { padding: 8px 10px 4px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #94A3B8; }
+.menu-heading { padding: 8px 10px 4px; font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #94A3B8; }
 
 /* ---- Sign-in screens ---- */
 .logo-chip { display: inline-block; }
 .logo-chip img { display: block; height: 44px; width: auto; }
-.generator-art svg { width: 100%; height: auto; }
+/* Auth panel: photo background + dark overlay, framed feature photo (replaces the old SVG illustration).
+   Tune the darkness with the three alpha values in --auth-overlay (higher = darker). */
+.auth-photo-panel { --auth-overlay: linear-gradient(160deg, rgba(1, 18, 57, .88) 0%, rgba(1, 18, 57, .76) 50%, rgba(1, 43, 138, .64) 100%); background: var(--deep); isolation: isolate; }
+.auth-photo-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 28% 50%; }
+.auth-photo-overlay { position: absolute; inset: 0; z-index: -1; background: var(--auth-overlay); }
+.auth-photo-frame { margin-inline: auto; }
+.auth-photo-offset { position: absolute; inset: 14px -14px -14px 14px; z-index: 0; background: var(--safety-amber); border-radius: var(--radius-standard); }
+.auth-photo-card { position: relative; z-index: 1; display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 62%; border-radius: var(--radius-standard); box-shadow: 0 24px 48px rgba(0, 0, 0, .45); }
 .demo-chip { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 12px; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-standard); cursor: pointer; }
 .demo-chip:hover { border-color: var(--alamos-blue); background: var(--tint); }
 .perm-yes { color: #047857; }

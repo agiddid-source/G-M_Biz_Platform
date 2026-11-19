@@ -4,7 +4,7 @@
  * Behaviour: assets/admin/M3/settings.js. Data: data/M3/settings.json (+ workers, equipment for list usage).
  * Users and roles live on settings/users.php and settings/roles.php.
  */
-$pageTitle = 'Settings';
+$pageTitle = 'Alamos Resources & Services';
 $module = 'settings';
 $pageScripts = ['assets/admin/M3/settings.js'];
 $settingsTab = 'general';

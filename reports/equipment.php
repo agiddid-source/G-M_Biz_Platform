@@ -3,7 +3,7 @@
  * [M3] Equipment report: availability, condition, utilisation by category, what is out and with whom, most issued.
  * Behaviour: assets/admin/M3/reports.js. Data: equipment (+ workers for names).
  */
-$pageTitle = 'Equipment report';
+$pageTitle = 'Alamos Resources & Services ';
 $module = 'reports';
 $pageScripts = ['assets/admin/M3/equipment-service.js', 'assets/admin/M3/reports.js'];
 $reportTab = 'equipment';

@@ -36,7 +36,7 @@ $admin_title = isset($admin_page_title) ? $admin_page_title . ' — ALAMOS Admin
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -92,10 +92,10 @@ $admin_title = isset($admin_page_title) ? $admin_page_title . ' — ALAMOS Admin
                     },
                     fontFamily: {
                         display: ['Barlow', 'sans-serif'],
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['Barlow', 'sans-serif'],
+                        mono: ['Manrope', 'sans-serif'],
                         head: ['Barlow', 'sans-serif'],
-                        body: ['Inter', 'sans-serif']
+                        body: ['Barlow', 'sans-serif']
                     }
                 }
             }

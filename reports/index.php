@@ -3,7 +3,7 @@
  * [M3] Reports overview: headline numbers for equipment, workers and rentals, and what needs attention today.
  * Behaviour: assets/admin/M3/reports.js. Data: equipment, workers, rentals, rental-enquiries (settings for dates).
  */
-$pageTitle = 'Reports';
+$pageTitle = 'Alamos Resources & Services ';
 $module = 'reports';
 $pageScripts = ['assets/admin/M3/equipment-service.js', 'assets/admin/M3/reports.js'];
 $reportTab = 'overview';
