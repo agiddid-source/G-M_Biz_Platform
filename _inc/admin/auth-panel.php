@@ -17,7 +17,7 @@
   <!-- Text block: fills the space between the logo and the bottom edge and sits in the middle of it. -->
   <div class="relative flex flex-1 flex-col items-start justify-center">
     <span class="inline-block rounded bg-amber px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-slate-900">Staff portal</span>
-    <h2 class="h mt-2 text-5xl leading-[1.05] xl:text-6xl">Power That<br><span class="italic text-amber">Never Stops</span><br>Your Business.</h2>
+    <h2 class="h mt-2 text-5xl leading-[1.05] xl:text-6xl">POWER THAT<br><span class="italic text-amber">NEVER STOPS</span><br>YOUR BUSINESS.</h2>
     <p class="mt-2 max-w-md text-blue-100">Manage rentals, crew and equipment for Alamos Resources &amp; Services from one place.</p>
   </div>
 
