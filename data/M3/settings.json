@@ -62,25 +62,25 @@
       "id": "workers",
       "label": "Workers",
       "icon": "fa-id-badge",
-      "href": "workers/index.php"
+      "href": "admin/index.php?p=workers"
     },
     {
       "id": "equipment",
       "label": "Equipment",
       "icon": "fa-screwdriver-wrench",
-      "href": "equipment/index.php"
+      "href": "admin/index.php?p=equipment"
     },
     {
       "id": "reports",
       "label": "Reports",
       "icon": "fa-chart-line",
-      "href": "reports/index.php"
+      "href": "admin/index.php?p=reports"
     },
     {
       "id": "settings",
       "label": "Settings",
       "icon": "fa-gear",
-      "href": "settings/index.php"
+      "href": "admin/index.php?p=settings"
     }
   ],
   "roles": [

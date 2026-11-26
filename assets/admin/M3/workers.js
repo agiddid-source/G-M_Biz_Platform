@@ -1,7 +1,7 @@
 /*
  * [M3] Worker management: list with filters, register/edit modal, delete rules, and the
  * worker profile (details, equipment held, assignment history, rental activity).
- * Runs on workers/index.php (#workerRows) and workers/view.php (#workerProfile).
+ * Runs on the workers (#workerRows) and workers-view (#workerProfile) pages.
  * Simulated: changes live in this browser (Store -> localStorage), never in the JSON files.
  */
 (function (global) {
@@ -14,8 +14,8 @@
   function $(id) { return doc.getElementById(id); }
   function today() { return Store.today(); }
   function lists() { return Store.getObject('settings').lists || {}; }
-  function viewUrl(id) { return global.GMS_BASE + 'workers/view.php?id=' + encodeURIComponent(id); }
-  function equipUrl(id) { return global.GMS_BASE + 'equipment/view.php?id=' + encodeURIComponent(id); }
+  function viewUrl(id) { return global.GMS_BASE + 'admin/index.php?p=workers-view&id=' + encodeURIComponent(id); }
+  function equipUrl(id) { return global.GMS_BASE + 'admin/index.php?p=equipment-view&id=' + encodeURIComponent(id); }
   function heldBy(id) { return EquipmentService.heldBy(id); }
 
   function fill(select, values, placeholder) {
@@ -281,7 +281,7 @@
     if (!w) {
       root.innerHTML = '<div class="card p-8"></div>';
       UI.emptyState(root.firstChild, 'Worker not found', 'fa-user-slash', 'The record may have been deleted. Go back to the worker list.');
-      root.firstChild.insertAdjacentHTML('beforeend', '<div class="mt-2 text-center"><a class="btn btn-brand" href="' + UI.esc(global.GMS_BASE + 'workers/index.php') + '">Back to workers</a></div>');
+      root.firstChild.insertAdjacentHTML('beforeend', '<div class="mt-2 text-center"><a class="btn btn-brand" href="' + UI.esc(global.GMS_BASE + 'admin/index.php?p=workers') + '">Back to workers</a></div>');
       return;
     }
     doc.title = w.full_name + ' | Alamos Generator';
@@ -376,7 +376,7 @@
       sectionTable(['Rental', 'Role', 'Customer', 'Product', 'Start', 'Status'], rentalRows, 'No rentals recorded for this worker', 'fa-calendar-xmark') + '</section>';
 
     root.innerHTML =
-      '<a class="mb-4 inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-deep" href="' + UI.esc(global.GMS_BASE + 'workers/index.php') + '"><i class="fa-solid fa-arrow-left"></i>All workers</a>' +
+      '<a class="mb-4 inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-deep" href="' + UI.esc(global.GMS_BASE + 'admin/index.php?p=workers') + '"><i class="fa-solid fa-arrow-left"></i>All workers</a>' +
       hero +
       '<div class="mt-6 grid gap-6 xl:grid-cols-3"><div class="space-y-6 xl:col-span-1">' + details + account + '</div>' +
       '<div class="space-y-6 xl:col-span-2"><div class="grid gap-4 sm:grid-cols-2">' + stats + '</div>' + heldCard + histCard + rentCard + '</div></div>';

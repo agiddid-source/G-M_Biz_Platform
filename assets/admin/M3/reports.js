@@ -1,5 +1,5 @@
 /*
- * [M3] Reports: overview (reports/index.php), equipment (reports/equipment.php), rentals (reports/rentals.php).
+ * [M3] Reports: overview (reports), equipment (reports-equipment), rentals (reports-rentals).
  * Everything is derived from the same data the other pages use; nothing is stored.
  * "Today" is Store.today() so overdue figures match the rest of the portal.
  */
@@ -14,8 +14,8 @@
   function esc(v) { return UI.esc(v); }
   function pct(n, d) { return d ? Math.round(n * 100 / d) : 0; }
   function url(path) { return global.GMS_BASE + path; }
-  function eqUrl(id) { return url('equipment/view.php?id=' + encodeURIComponent(id)); }
-  function wkUrl(id) { return url('workers/view.php?id=' + encodeURIComponent(id)); }
+  function eqUrl(id) { return url('admin/index.php?p=equipment-view&id=' + encodeURIComponent(id)); }
+  function wkUrl(id) { return url('admin/index.php?p=workers-view&id=' + encodeURIComponent(id)); }
   function workerName(id) { var w = id ? Store.find('workers', id) : null; return w ? w.full_name : (id || '-'); }
 
   function daysBetween(fromIso, toIso) {
@@ -122,7 +122,7 @@
       rows.push({ icon: 'fa-screwdriver-wrench', tone: 'text-slate-500', href: eqUrl(e.equipment_id), title: e.name + ' is in repair', sub: e.condition });
     });
     rLate.forEach(function (r) {
-      rows.push({ icon: 'fa-calendar-xmark', tone: 'text-amber-600', href: url('reports/rentals.php'),
+      rows.push({ icon: 'fa-calendar-xmark', tone: 'text-amber-600', href: url('admin/index.php?p=reports-rentals'),
         title: 'Rental ' + r.rental_id + ' is overdue', sub: customerName(r.customer_id) + ', due ' + UI.date(r.expected_return_date) });
     });
     $('ovAttnCount').textContent = rows.length + (rows.length === 1 ? ' item' : ' items');

@@ -129,3 +129,31 @@ if (!function_exists('gms_e')) {
         return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
     }
 }
+
+/* ==========================================================================
+   [Routing] Helpers for the front controller (index.php + _inc/route.inc.php).
+   Staff-portal pages are requested as admin/index.php?p=<page>.
+   ========================================================================== */
+
+if (!function_exists('cure')) {
+    /** Clean a request value: string, tags stripped, trimmed. */
+    function cure($data)
+    {
+        if ($data === null) return '';
+        $data = (string) $data;
+        $data = trim(strip_tags($data));
+        return $data;
+    }
+}
+
+if (!function_exists('page_url')) {
+    /**
+     * Full URL of a routed page, e.g. page_url('workers-view', ['id' => 'WRK-001'])
+     * gives .../admin/index.php?p=workers-view&id=WRK-001 (pass it through gms_e() inside an href).
+     * The page keys are the ones registered in _inc/route.inc.php.
+     */
+    function page_url(string $page, array $params = []): string
+    {
+        return url('admin/index.php?' . http_build_query(['p' => $page] + $params));
+    }
+}

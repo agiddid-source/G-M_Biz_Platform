@@ -20,7 +20,7 @@
     $('pfDept').textContent = worker ? worker.department : '-';
     if (worker) {
       $('pfWorker').innerHTML = Auth.can('workers', 'view')
-        ? '<a class="font-bold text-brand hover:text-deep" href="' + UI.esc(global.GMS_BASE + 'workers/view.php?id=' + worker.worker_id) + '">' + UI.esc(worker.worker_id) + '</a>'
+        ? '<a class="font-bold text-brand hover:text-deep" href="' + UI.esc(global.GMS_BASE + 'admin/index.php?p=workers-view&id=' + worker.worker_id) + '">' + UI.esc(worker.worker_id) + '</a>'
         : UI.esc(worker.worker_id);
     } else {
       $('pfWorker').textContent = 'Not linked';

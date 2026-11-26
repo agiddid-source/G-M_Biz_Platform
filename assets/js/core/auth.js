@@ -119,13 +119,13 @@
     /* ---------------------------------------------------------------- URLs and guards */
 
     loginUrl: function (next) {
-      return base() + 'admin/login.php' + (next ? '?next=' + encodeURIComponent(next) : '');
+      return base() + 'admin/index.php?p=login' + (next ? '&next=' + encodeURIComponent(next) : '');
     },
 
     /** First page the role can open (dashboard if allowed, otherwise the first visible module). */
     homeUrl: function () {
       var mods = Auth.visibleModules();
-      return base() + (mods.length ? mods[0].href : 'admin/profile.php');
+      return base() + (mods.length ? mods[0].href : 'admin/index.php?p=profile');
     },
 
     /** Accept only same-site paths under the project base. Anything else returns ''. */
@@ -149,7 +149,7 @@
           return null;
         }
         if (moduleId && !Auth.can(moduleId, 'view')) {
-          loc.replace(base() + 'admin/access-denied.php?module=' + encodeURIComponent(moduleId));
+          loc.replace(base() + 'admin/index.php?p=denied&module=' + encodeURIComponent(moduleId));
           return null;
         }
         global.document.body.classList.remove('auth-pending');
@@ -213,10 +213,10 @@
           '<span class="block text-xs text-slate-500">' + UI.esc(r ? r.label : '') + '</span></span>' +
           '<i class="fa-solid fa-chevron-down text-xs text-slate-400"></i></button>' +
         '<div id="userMenuPop" class="menu-pop" hidden>' +
-          '<a class="menu-item" href="' + UI.esc(base() + 'admin/profile.php') + '"><i class="fa-regular fa-user w-5 text-center text-slate-400"></i>My profile</a>' +
+          '<a class="menu-item" href="' + UI.esc(base() + 'admin/index.php?p=profile') + '"><i class="fa-regular fa-user w-5 text-center text-slate-400"></i>My profile</a>' +
           switchList +
           '<div class="my-1 border-t border-slate-100"></div>' +
-          '<a class="menu-item" href="' + UI.esc(base() + 'admin/logout.php') + '"><i class="fa-solid fa-arrow-right-from-bracket w-5 text-center text-slate-400"></i>Sign out</a>' +
+          '<a class="menu-item" href="' + UI.esc(base() + 'admin/index.php?p=logout') + '"><i class="fa-solid fa-arrow-right-from-bracket w-5 text-center text-slate-400"></i>Sign out</a>' +
         '</div>';
       var btn = root.querySelector('#userMenuBtn'), pop = root.querySelector('#userMenuPop');
       function setOpen(open) { pop.hidden = !open; btn.setAttribute('aria-expanded', String(open)); }

@@ -1,6 +1,6 @@
 /*
  * [M3] Settings > Users and Settings > Roles & permissions.
- * Runs on settings/users.php (#userRows) and settings/roles.php (#permRows).
+ * Runs on the settings-users (#userRows) and settings-roles (#permRows) pages.
  * Users and roles are part of the "settings" object (data/M3/settings.json); workers come from workers.json.
  * Simulated: changes live in this browser (Store -> localStorage), never in the JSON files.
  */
@@ -15,7 +15,7 @@
   function $(id) { return doc.getElementById(id); }
   function S() { return Store.getObject('settings'); }
   function save(s) { Store.saveObject('settings', s); }
-  function workerUrl(id) { return global.GMS_BASE + 'workers/view.php?id=' + encodeURIComponent(id); }
+  function workerUrl(id) { return global.GMS_BASE + 'admin/index.php?p=workers-view&id=' + encodeURIComponent(id); }
   function roleOf(s, id) { return (s.roles || []).filter(function (r) { return r.role_id === id; })[0] || null; }
   function roleLabel(s, id) { var r = roleOf(s, id); return r ? r.label : id; }
   function cap(str) { return str.charAt(0).toUpperCase() + str.slice(1); }

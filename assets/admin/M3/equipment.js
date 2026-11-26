@@ -2,8 +2,8 @@
  * [M3] Equipment & tools management (company-owned operational equipment, NOT stock for sale).
  * List with tabs/search/filters, equipment detail with assignment history, and the contextual
  * actions (assign, return, report issue, restore, retire). Forms live in equipment-modals.js,
- * rules in equipment-service.js. Runs on equipment/index.php (#equipmentRows) and
- * equipment/view.php (#equipmentDetail). Simulated: changes live in this browser only.
+ * rules in equipment-service.js. Runs on the equipment (#equipmentRows) and
+ * equipment-view (#equipmentDetail) pages. Simulated: changes live in this browser only.
  */
 (function (global) {
   'use strict';
@@ -15,8 +15,8 @@
 
   function $(id) { return doc.getElementById(id); }
   function lists() { return Store.getObject('settings').lists || {}; }
-  function viewUrl(id) { return global.GMS_BASE + 'equipment/view.php?id=' + encodeURIComponent(id); }
-  function workerUrl(id) { return global.GMS_BASE + 'workers/view.php?id=' + encodeURIComponent(id); }
+  function viewUrl(id) { return global.GMS_BASE + 'admin/index.php?p=equipment-view&id=' + encodeURIComponent(id); }
+  function workerUrl(id) { return global.GMS_BASE + 'admin/index.php?p=workers-view&id=' + encodeURIComponent(id); }
   function canEdit() { return Auth.can('equipment', 'edit'); }
 
   function workerLink(id) {
@@ -211,7 +211,7 @@
     if (!e) {
       root.innerHTML = '<div class="card p-8"></div>';
       UI.emptyState(root.firstChild, 'Equipment not found', 'fa-box-open', 'The record may not exist. Go back to the equipment list.');
-      root.firstChild.insertAdjacentHTML('beforeend', '<div class="mt-2 text-center"><a class="btn btn-brand" href="' + UI.esc(global.GMS_BASE + 'equipment/index.php') + '">Back to equipment</a></div>');
+      root.firstChild.insertAdjacentHTML('beforeend', '<div class="mt-2 text-center"><a class="btn btn-brand" href="' + UI.esc(global.GMS_BASE + 'admin/index.php?p=equipment') + '">Back to equipment</a></div>');
       return;
     }
     doc.title = e.name + ' | Alamos Generator';
@@ -279,7 +279,7 @@
       '<p class="mt-2 text-sm text-slate-500">' + hist.length + (hist.length === 1 ? ' assignment' : ' assignments') + ' recorded.</p></div>' + histBody + '</section>';
 
     root.innerHTML =
-      '<a class="mb-4 inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-deep" href="' + UI.esc(global.GMS_BASE + 'equipment/index.php') + '"><i class="fa-solid fa-arrow-left"></i>All equipment</a>' +
+      '<a class="mb-4 inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-deep" href="' + UI.esc(global.GMS_BASE + 'admin/index.php?p=equipment') + '"><i class="fa-solid fa-arrow-left"></i>All equipment</a>' +
       hero +
       '<div class="mt-6 grid gap-6 xl:grid-cols-3"><div class="space-y-6 xl:col-span-1">' + details + notes + '</div>' +
       '<div class="space-y-6 xl:col-span-2">' + holderCard + histCard + '</div></div>';

@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../config.php';
 $admin_page = basename($_SERVER['PHP_SELF']);
 $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
+// Pages served through admin/index.php (see _inc/route.inc.php) set their active item here.
+$admin_nav  = $nav_active ?? '';
 ?>
 <!-- Admin Sidebar Navigation -->
 <aside id="adminSidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-[#102746] text-[#ffffff] flex flex-col justify-between border-r border-slate-800 transition-transform duration-200 transform -translate-x-full lg:translate-x-0">
@@ -83,13 +85,13 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
                         <i class="fa-solid fa-truck-ramp-box w-4 text-center"></i>
                         <span>Rental Fleet</span>
                     </a>
-                    <a href="<?= url('equipment/index.php') ?>" data-nav-module="equipment"
-                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'equipment') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
+                    <a href="<?= page_url('equipment') ?>" data-nav-module="equipment"
+                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_nav === 'equipment') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-gears w-4 text-center"></i>
                         <span>Field Equipment</span>
                     </a>
-                    <a href="<?= url('workers/index.php') ?>" data-nav-module="workers"
-                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'workers') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
+                    <a href="<?= page_url('workers') ?>" data-nav-module="workers"
+                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_nav === 'workers') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-helmet-safety w-4 text-center"></i>
                         <span>Technicians</span>
                     </a>
@@ -102,13 +104,13 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
                     <span>Reports & Admin</span>
                 </div>
                 <nav class="space-y-1 text-[15px] font-medium">
-                    <a href="<?= url('reports/index.php') ?>" data-nav-module="reports"
-                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'reports') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
+                    <a href="<?= page_url('reports') ?>" data-nav-module="reports"
+                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_nav === 'reports') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-chart-column w-4 text-center"></i>
                         <span>Reports</span>
                     </a>
-                    <a href="<?= url('settings/index.php') ?>" data-nav-module="settings"
-                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_dir === 'settings') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
+                    <a href="<?= page_url('settings') ?>" data-nav-module="settings"
+                       class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors <?= ($admin_nav === 'settings') ? 'bg-alamos-500 text-white font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' ?>">
                         <i class="fa-solid fa-sliders w-4 text-center"></i>
                         <span>Settings</span>
                     </a>
@@ -128,7 +130,7 @@ $admin_dir  = basename(dirname($_SERVER['PHP_SELF']));
             <span class="text-[10px] text-slate-400">Public</span>
         </a>
 
-        <a href="<?= url('admin/profile.php') ?>" id="sbUserCard" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-950/60 border border-slate-800/60 hover:border-slate-700 transition-colors">
+        <a href="<?= page_url('profile') ?>" id="sbUserCard" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-950/60 border border-slate-800/60 hover:border-slate-700 transition-colors">
             <div id="sbUserInitials" class="w-8 h-8 rounded-full bg-alamos-500 flex items-center justify-center font-bold text-white text-[15px] font-mono">
                 EZ
             </div>

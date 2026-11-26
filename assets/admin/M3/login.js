@@ -120,7 +120,7 @@
       if (pw !== $('confirmPw').value) { UI.setError($('confirmPw'), 'The two passwords do not match.'); $('confirmPw').focus(); return; }
       var res = Auth.completeReset(pw);
       if (!res.ok) { show($('resetError'), res.error); return; }
-      global.location.replace(Auth.loginUrl('').replace(/\?.*$/, '') + '?msg=reset');
+      global.location.replace(Auth.loginUrl('') + '&msg=reset');
     });
 
     go('request');
@@ -130,7 +130,7 @@
 
   function initLogout() {
     Auth.logout();
-    global.location.replace(Auth.loginUrl('') + '?msg=signed_out');
+    global.location.replace(Auth.loginUrl('') + '&msg=signed_out');
   }
 
   /* ------------------------------------------------------------------ access denied */
