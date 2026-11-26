@@ -2,6 +2,6 @@
             </footer>
         </div>
     </div>
-    <script src="../assets/admin/admin.js" defer></script>
+    <script src="<?= ght_escape(ght_url('/assets/admin/admin.js')) ?>" defer></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../_inc/config.php';
 $ghtItems = ght_cart_items($ghtProducts);
 if (!$ghtItems) {
-    header('Location: cart.php', true, 303);
+    header('Location: ' . ght_route_url('storefront.cart'), true, 303);
     exit;
 }
 
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'notes' => $ghtValues['notes'],
             ], $_SESSION['ght_cart'] ?? [], 'storefront');
             $_SESSION['ght_cart'] = [];
-            header('Location: confirmation.php', true, 303);
+            header('Location: ' . ght_route_url('storefront.confirmation'), true, 303);
             exit;
         } catch (Throwable $ghtError) {
             $ghtErrors[] = 'Your purchase request could not be saved. Please try again.';
@@ -51,7 +51,7 @@ require __DIR__ . '/../_inc/shared/header.php';
 ?>
 <main id="ght-main" class="ght-main"><div class="ght-container">
     <div class="ght-page-heading"><div class="ght-heading-copy"><p class="ght-heading-kicker">Purchase request demo</p><h1>Delivery details</h1><p>Enter sample contact details to preview the checkout flow.</p></div><div class="ght-progress" aria-label="Checkout progress"><span class="ght-step-done"><b><i class="fa-solid fa-check" aria-hidden="true"></i></b> Cart</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span class="ght-step-current"><b>2</b> Details</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i><span><b>3</b> Confirmation</span></div></div>
-    <form action="checkout.php" method="post">
+    <form action="<?= ght_escape(ght_route_url('storefront.checkout')) ?>" method="post">
         <input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>">
         <?php if ($ghtErrors): ?><div class="ght-error" role="alert" aria-live="polite">Please check the following:<ul><?php foreach ($ghtErrors as $ghtError): ?><li><?= ght_escape($ghtError) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
         <div class="ght-checkout-grid">
@@ -67,7 +67,7 @@ require __DIR__ . '/../_inc/shared/header.php';
                     <div class="ght-field ght-field-full"><label for="ght-notes">Order notes <span>(optional)</span></label><textarea id="ght-notes" name="ght_notes" maxlength="1000" placeholder="Share any requirements about your order"><?= ght_escape($ghtValues['notes']) ?></textarea></div>
                 </div></div>
             </section>
-            <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Your order</h2><?php foreach ($ghtItems as $ghtItem): ?><div class="ght-order-item"><span><?= ght_escape($ghtItem['name']) ?> × <?= $ghtItem['quantity'] ?></span><strong><?= ght_format_price($ghtItem['price'] * $ghtItem['quantity']) ?></strong></div><?php endforeach; ?><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">Your request is saved locally for staff review. No message or payment is sent.</p><button class="ght-button" type="submit">Submit purchase request <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><p class="ght-summary-foot"><a class="ght-quiet-link" href="cart.php"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to cart</a></p></aside>
+            <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Your order</h2><?php foreach ($ghtItems as $ghtItem): ?><div class="ght-order-item"><span><?= ght_escape($ghtItem['name']) ?> × <?= $ghtItem['quantity'] ?></span><strong><?= ght_format_price($ghtItem['price'] * $ghtItem['quantity']) ?></strong></div><?php endforeach; ?><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">Your request is saved locally for staff review. No message or payment is sent.</p><button class="ght-button" type="submit">Submit purchase request <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><p class="ght-summary-foot"><a class="ght-quiet-link" href="<?= ght_escape(ght_route_url('storefront.cart')) ?>"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Return to cart</a></p></aside>
         </div>
     </form>
 </div></main>

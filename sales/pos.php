@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'payment_status' => 'paid',
                 'payment_method' => $ghtAdminValues['payment_method'],
             ]);
-            header('Location: pos.php?sale=' . rawurlencode($ghtSale['reference']), true, 303);
+            header('Location: ' . ght_route_url('admin.pos', [], ['sale' => $ghtSale['reference']]), true, 303);
             exit;
         } catch (Throwable $ghtError) {
             $ghtAdminErrors[] = 'The sale could not be saved. Check the local data files and try again.';
@@ -77,15 +77,15 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
     <div class="ght-admin-content">
         <div class="ght-admin-page-heading">
             <div><h1>Point of sale</h1></div>
-            <a class="ght-admin-secondary-button" href="index.php">Orders</a>
+            <a class="ght-admin-secondary-button" href="<?= ght_escape(ght_route_url('admin.orders')) ?>">Orders</a>
         </div>
 
         <?php if (isset($_GET['sale'])): ?>
-            <p class="ght-admin-alert ght-admin-alert-success" role="status">Sale saved. <a href="order.php?reference=<?= rawurlencode((string) $_GET['sale']) ?>">View sale</a></p>
+            <p class="ght-admin-alert ght-admin-alert-success" role="status">Sale saved. <a href="<?= ght_escape(ght_route_url('admin.order.show', ['reference' => (string) $_GET['sale']])) ?>">View sale</a></p>
         <?php endif; ?>
         <?php if ($ghtAdminErrors): ?><div class="ght-admin-alert" role="alert"><strong>Check the sale details:</strong><ul><?php foreach (array_unique($ghtAdminErrors) as $ghtError): ?><li><?= ght_escape($ghtError) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
 
-        <form method="post" action="pos.php" data-ght-pos-form>
+        <form method="post" action="<?= ght_escape(ght_route_url('admin.pos')) ?>" data-ght-pos-form>
             <input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>">
             <div class="ght-admin-pos-grid">
                 <section class="ght-admin-panel ght-admin-pos-products" aria-labelledby="ght-pos-products-heading">

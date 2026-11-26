@@ -93,13 +93,13 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
     <div class="ght-admin-content">
         <div class="ght-admin-page-heading">
             <div><h1>Sales report</h1></div>
-            <a class="ght-admin-secondary-button" href="../sales/index.php">Orders</a>
+            <a class="ght-admin-secondary-button" href="<?= ght_escape(ght_route_url('admin.orders')) ?>">Orders</a>
         </div>
 
         <?php if ($ghtAdminRangeError !== ''): ?><p class="ght-admin-alert" role="alert"><?= ght_escape($ghtAdminRangeError) ?></p><?php endif; ?>
 
         <section class="ght-admin-panel ght-admin-report-filter" aria-label="Report date range">
-            <form class="ght-admin-report-date-form" method="get" action="sales.php">
+            <form class="ght-admin-report-date-form" method="get" action="<?= ght_escape(ght_route_url('admin.reports.sales')) ?>">
                 <div class="ght-admin-field"><label for="ght-report-from">From</label><input id="ght-report-from" name="from" type="date" value="<?= ght_escape($ghtAdminFrom) ?>" required></div>
                 <div class="ght-admin-field"><label for="ght-report-to">To</label><input id="ght-report-to" name="to" type="date" value="<?= ght_escape($ghtAdminTo) ?>" required></div>
                 <button class="ght-admin-small-button" type="submit">Apply</button>
@@ -149,11 +149,11 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                             $ghtSaleDate = 'Date unavailable';
                         }
                         ?>
-                        <tr><td><a class="ght-admin-order-link" href="../sales/order.php?reference=<?= rawurlencode((string) $ghtOrder['reference']) ?>"><?= ght_escape((string) $ghtOrder['reference']) ?></a></td><td><?= ght_escape($ghtSaleDate) ?></td><td><?= ($ghtOrder['channel'] ?? '') === 'pos' ? 'Counter sale' : 'Storefront' ?></td><td><?= array_sum(array_map(static fn (array $ghtItem): int => (int) ($ghtItem['quantity'] ?? 0), $ghtOrder['items'] ?? [])) ?></td><td><?= ght_escape((string) ($ghtOrder['payment_method'] ?? 'Recorded')) ?></td><td><?= ght_escape(ght_format_price((int) $ghtOrder['report_total'])) ?></td></tr>
+                        <tr><td><a class="ght-admin-order-link" href="<?= ght_escape(ght_route_url('admin.order.show', ['reference' => (string) $ghtOrder['reference']])) ?>"><?= ght_escape((string) $ghtOrder['reference']) ?></a></td><td><?= ght_escape($ghtSaleDate) ?></td><td><?= ($ghtOrder['channel'] ?? '') === 'pos' ? 'Counter sale' : 'Storefront' ?></td><td><?= array_sum(array_map(static fn (array $ghtItem): int => (int) ($ghtItem['quantity'] ?? 0), $ghtOrder['items'] ?? [])) ?></td><td><?= ght_escape((string) ($ghtOrder['payment_method'] ?? 'Recorded')) ?></td><td><?= ght_escape(ght_format_price((int) $ghtOrder['report_total'])) ?></td></tr>
                     <?php endforeach; ?>
                 </tbody></table></div>
             <?php else: ?>
-                <div class="ght-admin-empty-state"><h3>No transactions</h3><a href="../sales/pos.php">Record a sale</a></div>
+                <div class="ght-admin-empty-state"><h3>No transactions</h3><a href="<?= ght_escape(ght_route_url('admin.pos')) ?>">Record a sale</a></div>
             <?php endif; ?>
         </section>
     </div>

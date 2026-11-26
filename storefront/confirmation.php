@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../_inc/config.php';
 $ghtOrder = $_SESSION['ght_order'] ?? null;
 if (!is_array($ghtOrder) || empty($ghtOrder['reference'])) {
-    header('Location: cart.php', true, 303);
+    header('Location: ' . ght_route_url('storefront.cart'), true, 303);
     exit;
 }
 $ghtPageTitle = 'Enquiry received';
@@ -20,7 +20,7 @@ require __DIR__ . '/../_inc/shared/header.php';
         <p>The order is now available in the local admin sales list.</p>
         <span class="ght-reference">Request <?= ght_escape((string) $ghtOrder['reference']) ?></span>
         <div class="ght-confirmation-detail"><p><strong><?= count($ghtOrder['items']) ?> line items</strong> · Estimated order <?= ght_format_price((int) $ghtOrder['subtotal']) ?></p><p>Reply to: <?= ght_escape((string) $ghtOrder['email']) ?></p><p>Fulfilment: <?= $ghtOrder['delivery'] === 'delivery' ? 'Delivery to be arranged' : 'Collection' ?></p></div>
-        <a class="ght-button ght-button-brand" href="cart.php">View your cart</a>
+        <a class="ght-button ght-button-brand" href="<?= ght_escape(ght_route_url('storefront.cart')) ?>">View your cart</a>
     </section>
 </div></main>
 <?php require __DIR__ . '/../_inc/shared/footer.php'; ?>

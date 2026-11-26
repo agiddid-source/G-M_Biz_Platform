@@ -56,7 +56,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
             <div class="ght-admin-activity-panel">
                 <div class="ght-admin-panel-heading">
                     <div><h2>Recent orders</h2></div>
-                    <a href="../sales/index.php">View all orders</a>
+                    <a href="<?= ght_escape(ght_route_url('admin.orders')) ?>">View all orders</a>
                 </div>
                 <?php if ($ghtAdminRecentOrders): ?>
                     <div class="ght-admin-table-wrap">
@@ -74,7 +74,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                                     }
                                     ?>
                                     <tr>
-                                        <td><a class="ght-admin-order-link" href="../sales/order.php?reference=<?= rawurlencode((string) ($ghtRecentOrder['reference'] ?? '')) ?>"><?= ght_escape((string) ($ghtRecentOrder['reference'] ?? 'Order')) ?></a></td>
+                                        <td><a class="ght-admin-order-link" href="<?= ght_escape(ght_route_url('admin.order.show', ['reference' => (string) ($ghtRecentOrder['reference'] ?? '')])) ?>"><?= ght_escape((string) ($ghtRecentOrder['reference'] ?? 'Order')) ?></a></td>
                                         <td><?= ght_escape((string) ($ghtRecentOrder['customer']['name'] ?? $ghtRecentOrder['name'] ?? 'Walk-in customer')) ?></td>
                                         <td><?= ght_escape($ghtRecentDate) ?></td>
                                         <td><span class="ght-admin-badge ght-admin-badge-<?= ght_escape(preg_replace('/[^a-z]/', '', strtolower($ghtRecentStatus)) ?: 'pending') ?>"><?= ght_escape($ghtRecentStatusLabel) ?></span></td>
@@ -84,12 +84,12 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                         </table>
                     </div>
                 <?php else: ?>
-                    <div class="ght-admin-activity-empty"><h3>No orders yet</h3><a href="../sales/pos.php">Record a sale</a></div>
+                    <div class="ght-admin-activity-empty"><h3>No orders yet</h3><a href="<?= ght_escape(ght_route_url('admin.pos')) ?>">Record a sale</a></div>
                 <?php endif; ?>
             </div>
 
             <div class="ght-admin-activity-panel ght-admin-week-panel">
-                <div class="ght-admin-panel-heading"><div><h2>Revenue</h2><p>Last 7 days</p></div><a href="../reports/sales.php">Report</a></div>
+                <div class="ght-admin-panel-heading"><div><h2>Revenue</h2><p>Last 7 days</p></div><a href="<?= ght_escape(ght_route_url('admin.reports.sales')) ?>">Report</a></div>
                 <div class="ght-admin-trend-chart">
                     <svg class="ght-admin-trend-plot" viewBox="0 0 600 160" role="img" aria-label="Paid revenue for the last seven days">
                         <path class="ght-admin-chart-gridlines" d="M24 30H576 M24 90H576 M24 150H576" />
@@ -111,7 +111,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                         <?php endforeach; ?>
                     </div>
                     <?php if (array_sum(array_column($ghtAdminWeekRevenue, 'amount')) === 0): ?>
-                        <p class="ght-admin-chart-empty-note">No paid sales yet <a href="../sales/pos.php">Record a sale</a></p>
+                        <p class="ght-admin-chart-empty-note">No paid sales yet <a href="<?= ght_escape(ght_route_url('admin.pos')) ?>">Record a sale</a></p>
                     <?php endif; ?>
                 </div>
             </div>

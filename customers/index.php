@@ -13,7 +13,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
     <div class="ght-admin-content">
         <div class="ght-admin-page-heading">
             <div><p class="ght-admin-page-kicker">Sales workspace</p><h1>Customers</h1><p>Customer details stay linked to storefront requests and counter sales.</p></div>
-            <a class="ght-admin-button" href="view.php">Add customer</a>
+            <a class="ght-admin-button" href="<?= ght_escape(ght_route_url('admin.customer.new')) ?>">Add customer</a>
         </div>
 
         <section class="ght-admin-panel" aria-labelledby="ght-customers-heading">
@@ -52,7 +52,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                                     <td><?= (int) ($ghtCustomer['orders_count'] ?? 0) ?></td>
                                     <td><?= ght_escape(ght_format_price((int) ($ghtCustomer['total_spend'] ?? 0))) ?></td>
                                     <td><?= ght_escape($ghtLastOrder) ?></td>
-                                    <td><a class="ght-admin-text-link" href="view.php?id=<?= rawurlencode((string) ($ghtCustomer['id'] ?? '')) ?>">View and edit</a></td>
+                                    <td><a class="ght-admin-text-link" href="<?= ght_escape(ght_route_url('admin.customer.show', ['id' => (string) ($ghtCustomer['id'] ?? '')])) ?>">View and edit</a></td>
                                 </tr>
                             <?php endforeach; ?>
                             <tr class="ght-admin-no-results" id="ght-customers-empty" hidden><td colspan="6">No customer records match that search.</td></tr>
@@ -61,7 +61,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                 </div>
                 <p class="ght-admin-table-foot" id="ght-customers-count" data-singular="customer" data-plural="customers" aria-live="polite"><?= count($ghtAdminCustomers) ?> customers</p>
             <?php else: ?>
-                <div class="ght-admin-empty-state"><h3>No customer records yet</h3><p>Customers are saved when a storefront request or counter sale is recorded.</p><a href="view.php">Create a customer record</a></div>
+                <div class="ght-admin-empty-state"><h3>No customer records yet</h3><p>Customers are saved when a storefront request or counter sale is recorded.</p><a href="<?= ght_escape(ght_route_url('admin.customer.new')) ?>">Create a customer record</a></div>
             <?php endif; ?>
         </section>
     </div>

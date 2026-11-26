@@ -1,0 +1,116 @@
+<?php
+declare(strict_types=1);
+
+return [
+    'routes' => [
+        [
+            'name' => 'home',
+            'path' => '/',
+            'methods' => ['GET'],
+            'controller' => 'index.php',
+        ],
+        [
+            'name' => 'admin.dashboard',
+            'path' => '/admin',
+            'aliases' => ['/admin/dashboard'],
+            'methods' => ['GET'],
+            'controller' => 'admin/dashboard.php',
+        ],
+        [
+            'name' => 'admin.orders',
+            'path' => '/admin/orders',
+            'methods' => ['GET', 'POST'],
+            'controller' => 'sales/index.php',
+        ],
+        [
+            'name' => 'admin.order.show',
+            'path' => '/admin/orders/{reference}',
+            'methods' => ['GET', 'POST'],
+            'controller' => 'sales/order.php',
+        ],
+        [
+            'name' => 'admin.pos',
+            'path' => '/admin/pos',
+            'methods' => ['GET', 'POST'],
+            'controller' => 'sales/pos.php',
+        ],
+        [
+            'name' => 'admin.customers',
+            'path' => '/admin/customers',
+            'methods' => ['GET'],
+            'controller' => 'customers/index.php',
+        ],
+        [
+            'name' => 'admin.customer.new',
+            'path' => '/admin/customers/new',
+            'methods' => ['GET', 'POST'],
+            'controller' => 'customers/view.php',
+            'defaults' => ['id' => ''],
+        ],
+        [
+            'name' => 'admin.customer.show',
+            'path' => '/admin/customers/{id}',
+            'methods' => ['GET', 'POST'],
+            'controller' => 'customers/view.php',
+        ],
+        [
+            'name' => 'admin.reports.sales',
+            'path' => '/admin/reports/sales',
+            'aliases' => ['/admin/reports'],
+            'methods' => ['GET'],
+            'controller' => 'reports/sales.php',
+        ],
+        [
+            'name' => 'storefront.root',
+            'path' => '/storefront',
+            'methods' => ['GET'],
+            'redirect' => 'storefront.cart',
+        ],
+        [
+            'name' => 'storefront.cart',
+            'path' => '/storefront/cart',
+            'methods' => ['GET', 'POST'],
+            'controller' => 'storefront/cart.php',
+        ],
+        [
+            'name' => 'storefront.checkout',
+            'path' => '/storefront/checkout',
+            'methods' => ['GET', 'POST'],
+            'controller' => 'storefront/checkout.php',
+        ],
+        [
+            'name' => 'storefront.confirmation',
+            'path' => '/storefront/confirmation',
+            'methods' => ['GET'],
+            'controller' => 'storefront/confirmation.php',
+        ],
+    ],
+    'legacy' => [
+        '/index.php' => ['route' => 'home', 'controller' => 'index.php'],
+        '/admin/index.php' => ['route' => 'admin.dashboard', 'controller' => 'admin/index.php'],
+        '/admin/dashboard.php' => ['route' => 'admin.dashboard', 'controller' => 'admin/dashboard.php'],
+        '/sales/index.php' => ['route' => 'admin.orders', 'controller' => 'sales/index.php'],
+        '/sales/order.php' => [
+            'route' => 'admin.order.show',
+            'controller' => 'sales/order.php',
+            'params' => ['reference' => 'reference'],
+        ],
+        '/sales/pos.php' => ['route' => 'admin.pos', 'controller' => 'sales/pos.php'],
+        '/customers/index.php' => ['route' => 'admin.customers', 'controller' => 'customers/index.php'],
+        '/customers/view.php' => [
+            'route' => 'admin.customer.show',
+            'fallback_route' => 'admin.customer.new',
+            'controller' => 'customers/view.php',
+            'params' => ['id' => 'id'],
+        ],
+        '/reports/index.php' => ['route' => 'admin.reports.sales', 'controller' => 'reports/index.php'],
+        '/reports/sales.php' => ['route' => 'admin.reports.sales', 'controller' => 'reports/sales.php'],
+        '/cart.php' => ['route' => 'storefront.cart', 'controller' => 'cart.php'],
+        '/checkout.php' => ['route' => 'storefront.checkout', 'controller' => 'checkout.php'],
+        '/confirmation.php' => ['route' => 'storefront.confirmation', 'controller' => 'confirmation.php'],
+        '/storefront/index.php' => ['route' => 'storefront.cart', 'controller' => 'storefront/cart.php'],
+        '/storefront/cart.php' => ['route' => 'storefront.cart', 'controller' => 'storefront/cart.php'],
+        '/storefront/checkout.php' => ['route' => 'storefront.checkout', 'controller' => 'storefront/checkout.php'],
+        '/storefront/confirmation.php' => ['route' => 'storefront.confirmation', 'controller' => 'storefront/confirmation.php'],
+    ],
+];

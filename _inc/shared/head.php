@@ -11,14 +11,14 @@ $ghtPageDescription = $ghtPageDescription ?? 'Generator sales, parts and service
     <meta name="page-type" content="product">
     <meta name="site-kind" content="other">
     <title><?= ght_escape($ghtPageTitle) ?> | Alamos Generator</title>
-    <link rel="icon" href="../generator%20logo.jpeg" type="image/jpeg">
+    <link rel="icon" href="<?= ght_escape(ght_url('/generator%20logo.jpeg')) ?>" type="image/jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script>tailwind = { config: { prefix: 'ght-' } };</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../ght-styles.css">
+    <link rel="stylesheet" href="<?= ght_escape(ght_url('/ght-styles.css')) ?>">
 </head>
 <body class="ght-min-h-screen ght-bg-slate-50 ght-text-slate-900">
 <a class="ght-skip-link" href="#ght-main">Skip to content</a>

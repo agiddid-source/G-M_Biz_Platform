@@ -5,11 +5,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-$ghtScriptPath = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
-$ghtBaseUrl = rtrim(dirname(dirname($ghtScriptPath)), '/');
-if ($ghtBaseUrl === '.' || $ghtBaseUrl === '/') {
-    $ghtBaseUrl = '';
-}
+require_once __DIR__ . '/routing.php';
+$ghtBaseUrl = ght_base_url();
 
 function ght_json_path(string $ghtKey): string
 {

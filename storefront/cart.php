@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     if (!$ghtErrors) {
-        header('Location: cart.php', true, 303);
+        header('Location: ' . ght_route_url('storefront.cart'), true, 303);
         exit;
     }
 }
@@ -65,8 +65,8 @@ require __DIR__ . '/../_inc/shared/header.php';
                             <div class="ght-item-art" aria-hidden="true"><i class="fa-solid <?= ght_escape($ghtItem['icon']) ?>"></i></div>
                             <div class="ght-item-copy"><h2 class="ght-item-name"><?= ght_escape($ghtItem['name']) ?></h2><p class="ght-item-meta"><?= ght_escape($ghtItem['variant']) ?></p><span class="ght-item-sku">SKU <?= ght_escape($ghtItem['sku']) ?></span>
                                 <div class="ght-item-actions">
-                                    <form class="ght-quantity" action="cart.php" method="post" aria-label="Update <?= ght_escape($ghtItem['name']) ?> quantity"><input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>"><input type="hidden" name="ght_action" value="update"><input type="hidden" name="ght_product_id" value="<?= ght_escape($ghtProductId) ?>"><button type="submit" name="ght_delta" value="-1" aria-label="Decrease quantity">−</button><input type="number" name="ght_quantity" value="<?= $ghtItem['quantity'] ?>" min="1" max="99" aria-label="Quantity" onchange="this.form.requestSubmit()"><button type="submit" name="ght_delta" value="1" aria-label="Increase quantity">+</button></form>
-                                    <form action="cart.php" method="post"><input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>"><input type="hidden" name="ght_action" value="remove"><input type="hidden" name="ght_product_id" value="<?= ght_escape($ghtProductId) ?>"><button class="ght-remove" type="submit">Remove</button></form>
+                                    <form class="ght-quantity" action="<?= ght_escape(ght_route_url('storefront.cart')) ?>" method="post" aria-label="Update <?= ght_escape($ghtItem['name']) ?> quantity"><input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>"><input type="hidden" name="ght_action" value="update"><input type="hidden" name="ght_product_id" value="<?= ght_escape($ghtProductId) ?>"><button type="submit" name="ght_delta" value="-1" aria-label="Decrease quantity">−</button><input type="number" name="ght_quantity" value="<?= $ghtItem['quantity'] ?>" min="1" max="99" aria-label="Quantity" onchange="this.form.requestSubmit()"><button type="submit" name="ght_delta" value="1" aria-label="Increase quantity">+</button></form>
+                                    <form action="<?= ght_escape(ght_route_url('storefront.cart')) ?>" method="post"><input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>"><input type="hidden" name="ght_action" value="remove"><input type="hidden" name="ght_product_id" value="<?= ght_escape($ghtProductId) ?>"><button class="ght-remove" type="submit">Remove</button></form>
                                 </div>
                             </div>
                             <strong class="ght-item-price"><?= ght_format_price($ghtItem['price'] * $ghtItem['quantity']) ?></strong>
@@ -74,7 +74,7 @@ require __DIR__ . '/../_inc/shared/header.php';
                     <?php endforeach; ?>
                     <div class="ght-under-items"><span class="ght-quiet-link">Generator sales and spare parts</span><span class="ght-security"><i class="fa-regular fa-file-lines" aria-hidden="true"></i> Demo only; no message or payment is sent.</span></div>
                 </div></section>
-                <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Order summary</h2><div class="ght-summary-row"><span>Items (<?= $ghtCount ?>)</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">This prototype simulates checkout for review. It does not send your details to Alamos or take payment.</p><a class="ght-button" href="checkout.php">Continue to checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></aside>
+                <aside class="ght-summary" aria-labelledby="ght-summary-title"><h2 id="ght-summary-title">Order summary</h2><div class="ght-summary-row"><span>Items (<?= $ghtCount ?>)</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><div class="ght-summary-row"><span>Delivery</span><strong>To be confirmed</strong></div><div class="ght-summary-row ght-summary-total"><span>Estimated total</span><strong><?= ght_format_price($ghtSubtotal) ?></strong></div><p class="ght-note">This prototype simulates checkout for review. It does not send your details to Alamos or take payment.</p><a class="ght-button" href="<?= ght_escape(ght_route_url('storefront.checkout')) ?>">Continue to checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></aside>
             </div>
         <?php endif; ?>
     </div>

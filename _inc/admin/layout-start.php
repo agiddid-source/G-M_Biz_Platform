@@ -10,11 +10,11 @@ $ghtAdminActive = $ghtAdminActive ?? '';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?= ght_escape($ghtAdminDescription) ?>">
     <title><?= ght_escape($ghtAdminTitle) ?> | Alamos Generator</title>
-    <link rel="icon" href="../generator%20logo.jpeg" type="image/jpeg">
+    <link rel="icon" href="<?= ght_escape(ght_url('/generator%20logo.jpeg')) ?>" type="image/jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/admin/admin.css">
+    <link rel="stylesheet" href="<?= ght_escape(ght_url('/assets/admin/admin.css')) ?>">
 </head>
 <body class="ght-admin-body">
     <a class="ght-admin-skip" href="#ght-admin-main">Skip to content</a>

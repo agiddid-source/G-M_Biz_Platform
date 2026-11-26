@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $ghtAdminOrder !== null) {
     }
     $ghtStatus = (string) ($_POST['ght_status'] ?? '');
     if (ght_update_order_status($ghtAdminReference, $ghtStatus)) {
-        header('Location: order.php?reference=' . rawurlencode($ghtAdminReference) . '&updated=1', true, 303);
+        header('Location: ' . ght_route_url('admin.order.show', ['reference' => $ghtAdminReference], ['updated' => 1]), true, 303);
         exit;
     }
     $ghtAdminError = 'Choose a valid order status.';
@@ -60,11 +60,11 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
     <div class="ght-admin-content">
         <div class="ght-admin-page-heading">
             <div><h1><?= ght_escape($ghtAdminReference) ?></h1><p><?= ght_escape($ghtAdminCreatedDate) ?>, <?= ($ghtAdminOrder['channel'] ?? '') === 'pos' ? 'Counter sale' : 'Storefront' ?></p></div>
-            <a class="ght-admin-secondary-button" href="index.php">Orders</a>
+            <a class="ght-admin-secondary-button" href="<?= ght_escape(ght_route_url('admin.orders')) ?>">Orders</a>
         </div>
 
         <?php if ($ghtAdminOrder === null): ?>
-            <section class="ght-admin-panel ght-admin-empty-state"><h2>Order not found</h2><a href="index.php">Orders</a></section>
+            <section class="ght-admin-panel ght-admin-empty-state"><h2>Order not found</h2><a href="<?= ght_escape(ght_route_url('admin.orders')) ?>">Orders</a></section>
         <?php else: ?>
             <?php if (isset($_GET['updated'])): ?><p class="ght-admin-alert ght-admin-alert-success" role="status">Order status updated.</p><?php endif; ?>
             <?php if ($ghtAdminError !== ''): ?><p class="ght-admin-alert" role="alert"><?= ght_escape($ghtAdminError) ?></p><?php endif; ?>
@@ -94,7 +94,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                     <section class="ght-admin-panel ght-admin-detail-card" aria-labelledby="ght-order-status-heading">
                         <h2 id="ght-order-status-heading">Status</h2>
                         <span class="ght-admin-badge ght-admin-badge-<?= ght_escape(preg_replace('/[^a-z]/', '', strtolower($ghtAdminOrderStatus)) ?: 'pending') ?>"><?= ght_escape($ghtAdminStatuses[$ghtAdminOrderStatus] ?? ucfirst($ghtAdminOrderStatus)) ?></span>
-                        <form class="ght-admin-status-form" method="post" action="order.php?reference=<?= rawurlencode($ghtAdminReference) ?>">
+                        <form class="ght-admin-status-form" method="post" action="<?= ght_escape(ght_route_url('admin.order.show', ['reference' => $ghtAdminReference])) ?>">
                             <input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>">
                             <input type="hidden" name="ght_reference" value="<?= ght_escape($ghtAdminReference) ?>">
                             <label for="ght-order-status">Update status</label>
@@ -117,7 +117,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                             <?php if (!empty($ghtAdminOrder['address'])): ?><div><dt>Address</dt><dd><?= nl2br(ght_escape((string) $ghtAdminOrder['address'])) ?></dd></div><?php endif; ?>
                             <div><dt>Payment</dt><dd><?= ($ghtAdminOrder['payment_status'] ?? '') === 'paid' ? 'Recorded, ' . ght_escape((string) ($ghtAdminOrder['payment_method'] ?? '')) : 'Unpaid' ?></dd></div>
                         </dl>
-                        <?php if (!empty($ghtAdminOrder['customer_id'])): ?><a class="ght-admin-text-link" href="<?= ght_escape($ghtBaseUrl . '/customers/view.php?id=' . rawurlencode((string) $ghtAdminOrder['customer_id'])) ?>">Open customer record</a><?php endif; ?>
+                        <?php if (!empty($ghtAdminOrder['customer_id'])): ?><a class="ght-admin-text-link" href="<?= ght_escape(ght_route_url('admin.customer.show', ['id' => (string) $ghtAdminOrder['customer_id']])) ?>">Open customer record</a><?php endif; ?>
                     </section>
 
                     <?php if (!empty($ghtAdminOrder['notes'])): ?>

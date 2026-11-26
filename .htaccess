@@ -1,0 +1,13 @@
+Options -MultiViews
+RewriteEngine On
+
+RewriteRule ^(?:\.git|_inc|data)(?:/|$) - [F,L,NC]
+RewriteRule ^router\.php$ - [L,NC]
+RewriteRule ^assets(?:/|$) - [L,NC]
+
+RewriteRule ^(?:admin|sales|customers|reports|storefront|inventory|rentals|equipment|workers|settings)/?$ router.php [QSA,L]
+RewriteRule \.php$ router.php [QSA,L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ router.php [QSA,L]

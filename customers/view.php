@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($ghtAdminCustomerId === '' || $ght
     if (!$ghtAdminErrors) {
         try {
             $ghtSavedCustomer = ght_save_customer_profile($ghtAdminValues, $ghtAdminIsEditing ? $ghtAdminCustomerId : null);
-            header('Location: view.php?id=' . rawurlencode($ghtSavedCustomer['id']) . '&saved=1', true, 303);
+            header('Location: ' . ght_route_url('admin.customer.show', ['id' => $ghtSavedCustomer['id']], ['saved' => 1]), true, 303);
             exit;
         } catch (Throwable $ghtError) {
             $ghtAdminErrors[] = 'The customer record could not be saved. Please try again.';
@@ -67,18 +67,18 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
     <div class="ght-admin-content">
         <div class="ght-admin-page-heading">
             <div><p class="ght-admin-page-kicker">Customer management</p><h1><?= $ghtAdminIsEditing ? ght_escape($ghtAdminCustomer['name']) : 'Add customer' ?></h1><p><?= $ghtAdminIsEditing ? 'Review the profile and recent order history.' : 'Create a customer profile for a new or existing contact.' ?></p></div>
-            <a class="ght-admin-secondary-button" href="index.php">Back to customers</a>
+            <a class="ght-admin-secondary-button" href="<?= ght_escape(ght_route_url('admin.customers')) ?>">Back to customers</a>
         </div>
         <?php if (isset($_GET['saved'])): ?><p class="ght-admin-alert ght-admin-alert-success" role="status">Customer record saved.</p><?php endif; ?>
         <?php if ($ghtAdminErrors): ?><div class="ght-admin-alert" role="alert"><strong>Check the customer details:</strong><ul><?php foreach (array_unique($ghtAdminErrors) as $ghtError): ?><li><?= ght_escape($ghtError) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
 
         <?php if ($ghtAdminCustomerId !== '' && !$ghtAdminIsEditing): ?>
-            <section class="ght-admin-panel ght-admin-empty-state"><h2>Customer not found</h2><p>This profile is not present in the local customer file.</p><a href="index.php">Return to customers</a></section>
+            <section class="ght-admin-panel ght-admin-empty-state"><h2>Customer not found</h2><p>This profile is not present in the local customer file.</p><a href="<?= ght_escape(ght_route_url('admin.customers')) ?>">Return to customers</a></section>
         <?php else: ?>
             <div class="ght-admin-customer-layout">
                 <section class="ght-admin-panel ght-admin-customer-form-panel" aria-labelledby="ght-customer-form-heading">
                     <div class="ght-admin-panel-toolbar"><div><h2 id="ght-customer-form-heading"><?= $ghtAdminIsEditing ? 'Contact information' : 'Customer details' ?></h2><p>Changes are saved to the local customer file.</p></div></div>
-                    <form class="ght-admin-customer-form" method="post" action="view.php<?= $ghtAdminIsEditing ? '?id=' . rawurlencode($ghtAdminCustomerId) : '' ?>">
+                    <form class="ght-admin-customer-form" method="post" action="<?= ght_escape($ghtAdminIsEditing ? ght_route_url('admin.customer.show', ['id' => $ghtAdminCustomerId]) : ght_route_url('admin.customer.new')) ?>">
                         <input type="hidden" name="ght_csrf" value="<?= ght_escape(ght_csrf_token()) ?>">
                         <?php if ($ghtAdminIsEditing): ?><input type="hidden" name="ght_id" value="<?= ght_escape($ghtAdminCustomerId) ?>"><?php endif; ?>
                         <div class="ght-admin-form-fields ght-admin-form-fields-two">
@@ -88,7 +88,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                             <div class="ght-admin-field ght-admin-field-span"><label for="ght-customer-address">Address <span>optional</span></label><textarea id="ght-customer-address" name="ght_address" maxlength="300"><?= ght_escape($ghtAdminValues['address']) ?></textarea></div>
                             <div class="ght-admin-field ght-admin-field-span"><label for="ght-customer-notes">Staff notes <span>optional</span></label><textarea id="ght-customer-notes" name="ght_notes" maxlength="1000"><?= ght_escape($ghtAdminValues['notes']) ?></textarea></div>
                         </div>
-                        <div class="ght-admin-form-actions"><button class="ght-admin-button" type="submit"><?= $ghtAdminIsEditing ? 'Save changes' : 'Create customer' ?></button><?php if ($ghtAdminIsEditing): ?><a class="ght-admin-secondary-button" href="view.php?id=<?= rawurlencode($ghtAdminCustomerId) ?>">Discard</a><?php endif; ?></div>
+                        <div class="ght-admin-form-actions"><button class="ght-admin-button" type="submit"><?= $ghtAdminIsEditing ? 'Save changes' : 'Create customer' ?></button><?php if ($ghtAdminIsEditing): ?><a class="ght-admin-secondary-button" href="<?= ght_escape(ght_route_url('admin.customer.show', ['id' => $ghtAdminCustomerId])) ?>">Discard</a><?php endif; ?></div>
                     </form>
                 </section>
 
@@ -120,7 +120,7 @@ require __DIR__ . '/../_inc/admin/layout-start.php';
                                     $ghtOrderDate = 'Date unavailable';
                                 }
                                 ?>
-                                <tr><td><a class="ght-admin-order-link" href="../sales/order.php?reference=<?= rawurlencode((string) $ghtOrder['reference']) ?>"><?= ght_escape((string) $ghtOrder['reference']) ?></a></td><td><?= ght_escape($ghtOrderDate) ?></td><td><?= ($ghtOrder['channel'] ?? '') === 'pos' ? 'Counter sale' : 'Storefront' ?></td><td><?= ght_escape(ght_format_price((int) ($ghtOrder['total'] ?? 0))) ?></td><td><span class="ght-admin-badge ght-admin-badge-<?= ght_escape(preg_replace('/[^a-z]/', '', strtolower($ghtStatus)) ?: 'pending') ?>"><?= ght_escape(ght_order_statuses()[$ghtStatus] ?? ucfirst($ghtStatus)) ?></span></td></tr>
+                                <tr><td><a class="ght-admin-order-link" href="<?= ght_escape(ght_route_url('admin.order.show', ['reference' => (string) $ghtOrder['reference']])) ?>"><?= ght_escape((string) $ghtOrder['reference']) ?></a></td><td><?= ght_escape($ghtOrderDate) ?></td><td><?= ($ghtOrder['channel'] ?? '') === 'pos' ? 'Counter sale' : 'Storefront' ?></td><td><?= ght_escape(ght_format_price((int) ($ghtOrder['total'] ?? 0))) ?></td><td><span class="ght-admin-badge ght-admin-badge-<?= ght_escape(preg_replace('/[^a-z]/', '', strtolower($ghtStatus)) ?: 'pending') ?>"><?= ght_escape(ght_order_statuses()[$ghtStatus] ?? ucfirst($ghtStatus)) ?></span></td></tr>
                             <?php endforeach; ?>
                         </tbody></table></div>
                     <?php else: ?>
